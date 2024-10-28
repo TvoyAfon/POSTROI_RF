@@ -1,0 +1,81 @@
+.modal_container {
+	width: 378px;
+	height: 147px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 24px;
+	border-radius: 32px;
+	padding: 32px;
+	background-color: white;
+	z-index: 5 !important;
+	box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 14px 0px, rgba(0, 0, 0, 0.05) 0px 2px 2px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px;
+	position: absolute;
+	top: 73px;
+	left: -26px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+
+	&::before {
+		content: '';
+		display: block;
+		width: 0;
+		height: 0;
+		position: absolute;
+		border-right: 15px solid transparent;
+		border-left: 15px solid transparent;
+		border-bottom: 15px solid rgb(255, 255, 255);
+		left: 40px;
+		top: -13px;
+	}
+
+	&::after {
+		content: '';
+		display: block;
+		width: 0;
+		height: 0;
+		position: absolute;
+		border-right: 15px solid transparent;
+		border-left: 15px solid transparent;
+		border-bottom: 15px solid rgba(0, 0, 0, 0.33);
+		left: 40px;
+		top: -13px;
+		z-index: -1;
+	}
+
+	animation: showModalCity 0.4s ease-in-out;
+	position: absolute;
+
+	button {
+		width: 145px;
+		height: 40px;
+		border-radius: 8px;
+		font-size: 16px;
+	}
+
+	button[name='changeCity'] {
+		background-color: #F4F3F1;
+	}
+
+	button[name='done'] {
+		background-color:
+			#7099ED;
+		color: white;
+		font-weight: 600;
+		transition: background-color 0.3s ease-in-out;
+
+		&:hover {
+			background-color: #383940;
+		}
+	}
+}
+
+@keyframes showModalCity {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}

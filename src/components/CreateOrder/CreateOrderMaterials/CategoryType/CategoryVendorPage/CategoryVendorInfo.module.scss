@@ -1,0 +1,23 @@
+.vendorInfoContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+@media screen and (max-width:1200px) {
+	.vendorInfoContainer_overlay {
+		padding-top: 0px !important;
+	}
+
+	.vendorInfoContainer {
+		transform: scale(0.65);
+		position: absolute;
+		top: -40px;
+	}
+
+	.categoryVendorProfile_overlay {
+		padding-top: 90px !important;
+		transform: scale(0.9);
+	}
+
+}

@@ -1,0 +1,98 @@
+.container {
+	padding: 32px;
+	border-radius: 0px 32px 32px 32px;
+	background-color: white;
+	position: relative;
+	width: 1175px;
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+}
+
+.containerWithYandexMap {
+	width: 604px;
+	height: 843px;
+	padding: 32px;
+	border-radius: 32px;
+	background-color: #fff;
+	margin-top: 90px;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	position: absolute;
+	z-index: 2;
+	border: 1px solid rgba(0,0,0,0.15);
+
+	&_header {
+		display: flex;
+		gap: 12px;
+	}
+
+	&_cards {
+		width: 536px;
+		display: flex;
+		gap: 16px;
+		flex-wrap: wrap;
+		height: 724px;
+		overflow-y: scroll;
+	}
+}
+
+.myOrders {
+	display: flex;
+	gap: 14px;
+	align-items: center;
+	background-color: #7099ED;
+	padding: 16px 24px 16px 24px;
+	border-radius: 8px 8px 0px 0px;
+	width: 159px;
+	cursor: pointer;
+
+}
+
+.myProject {
+	display: flex;
+	gap: 14px;
+	align-items: center;
+	background-color: #7099ED;
+	padding: 16px 24px 16px 24px;
+	border-radius: 8px 8px 0px 0px;
+	width: 155px;
+	cursor: pointer;
+}
+
+.orders {
+	display: flex;
+	gap: 14px;
+	align-items: center;
+	background-color: #7099ED;
+	padding: 16px 24px 16px 24px;
+	border-radius: 8px 8px 0px 0px;
+	cursor: pointer;
+}
+
+.compactOrderCard {
+	width: 240px;
+	height: 410px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	border-radius: 16px;
+	background-color: #F4F3F1;
+
+	img {
+		width: 240px;
+		height: 240px;
+		border-radius: 16px;
+	}
+}
+
+@media screen and (max-width:1200px) {
+	.container_overlay {
+		padding-top: 32px !important;
+	}
+
+	.container {
+		transform: scale(0.7);
+	}
+}

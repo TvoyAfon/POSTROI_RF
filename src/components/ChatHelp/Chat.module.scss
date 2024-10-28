@@ -1,0 +1,103 @@
+.overlay{
+  animation: slideUp 0.45s ease-in-out;
+  
+  width:400px;
+  height:770px;
+  background-color:white;
+  border-radius:32px;
+  position:fixed;
+  right:1%;
+  bottom:2%;
+  z-index:3;
+  box-shadow:0 2px 5px rgba(0, 0, 0, 0.2);
+
+}
+
+ 
+.chat{
+    
+    display: flex; 
+    flex-direction: column;
+    gap:16px;
+    padding: 23px;
+    z-index: 999;
+    
+    &_header{
+        display: flex;
+      justify-content: space-between;
+       
+    }
+   
+    input{
+      font-family: "Roboto Flex", sans-serif;
+      font-size: 18px;
+    }
+   &_input{
+     input{
+        width: 100%;
+        height: 40px;
+        background-color: #F4F3F1;
+        border-radius: 8px;
+        background-repeat: no-repeat;
+        background-position: 3% 50%;
+     }
+   }
+
+   &_boxMessage{
+     width: 100%;
+     height: 535px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     overflow-y: scroll;
+     gap:10px;
+     flex-direction: column;
+     
+     span{
+        color:#7099ED;
+        font-size: 20px;
+     }
+        
+     &_text{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap:10px;
+     }
+   }
+  
+   &_userFooter{
+     display: flex;
+     flex-direction: row;
+     gap: 10px;
+
+     input{
+       width: 100%;
+       border-radius: 8px;
+     }
+   }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+

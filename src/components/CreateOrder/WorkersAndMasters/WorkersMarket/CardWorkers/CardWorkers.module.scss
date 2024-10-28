@@ -1,0 +1,38 @@
+.defaultOrderCard {
+	padding: 32px;
+	background-color: #F4F3F1;
+	border-radius: 8px;
+	width: 1105px;
+	height: 305px;
+
+}
+
+.cardWorkersEdit {
+	display: flex;
+	flex-direction: column;
+	width: 1200px !important;
+	gap: 20px;
+	width: 720px;
+	background-color: #ffff;
+	padding: 32px 32px 16px 32px;
+	border-radius: 32px;
+	position: relative;
+
+	&_img_container {
+		img {
+			width: 160px;
+		}
+	}
+}
+
+@media screen and (max-width:1300px) {
+	.cardWorkersEdit {
+		transform: scale(0.9);
+	}
+}
+
+@media screen and (max-width:1300px) {
+	.overlay_cardWorkersEdit {
+		padding-top: 105px !important;
+	}
+}

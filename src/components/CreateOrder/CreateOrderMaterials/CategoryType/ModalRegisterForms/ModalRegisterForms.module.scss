@@ -1,0 +1,22 @@
+.modal_container {
+	padding: 32px;
+	border-radius: 32px;
+	background-color: white;
+	gap: 32px;
+	width: 1200px;
+	box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 14px 0px, rgba(0, 0, 0, 0.05) 0px 2px 2px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px;
+	z-index: 8;
+	position: relative;
+}
+
+@media screen and (max-width:1300px) {
+	.modal_container_overlay {
+		padding-top: 0px !important;
+	}
+
+	.modal_container {
+		transform: scale(0.65);
+		position: absolute;
+		top: -255px;
+	}
+}

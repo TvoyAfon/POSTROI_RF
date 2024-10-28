@@ -1,0 +1,18 @@
+.popup_container{
+	width: 440px;
+	padding: 16px;
+	height: auto;
+	border-radius: 12px;
+
+	animation: showModal 0.3s ease-in-out forwards;
+}
+
+@keyframes showModal {
+	from{
+     opacity: 0;
+	}
+
+	to{
+    opacity: 1;
+	}
+}

@@ -1,0 +1,26 @@
+.ad {
+	display: flex;
+	padding: 32px;
+	border-radius: 8px;
+	gap: 32px;
+	background: #F4F3F1;
+
+	&__file {
+		width: 240px;
+		height: 240px;
+		border-radius: 6px;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	&__actions {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		margin-left: auto;
+	}
+}

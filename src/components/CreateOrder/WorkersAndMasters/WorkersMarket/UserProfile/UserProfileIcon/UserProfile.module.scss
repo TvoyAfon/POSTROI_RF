@@ -1,0 +1,35 @@
+.userProfileIcon {
+	padding: 8px 16px 8px 16px;
+	background-color: #F4F3F1;
+	border-radius: 8px;
+	width: 250px;
+
+	img {
+		width: 40px;
+		height: 40px;
+		cursor: pointer;
+	}
+
+	display: flex;
+	gap:20px;
+	align-items: center;
+}
+
+.userWorkerProfile {
+	background-color: #ffff;
+	padding: 32px;
+	border-radius: 32px;
+	width: 1200px;
+}
+
+@media screen and (max-width:1300px) {
+	.userWorkerProfile {
+		transform: scale(0.65);
+		position: absolute !important;
+		top: -180px;
+	}
+
+	.overlay_userWorkerProfile {
+		padding-top: 0px !important;
+	}
+}

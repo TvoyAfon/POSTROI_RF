@@ -1,0 +1,32 @@
+.attachPhoto {
+	width: 174px;
+	height: 36px;
+	white-space: nowrap;
+	display: inline-block;
+	padding: 12px 12px 12px 12px;
+	cursor: pointer;
+	background-color: #F4F3F1;
+	color: #262626;
+	border-radius: 8px;
+	background-image: url('../../../assets//images/createOrder_img/скрепка.svg');
+	background-repeat: no-repeat;
+	background-position: 7% 8px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	position: relative;
+
+	span {
+		position: absolute;
+		font-size: 14px;
+		font-weight: 300;
+		right: 15px;
+		bottom: 9px
+	}
+
+	&_section {
+		display: flex;
+		align-items: center;
+		gap: 26px;
+		flex-wrap: wrap;
+		height: 130px;
+	}
+}

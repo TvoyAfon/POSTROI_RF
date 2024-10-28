@@ -1,0 +1,104 @@
+.signs_form {
+	width: 302px;
+	background-color: #7099ED;
+	padding: 32px 32px 32px 32px;
+	border-radius: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+
+}
+
+.buttonSigns_back {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	background-color: #7099ED;
+
+	span {
+		color: white;
+	}
+}
+
+.signs {
+	display: flex;
+	justify-content: center;
+	padding-top: 115px;
+
+
+	&_container {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		padding: 32px;
+		background-color: white;
+		border-radius: 32px;
+		width: 1200px;
+		margin-bottom: 32px;
+		height: 815px;
+	}
+}
+
+.signsCard {
+	padding: 32px;
+	background-color: #F4F3F1;
+	border-radius: 8px;
+	box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 14px 0px, rgba(0, 0, 0, 0.05) 0px 2px 2px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px;
+	display: flex;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.editCardContainer {
+	background-color: white;
+	padding: 32px;
+	border-radius: 32px;
+}
+
+.signsEditCard {
+	display: flex;
+	justify-content: center;
+	padding-top: 155px;
+	padding-bottom: 32px;
+	position: relative;
+
+}
+
+.createSigns_container {
+	display: flex;
+	gap: 24px;
+	justify-content: center;
+	padding-top: 145px;
+	padding-bottom: 32px;
+}
+
+.files_container {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	padding: 8px;
+	border-radius: 16px;
+	background-color: rgba(244, 243, 241, 1);
+	height: 56px;
+	overflow-y: hidden;
+	object-fit: cover;
+}
+
+@media screen and (max-width:1200px) {
+	.signs_container {
+		transform: scale(0.75);
+	}
+
+	.createSigns_container {
+		transform: scale(0.7);
+	}
+
+	.signs_form {
+		position: absolute;
+		left: -170px;
+		top: 150px;
+	}
+
+	.signs {
+		padding-top: 0px !important;
+	}
+}

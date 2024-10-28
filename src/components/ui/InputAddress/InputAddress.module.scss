@@ -1,0 +1,52 @@
+.ya_map {
+	animation: showMap 0.25s ease-in-out;
+}
+
+.inputAddress {
+	display: flex;
+	gap: 10px;
+	flex-direction: column;
+}
+
+
+.inputAddressPopup {
+	width: 600px;
+	top: 40px;
+	z-index: 2;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	min-height: 50px; /* Минимальная высота */
+	max-height: 180px; /* Максимальная высота */
+	border-radius: 8px;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	padding: 12px;
+	background-color: white;
+	overflow-y: auto; /* Скролл при переполнении */
+
+}
+
+.inputAddress {
+	input {
+
+		&:focus {
+			caret-color: black;
+			background-color: white !important;
+			border: 1px solid #8E8E93 !important;
+		}
+
+	}
+}
+
+@keyframes showMap {
+	from {
+		opacity: 0;
+		height: 0px;
+	}
+
+	to {
+		opacity: 1;
+		height: 390px;
+	}
+}

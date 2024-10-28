@@ -1,0 +1,47 @@
+.settings {
+	display: flex;
+	justify-content: center;
+	padding-top: 120px;
+
+	&__navigation {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	&__settings {
+		background: #fff;
+		padding: 32px;
+		display: flex;
+		flex-direction: column;
+		gap: 32px;
+		border-radius: 32px;
+		width: 895px;
+		height: 100%;
+	}
+
+	&__header {
+		display: flex;
+		gap: 14px;
+	}
+
+	&__container {
+		display: flex;
+		gap: 32px;
+		width: 1200px;
+		height: 80svh;
+	}
+}
+
+@media screen and (max-width:1200px) {
+	.settings__container{
+		transform: scale(0.65);
+		position: absolute;
+		top:-105px;
+	}
+
+	.settings{
+		padding-top: 0px !important;
+	
+	}
+}

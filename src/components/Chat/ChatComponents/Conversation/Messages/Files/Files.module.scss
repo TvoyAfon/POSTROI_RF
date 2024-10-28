@@ -1,0 +1,39 @@
+.files {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+
+	&__item {
+		cursor: pointer;
+		display: flex;
+		padding: 8px;
+		gap: 4px;
+		background: #FFFFFF;
+		border: none;
+		flex-direction: column;
+		border-radius: 16px;
+		height: 50px;
+		min-width: 147px;
+		
+		transition: height 300ms;
+
+		span {
+			font-size: 13px !important;
+			color: #231F20 !important;
+			font-weight: 300;
+			max-width: 96px;
+		}
+
+		.files__delete {
+			display: none;
+		}
+
+		&__hover-file:hover {
+			height: 89px;
+
+			.files__delete {
+				display: flex;
+			}
+		}	
+	}
+}

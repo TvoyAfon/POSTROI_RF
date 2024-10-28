@@ -1,0 +1,64 @@
+.map_container {
+    padding-top: 16px;
+    height: 368px;
+
+    &_header {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        padding-bottom: 16px;
+    }
+
+    &_buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        padding-bottom: 32px;
+
+        button {
+            width: 70px;
+            height: 40px;
+            border-radius: 8px;
+            background-color: #F4F3F1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                background-color: black;
+                color: white;
+            }
+
+        }
+    }
+
+    &_section {
+        span {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    &_searchRadius {
+        display: flex;
+        gap: 8px;
+
+        button {
+            width: 70px;
+            height: 40px;
+            background-color: #F4F3F1;
+            color: #262626;
+
+            &:hover {
+                color: white;
+            }
+
+            &:focus {
+                background-color: #262626;
+                color: white;
+            }
+        }
+    }
+}

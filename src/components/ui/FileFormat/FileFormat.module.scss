@@ -1,0 +1,16 @@
+.fileFormat {
+	width: 160px;
+	height: 56px;
+	border-radius: 16px;
+	background-color: #F4F3F1;
+	padding: 8px;
+	display: flex;
+	gap: 8px;
+
+
+
+	span {
+		font-size: 10px;
+		font-weight: 300;
+	}
+}

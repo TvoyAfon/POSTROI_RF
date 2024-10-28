@@ -1,0 +1,68 @@
+.cardMasters {
+	background-color: #F4F3F1;
+	border-radius: 8px;
+	padding: 32px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.cardMastersProfile {
+	padding: 32px;
+	border-radius: 32px;
+	background-color: #383940;
+	width: 286px;
+	height: 67%;
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+	position: relative;
+}
+
+.cardMastersRightSide {
+	padding: 32px;
+	border-radius: 32px;
+	width: 880px;
+	background-color: #ffff;
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+	margin-bottom: 32px;
+}
+
+.contacts {
+	animation: showContacts 0.3s ease-in-out forwards;
+}
+
+.cardMasterResume {
+	width: 180px;
+	height: 223px;
+	background-color: #7099ED;
+	padding: 16px;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	color: white;
+}
+
+@keyframes showContacts {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@media screen and (max-width:1200px) {
+	.cardMastersDetail {
+		transform: scale(0.65) !important;
+		padding-top: 0px !important;
+		position: absolute !important;
+		top: -60px !important;
+		left: -19%;
+	}
+}

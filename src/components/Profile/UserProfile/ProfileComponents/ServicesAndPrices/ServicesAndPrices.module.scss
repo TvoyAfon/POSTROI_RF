@@ -1,0 +1,33 @@
+.category {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+
+	&__services {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		padding: 32px;
+	}
+
+	&__service {
+		display: flex;
+		justify-content: space-between;
+		font-weight: 700;
+		cursor: pointer;
+		user-select: none;
+
+		&-subcategory {
+			display: flex;
+			justify-content: space-between;
+			font-weight: 300;
+		}
+
+		&-subcategories {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			padding: 16px;
+		}
+	}
+}

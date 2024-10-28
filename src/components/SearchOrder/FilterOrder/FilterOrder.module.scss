@@ -1,0 +1,12 @@
+.filter_order {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 12;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.section_buttons {
+	transition: all 0.33s ease-in-out;
+}

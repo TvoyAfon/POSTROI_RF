@@ -1,0 +1,35 @@
+.review {
+	background: #F4F3F1;
+	border-radius: 6px;
+	padding: 16px;
+	display: flex;
+	gap: 24px;
+	border: 1px solid rgba(0,0,0,0.13);
+}
+.rating{
+	animation: showRating 0.3s ease-in-out forwards;
+}
+
+.rating_close{
+	animation: closeRating 0.3s ease-in-out forwards;
+}
+
+@keyframes showRating {
+	from {
+      opacity: 0;
+	}
+
+	to{
+   opacity: 1;
+	}
+}
+
+@keyframes closeRating {
+	from {
+      opacity: 1;
+	}
+
+	to{
+   opacity: 0;
+	}
+}

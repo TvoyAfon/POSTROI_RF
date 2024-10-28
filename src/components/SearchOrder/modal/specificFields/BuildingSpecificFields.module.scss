@@ -1,0 +1,16 @@
+.buildingfields,
+.truckingfields,
+.cleaningfields,
+.servicesfields,
+.materialsfields,
+.workersfields {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.flexRow {
+	display: flex;
+	align-items: center;
+	gap: 8px
+}

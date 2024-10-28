@@ -1,0 +1,13 @@
+.overlay {
+    width: 862px;
+    padding: 32px;
+    background-color: white;
+}
+
+@media screen and (max-width:1200px) {
+    .overlay {
+        position: absolute;
+        top: 150px;
+        left: 150px;
+    }
+}

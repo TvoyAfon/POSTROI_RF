@@ -1,0 +1,41 @@
+.album {
+	cursor: pointer;
+	width: 176px;
+	height: 290px;
+	background: #262626;
+	border-radius: 8px;
+
+	.preview img {
+		height: 175px;
+		width: 175px;
+		border-radius: 8px 8px 0px 0px;
+
+	}
+
+	.info {
+		padding: 16px;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		height: 59px;
+		border-radius: 0px 0px 8px 8px;
+	}
+}
+
+.albums {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+
+	&__container {
+		display: flex;
+		gap: 24px;
+		flex-wrap: wrap;
+	}
+}
+
+.album_detail {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}

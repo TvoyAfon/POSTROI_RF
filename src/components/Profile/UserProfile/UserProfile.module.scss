@@ -1,0 +1,30 @@
+.profile {
+	display: flex;
+	justify-content: center;
+	position: relative;
+	padding-top: 120px;
+	
+	&__info {
+		background: #fff;
+		border-radius: 32px;
+		padding: 32px;
+		width: 895px;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		margin-left: auto;
+		margin-bottom: 30px;
+
+		&-header {
+			width: 100%;
+			display: flex;
+			gap: 32px;
+		}
+	}
+
+	&__container {
+		display: flex;
+		gap: 32px;
+		width: 1200px;
+	}
+}

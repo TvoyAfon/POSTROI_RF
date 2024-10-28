@@ -1,0 +1,19 @@
+.card_container {
+	background-color: white;
+	width: 385px;
+	display: flex;
+	flex-direction: column;
+	border-radius: 21px;
+
+	img {
+		width: 384px;
+		height: 200px;
+		border-radius: 16px 16px 0px 0px;
+	}
+
+	&_section {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+}

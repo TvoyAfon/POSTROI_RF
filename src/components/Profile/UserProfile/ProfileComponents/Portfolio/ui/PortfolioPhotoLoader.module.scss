@@ -1,0 +1,20 @@
+.portfolioPhotoLoader {
+	width: 182px;
+	height: 182px;
+	background-color: gray;
+	opacity: 0.35;
+	border-radius: 16px;
+	position: relative;
+	cursor: pointer;
+
+	img {
+		top: 45%;
+		left: 44%;
+		position: absolute;
+	}
+}
+
+.file-input {
+	display: none;
+	/* Скрываем стандартный инпут */
+}

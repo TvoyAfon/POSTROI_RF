@@ -1,0 +1,44 @@
+.truckingDelivery {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+
+.truckingTask {
+	input {
+		background-color: #F4F3F1;
+		width: 182px;
+	}
+
+	&_content {
+		input {
+			width: 100%;
+			height: 67px;
+		}
+	}
+}
+
+.truckingPayMethod {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+
+}
+
+.truckingSettings {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+
+.truckingDemo {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+
+	&_content {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+}

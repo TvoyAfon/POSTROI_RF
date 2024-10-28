@@ -1,0 +1,13 @@
+.userMastersProfile {
+	display: flex;
+	justify-content: center;
+	gap: 16px;
+	padding-top: 165px;
+}
+
+@media screen and (max-width:1200px) {
+	.userMastersProfile {
+		transform: scale(0.9);
+		padding-top: 77px;
+	}
+}

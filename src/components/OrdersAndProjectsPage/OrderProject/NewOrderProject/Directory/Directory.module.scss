@@ -1,0 +1,149 @@
+.directory {
+	width: 82px;
+	height: 75px;
+	border-radius: 8px;
+	background-color: #231F20;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 8px;
+	position: relative;
+}
+
+.popup {
+	position: absolute;
+	width: 195px;
+	padding: 16px;
+	height: 130px;
+	background-color: #FFF;
+	border-radius: 16px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+	left: 82px;
+	top: 0px;
+	z-index: 2;
+	align-items: start;
+}
+
+.folderpopup {
+	background-color: white;
+	width: 150px;
+	height: 120px;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	background-color: 8px;
+	position: absolute;
+	padding: 8px;
+	z-index: 2;
+	left: 75px;
+	display: flex;
+	border-radius: 8px;
+	flex-direction: column;
+	gap: 24px;
+	box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 14px 0px, rgba(0, 0, 0, 0.05) 0px 2px 2px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px;
+}
+
+.folderProject {
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	height: 467px;
+	transform: translate(-50%, -50%);
+	z-index: 11;
+	border-radius: 32px;
+	animation: showModal 0.3s ease-in-out;
+
+
+	&_header {
+		width: 816px;
+		height: 55px;
+		padding: 16px 32px 16px 32px;
+		border-radius: 32px 32px 0px 0px;
+		background-color: #231F20;
+		display: flex;
+		justify-content: space-between;
+
+		img {
+			cursor: pointer;
+		}
+
+		span {
+			font-size: 20px;
+			font-weight: 600;
+			color: white;
+		}
+
+		div {
+			display: flex;
+			gap: 16px;
+		}
+	}
+
+	&_header:nth-child(1),
+	&_header:nth-child(2) {
+		display: flex;
+		gap: 24px;
+		flex-wrap: wrap;
+	}
+
+
+	&_content {
+		width: 816px;
+		border-radius: 0px 0px 32px 32px;
+		background-color: white;
+		display: flex;
+		flex-direction: column;
+		gap: 32px;
+		padding: 32px;
+		overflow-y: scroll;
+		height: 348px;
+
+		span {
+			font-size: 20px;
+			font-weight: 600;
+		}
+
+		section {
+			display: flex;
+			gap: 24px;
+			flex-wrap: wrap;
+		}
+	}
+}
+
+.folderdetailpopup {
+	width: 273px;
+	height: 248px;
+	padding: 16px;
+	border-radius: 8px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	gap: 32px !important;
+	position: absolute;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	right: -13px;
+	top: 40px;
+
+	span {
+		cursor: pointer;
+		font-size: 16px;
+		font-weight: 300;
+		color: #231F20
+	}
+}
+
+@keyframes showModal {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}

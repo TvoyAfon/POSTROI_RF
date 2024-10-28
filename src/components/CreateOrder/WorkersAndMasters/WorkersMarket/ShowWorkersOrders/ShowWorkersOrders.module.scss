@@ -1,0 +1,24 @@
+.showWorkersOrders {
+	width: 1200px;
+	padding: 32px;
+	background-color: #ffff;
+	border-radius: 32px;
+
+	&_checkboxContainer {
+		border-radius: 32px;
+		background-color: #F4F3F1;
+		padding: 8px 16px 8px 16px;
+		display: flex;
+		gap: 24px;
+	}
+}
+
+@media screen and (max-width:1300px) {
+	.overlay_showWorkersOrders {
+		transform: scale(0.65);
+		padding-top: 0px !important;
+		position: absolute !important;
+		top: -30px !important;
+		left: -18.5%;
+	}
+}

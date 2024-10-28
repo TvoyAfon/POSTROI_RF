@@ -1,0 +1,33 @@
+.createOrderForm {
+    background-color: #fff;
+    border-radius: 32px;
+    padding: 32px !important;
+    width: 895px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    position: relative;
+}
+
+.createOrderBox {
+    background-color: #7099ED;
+    width: 281px;
+    border-radius: 32px;
+    height: 220px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+
+    &_text {
+        border-radius: 16px;
+        background-color: #F4F3F1;
+        padding: 16px;
+        width: 246px;
+        height: 146px;
+        position: absolute;
+        bottom: 32px;
+        right: 16px;
+    }
+}

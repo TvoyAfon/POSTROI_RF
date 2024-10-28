@@ -1,0 +1,22 @@
+.container{
+    padding: 32px 32px 0px 32px;
+    display: flex;
+    gap:24px;
+    flex-direction: column;
+
+    &_data{
+       display: flex;
+       flex-direction: column;
+       gap:16px;
+       justify-content: center;
+      padding-right: 20px;
+          
+    }
+
+    &_radioInput{
+        display: flex;
+        column-gap: 10px;
+        padding-right: 10px;
+        
+    }
+}

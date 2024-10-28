@@ -1,0 +1,32 @@
+.photoLoader {
+	width: 163px;
+	height: 36px;
+	white-space: nowrap;
+	display: inline-block;
+	padding: 12px;
+	cursor: pointer;
+	background-color: #F4F3F1;
+	color: #262626;
+	border-radius: 8px;
+	background-image: url('../../../assets/images/signs/skrepka.svg');
+	background-repeat: no-repeat;
+	background-position: 10% 9px;
+	border: 1px solid #231F20;
+	display: flex;
+	position: relative;
+}
+
+input[type='file'] {
+	display: none;
+}
+
+.photoLoader::before {
+	content: 'Добавить фото';
+	align-items: center;
+	font-size: 14px;
+	font-weight: 400;
+	top: 10px;
+	left: 38px;
+	position: absolute;
+
+}

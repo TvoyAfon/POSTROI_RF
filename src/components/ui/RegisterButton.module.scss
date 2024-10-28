@@ -1,0 +1,12 @@
+.register_button{
+    transition: all 0.4s ease-in-out;
+    width: 85%;
+    height:40px;
+    background-color:#7099ED;
+    color:white;
+    
+
+    &:hover{
+        background-color:black;
+    }
+}

@@ -1,0 +1,23 @@
+.badge {
+	height: 15px;
+	padding: 0px 6px 0px 6px;
+	background-color: #FF8B63;
+	border-radius: 23px;
+	font-size: 11px;
+	display: flex;
+	display: flex;
+	align-items: center;
+
+	span {
+		color: #000;
+	}
+
+	&__content {
+		margin-top: 1px;
+		margin-left: 1px;
+	}
+
+	&__disabled {
+		background: #8E8E93 !important;
+	}
+}

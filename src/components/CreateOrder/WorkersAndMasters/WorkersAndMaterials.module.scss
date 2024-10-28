@@ -1,0 +1,97 @@
+.workersAndMasters {
+	display: flex;
+	justify-content: center;
+	padding-top: 160px;
+	position: relative;
+
+	&_container {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 24px;
+	}
+}
+
+.overlayCard {
+	padding: 32px;
+	background-color: #7099ED;
+	border-radius: 32px;
+	width: 384px;
+	height: 712px;
+	position: relative;
+
+	img {
+		width: 200px;
+	}
+
+	button {
+		font-size: 14px;
+		border-radius: 32px;
+		width: 142px;
+		height: 84px;
+	}
+
+}
+
+.findWorkers {
+	padding: 32px;
+	border-radius: 0px 32px 32px 32px;
+	width: 1200px;
+	display: flex;
+	background-color: #ffff;
+	flex-direction: column;
+	gap: 16px;
+	margin-top: 200px;
+	position: relative;
+
+
+	&_section {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		top: -57px;
+		left: 0px;
+	}
+}
+
+.findWorkersCard {
+	padding: 16px;
+	background-color: #F4F3F1;
+	width: 1105px;
+	height: 85px;
+	border-radius: 8px;
+}
+
+.workersModalSms {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	width: 505px;
+	z-index: 9999 !important;
+	background-color: white;
+}
+
+@media screen and (max-width:1300px) {
+	.workersAndMasters {
+		padding-top: 35px;
+	}
+
+	.workersAndMasters_container {
+		transform: scale(0.67);
+	}
+}
+
+@media screen and (max-width:1200px) {
+	.findWorkers {
+		transform: scale(0.65);
+		margin-top: 70px;
+	}
+
+	.workersFormWithContainer {
+		transform: scale(0.7);
+		z-index: 11;
+		position: absolute;
+		left: 50%;
+		top: 58%;
+
+	}
+}

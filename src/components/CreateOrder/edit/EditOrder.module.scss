@@ -1,0 +1,30 @@
+.container {
+	padding-top: 112px;
+	display: flex;
+	justify-content: center;
+
+	&__wrapper {
+		display: flex;
+		gap: 32px;
+	}
+
+	&__action {
+		width: 257px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 87px;
+		border-radius: 32px;
+		background: #7099ED;
+	}
+
+	&__edit-content {
+		background: #fff;
+		border-radius: 32px;
+		padding: 32px;
+		width: 894px;
+		display: flex;
+		flex-direction: column;
+		gap: 32px;
+	}
+}

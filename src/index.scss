@@ -1,0 +1,376 @@
+html {
+  -ms-overflow-style: none;
+
+  /* Для Chrome, Edge, Safari */
+  ::-webkit-scrollbar {
+    width: 8px;
+    /* Ширина скроллбара */
+    height: 226px;
+    /* Высота скроллбара */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #7099ED;
+    /* Цвет ползунка скроллбара */
+    border-radius: 32px;
+    /* Закругление углов ползунка */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    /* Цвет дорожки скроллбара */
+  }
+
+  /* Для Firefox */
+  scrollbar-width: thin;
+  /* Узкий скроллбар */
+  scrollbar-color: #7099ED transparent;
+  /* Цвет ползунка и дорожки */
+
+  /* Важно: установить общий стиль для всех элементов, если нужно */
+  * {
+    scrollbar-width: thin;
+    /* Узкий скроллбар */
+    scrollbar-color: #7099ED transparent;
+    /* Цвет ползунка и дорожки */
+  }
+
+}
+
+#yaPersonalButton {
+  position: absolute;
+  z-index: 1 !important;
+}
+
+
+.yaPreloadingSuggestBlock {
+  background-color: transparent !important;
+}
+
+body {
+
+  padding: 0px;
+  color: #262626;
+  margin: 0px;
+  background-color: #F4F3F1;
+  font-family: "Roboto Flex",
+    sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "slnt" 0,
+    "wdth" 125,
+    "GRAD" 0,
+    "XOPQ" 96,
+    "XTRA" 468,
+    "YOPQ" 79,
+    "YTAS" 750,
+    "YTDE" -203,
+    "YTFI" 738,
+    "YTLC" 514,
+    "YTUC" 712;
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  input[type="password"]::-ms-reveal,
+  input[type="password"]::-ms-clear {
+    display: none;
+  }
+
+  input[type="password"]::-webkit-contacts-auto-fill-button,
+  input[type="password"]::-webkit-credentials-auto-fill-button {
+    visibility: hidden;
+  }
+
+  input[type='number'],
+  input[type="number"]:hover,
+  input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+  }
+
+  textarea {
+    background-color: #F4F3F1;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    &:focus {
+      caret-color: black;
+      background-color: white;
+      border: 1px solid #8E8E93;
+    }
+  }
+
+  input {
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+
+    &:focus {
+      caret-color: black;
+      background-color: white;
+      border: 1px solid #8E8E93 !important;
+    }
+
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    font-weight: 400;
+
+    border-radius: 8px;
+    font-size: 16px;
+    height: 40px;
+    font-family: "Roboto Flex",
+    sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "slnt" 0,
+    "wdth" 125,
+    "GRAD" 0,
+    "XOPQ" 96,
+    "XTRA" 468,
+    "YOPQ" 79,
+    "YTAS" 750,
+    "YTDE" -203,
+    "YTFI" 738,
+    "YTLC" 514,
+    "YTUC" 712;
+
+
+  }
+
+  input::placeholder {
+    caret-color: transparent;
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: "Roboto Flex", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+      "slnt" 0,
+      "wdth" 125,
+      "GRAD" 0,
+      "XOPQ" 96,
+      "XTRA" 468,
+      "YOPQ" 79,
+      "YTAS" 750,
+      "YTDE" -203,
+      "YTFI" 738,
+      "YTLC" 514,
+      "YTUC" 712;
+  }
+}
+
+textarea {
+  border: none;
+  outline: none;
+  background-color: c;
+  padding: 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  resize: none;
+  caret-color: black;
+  overflow: hidden;
+
+  &:focus {
+    overflow-y: scroll;
+  }
+}
+
+li {
+  list-style-type: none;
+}
+
+#telegram-login-postroyrubot {
+  width: 20px !important;
+}
+
+* {
+
+  box-sizing: border-box;
+  text-decoration: none;
+  caret-color: transparent;
+  font-size: 16;
+  font-weight: 300;
+  font-family: "Roboto Flex", sans-serif;
+  font-variation-settings:
+    "slnt" 0,
+    "wdth" 125,
+    "GRAD" 0,
+    "XOPQ" 96,
+    "XTRA" 468,
+    "YOPQ" 79,
+    "YTAS" 750,
+    "YTDE" -203,
+    "YTFI" 738,
+    "YTLC" 514,
+    "YTUC" 712;
+
+
+}
+
+*::selection {
+  background-color: #c5c5c5;
+}
+
+*::-moz-selection {
+  background-color: #c5c5c5;
+}
+
+.react-calendar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  border-radius: 8% !important;
+
+}
+
+.react-calendar__navigation {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+
+}
+
+.react-calendar__month-view__weekdays {
+  position: relative;
+
+  &::after {
+    content: '';
+    border: 1px solid gray;
+    opacity: 0.4;
+    width: 308px !important;
+    position: absolute;
+    top: 84%;
+    left: 3%;
+  }
+}
+
+.react-calendar__navigation__label__labelText {
+  font-size: 16px !important;
+  font-weight: 300 !important;
+}
+
+.react-calendar__navigation__prev2-button {
+  display: none !important;
+}
+
+.react-calendar__navigation__next2-button {
+  display: none !important;
+}
+
+.react-calendar__navigation__arrow react-calendar__navigation__prev-button {
+  background-color: white !important;
+  position: absolute !important;
+  left: 10px;
+
+}
+
+.react-calendar__navigation button {
+  min-width: 0px !important;
+  background: none;
+}
+
+.react-calendar__navigation__arrow react-calendar__navigation__next-button {
+  background-color: white !important;
+}
+
+.react-calendar__month-view__days {
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0.95);
+  }
+}
+
+.react-calendar__tile--active {
+  border: 1px solid #7099ED !important;
+  background-color: white !important;
+  color: #7099ED !important;
+  border-radius: 6px !important;
+  font-weight: bold;
+}
+
+.react-calendar__navigation__label {
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+  background-color: white !important;
+}
+
+.react-calendar__navigation__label__labelText {
+  color: #7099ED;
+}
+
+.react-calendar--selectRange .react-calendar__tile--hover {
+  border: 1px solid #7099ED !important;
+  background-color: white;
+  border-radius: 15% !important;
+  transform: scale(0.95);
+}
+
+.react-calendar__tile--range {
+  border: 1px solid #7099ED !important;
+  border-radius: 15% !important;
+  transform: scale(0.95);
+  background-color: white !important;
+}
+
+.react-calendar__navigation button:disabled {
+  background-color: white;
+  color: black;
+}
+
+.react-calendar__tile--rangeStart {
+  border-radius: 15%;
+  background-color: #7099ED !important;
+  color: white !important;
+}
+
+.react-calendar__tile--now {
+  color: #7099ED;
+  background-color: white;
+}
+
+.react-calendar__tile--now:hover {
+  background-color: #7099ED !important;
+  color: white !important
+}
+
+
+.react-calendar__tile--rangeEnd {
+  border-radius: 15%;
+  background-color: #7099ED !important;
+  color: white !important;
+}
+
+.stop-scrolling {
+  overflow: hidden;
+}
+
+img {
+  user-select: none;
+}
+
+
+
+@keyframes showModal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@mixin modalAnimation {
+  animation: showModal 0.33s ease-in-out;
+}

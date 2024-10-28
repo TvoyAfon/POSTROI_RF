@@ -1,0 +1,64 @@
+.modal {
+    width: 910px;
+    border-radius: 32px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    z-index: 12;
+    animation: showMap 0.4s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 14px 0px, rgba(0, 0, 0, 0.1) 0px 2px 2px 0px, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+
+    input[name='searchCity'] {
+        width: 675px;
+        height: 40px;
+        border-radius: 8px;
+        background-color: #F4F3F1;
+        font-size: 16px;
+    }
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: #7099ED;
+        font-size: 16px;
+        font-weight: 400;
+        width: 170px;
+        height: 40px;
+        color: white;
+        transition: background-color 0.4s ease-in-out;
+
+        &:hover {
+            background-color: #383940;
+
+        }
+    }
+
+    input[name='searchCity']::placeholder {
+        padding-left: 30px;
+    }
+}
+
+@keyframes showMap {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+@media screen and (max-width:1300px) {
+    .modal {
+        width: 745px;
+    }
+}

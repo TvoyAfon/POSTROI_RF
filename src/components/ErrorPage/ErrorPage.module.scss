@@ -1,0 +1,19 @@
+.errorPage_container{
+   padding-top: 1100px;
+   position: relative;
+
+    img[alt='ellipse']{
+        position: absolute;
+        top: 30%; /* Задаем позицию чуть выше по Y (например, на 40%) */
+        left: 50%; /* Задаем позицию по центру по оси X */
+        transform: translate(-50%, -50%); /* Центрируем элемент по центру */
+    }
+
+    img[alt='banner']{
+        position: absolute;
+        top: 30%; /* Задаем позицию чуть выше по Y (например, на 40%) */
+        left: 50%; /* Задаем позицию по центру по оси X */
+        transform: translate(-50%, -50%); /* Центрируем элемент по центру */
+    }
+
+}

@@ -1,0 +1,63 @@
+.toggle {
+    position: relative;
+    width: 48px;
+    height: 24px;
+    background: #C5C5C5;
+    border-radius: 35px;
+    cursor: pointer;
+
+    &__round {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        left: 4px;
+        top: 4px;
+        background: #F4F3F1;
+        border-radius: 24px;
+    }
+
+    &__label {
+        margin-top: 2px;
+        user-select: none;
+    }
+}
+
+.toggled {
+    background: #7099ED;
+
+    .toggle__round {
+        animation-name: toggled;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+}
+
+.default {
+    .toggle__round {
+        animation-name: default;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+}
+
+@keyframes toggled {
+    0% {
+        width: 38px;
+    }
+
+    100% {
+        left: 28px;
+    }
+}
+
+@keyframes default {
+    0% {
+        width: 38px;
+
+    }
+
+    100% {
+        left: 4px;
+
+    }
+}

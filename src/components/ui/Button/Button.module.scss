@@ -1,0 +1,100 @@
+@mixin buttons_font {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 500;
+	font-size: 16px;
+	color: white;
+	gap: 10px;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.button {
+	@include buttons_font;
+	--button-classic-bg: #749EF2;
+	--button-border-color: #7099ED;
+
+	border-radius: 8px;
+	padding-left: 18px;
+	padding-right: 18px;
+	min-height: 38px;
+	transition-property: color;
+	transition: 0.4s ease-in-out;
+	z-index: 1;
+	display: flex;
+	gap: 8px;
+	justify-content: center;
+
+	&__icon {
+		width: 16px;
+		height: 16px;
+	}
+
+	&__black {
+		background-color: #262626 !important;
+
+		&:hover {
+			background-color: var(--button-classic-bg) !important;
+		}
+	}
+
+	&__outlined {
+		background: #FFF;
+		border: 1px solid var(--button-border-color);
+		color: var(--button-border-color);
+
+		&:hover {
+			background: var(--button-classic-bg);
+			color: #FFF;
+		}
+	}
+
+	&__classic {
+		background-color: var(--button-classic-bg);
+
+		&:hover {
+			background-color: #262626;
+		}
+	}
+
+	&__gray {
+		background: #8E8E93;
+
+		&:hover {
+			background: #262626;
+		}
+	}
+
+	&__pale {
+		background: #F4F3F1;
+		color: #000;
+	}
+
+	&__white {
+		background: #fff;
+		color: #262626;
+
+		&:hover {
+			background: #262626;
+			color: #fff;
+		}
+	}
+
+	&__total-white {
+		background: #fff;
+	}
+
+	&__orange {
+		background: #FF8B63;
+
+		&:hover {
+			background: #262626;
+		}
+	}
+
+	&__disabled {
+		pointer-events: none;
+		color: #fff;
+		background: #C7C7CC;
+	}
+}

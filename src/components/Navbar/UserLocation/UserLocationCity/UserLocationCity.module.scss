@@ -1,0 +1,23 @@
+.cityList {
+        width: 846px;
+        height: 358px;
+        overflow-y: scroll;
+        border-radius: 16px;
+        margin-top: 10px;
+        background-color: rgba(244, 243, 241, 0.6);
+
+        li {
+                cursor: pointer;
+        }
+
+        li:hover {
+                text-decoration: underline;
+        }
+}
+
+@media screen and (max-width:1200px) {
+        .cityList {
+                scrollbar-width: none;
+                width: 686px;
+        }
+}

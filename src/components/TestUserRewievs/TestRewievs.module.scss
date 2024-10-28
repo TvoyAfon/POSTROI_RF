@@ -1,0 +1,111 @@
+.testUserRewievsIcon {
+	width: 272px;
+	height: 61px;
+	padding: 8px 10px 8px 20px;
+	background-color: white;
+	border-radius: 63px;
+	display: flex;
+	gap: 14px;
+	position: fixed;
+	bottom: 15%;
+	right: 4%;
+	align-items: center;
+	border: 1px solid rgba(0, 0, 0, 0.18);
+	white-space: nowrap;
+	box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 14px 0px, rgba(0, 0, 0, 0.05) 0px 2px 2px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px;
+	z-index: 2 !important;
+
+	img {
+		cursor: pointer;
+	}
+
+	span {
+		font-size: 16px;
+		font-weight: 300;
+	}
+}
+
+.testUserRewievsModal {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	position: relative;
+
+	&_container {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+		padding-top: 24px;
+
+		span {
+			font-size: 20px;
+			font-weight: 600;
+		}
+	}
+}
+
+@media screen and (max-width:1200px) {
+	.testuserReviewsModal_overlay {
+		transform: scale(0.7);
+		position: fixed;
+		top: 45%;
+		left: 50%;
+		z-index: 11;
+	}
+}
+
+.testUserRewievsIcon {
+	width: 272px;
+	height: 61px;
+	padding: 8px 10px 8px 20px;
+	background-color: white;
+	border-radius: 63px;
+	display: flex;
+	gap: 14px;
+	position: fixed;
+	bottom: 15%;
+	right: 4%;
+	align-items: center;
+	border: 1px solid rgba(0, 0, 0, 0.18);
+	white-space: nowrap;
+	box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 14px 0px, rgba(0, 0, 0, 0.05) 0px 2px 2px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px;
+	z-index: 1;
+
+	img {
+		cursor: pointer;
+	}
+
+	span {
+		font-size: 16px;
+		font-weight: 300;
+	}
+}
+
+.testUserRewievsModal {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	position: relative;
+
+	&_container {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+		padding-top: 24px;
+
+		span {
+			font-size: 20px;
+			font-weight: 600;
+		}
+	}
+}
+
+@media screen and (max-width:1200px) {
+	.testuserReviewsModal_overlay {
+		transform: scale(0.7);
+		position: fixed;
+		top: 45%;
+		left: 50%;
+		z-index: 11;
+	}
+}

@@ -1,0 +1,27 @@
+.showMastersOrVakancy {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 1200px;
+	position: relative;
+
+	input {
+		background-color: white;
+	}
+
+	&_cards {
+		background-color: #ffff;
+		padding: 32px;
+		border-radius: 32px;
+	}
+}
+
+@media screen and (max-width:1200px) {
+	.showMastersOrVakancy {
+		transform: scale(0.65);
+	}
+
+	.overlay_showMastersorVak {
+		padding-top: 40px !important;
+	}
+}

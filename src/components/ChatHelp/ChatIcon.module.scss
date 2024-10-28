@@ -1,0 +1,51 @@
+.chat_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  right: 2%;
+  bottom: 8%;
+  z-index: 2;
+
+  img {
+    position: relative;
+    right: 48px;
+  }
+
+}
+
+.chat_container_text {
+  font-size: 18px;
+  height: 47px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 16px;
+  padding: 10px 70px 10px 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.22);
+  animation: showText 0.4s ease-in-out;
+
+}
+
+@keyframes showText {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+@keyframes closeText {
+
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+
+}

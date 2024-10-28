@@ -1,0 +1,18 @@
+.rating {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+
+	&__progress {
+		border: 4px solid #7099ED;
+		height: 0px;
+		margin-top: 10px;
+		border-radius: 8px;
+		transition: width 300ms;
+	}
+
+	&__star {
+		display: flex;
+		gap: 16px;
+	}
+}

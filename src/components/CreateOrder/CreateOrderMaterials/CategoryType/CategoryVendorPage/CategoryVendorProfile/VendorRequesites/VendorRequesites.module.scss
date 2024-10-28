@@ -1,0 +1,21 @@
+.vendorRequesites {
+	padding: 32px 32px 32px 32px;
+	background-color: white;
+	border-radius: 32px;
+	width: 1200px;
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+
+@media screen and (max-width:1200px) {
+	.vendorRequesites_overlay {
+		padding-top: 105px !important;
+	}
+
+	.vendorRequesites {
+		transform: scale(0.9);
+	}
+}

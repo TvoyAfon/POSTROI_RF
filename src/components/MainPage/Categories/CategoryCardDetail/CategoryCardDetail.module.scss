@@ -1,0 +1,122 @@
+.cardDetail_overlay {
+	display: flex;
+	justify-content: center;
+	padding-top: 155px;
+
+}
+
+.cardDetail {
+	position: relative;
+
+	&_mainContent {
+		width: 1200px;
+		background-color: #fff;
+		border-radius: 0px 32px 32px 32px;
+		padding: 32px;
+		height: 413px;
+		display: flex;
+		gap: 64px;
+
+		&_leftSide,
+		&_rightSide {
+			display: flex;
+			flex-direction: column;
+			gap: 32px;
+
+			&_content {
+				display: flex;
+				gap: 32px;
+
+				&_detail {
+					display: flex;
+					flex-direction: column;
+					gap: 32px;
+				}
+			}
+		}
+	}
+
+
+	&_type {
+		display: flex;
+		gap: 8px;
+
+		&_control,
+		&_expertise,
+		&_rent1,
+		&_rent2,
+		&_rent3 {
+			height: 101px;
+			border-radius: 8px 8px 0px 0px;
+			background-color: #E5E5EA;
+			cursor: pointer;
+
+			span {
+				font-size: 20px;
+				font-weight: 600;
+			}
+
+			padding: 16px 24px 16px 24px;
+		}
+
+		&_1,
+		&_2 {
+			height: 55px;
+			border-radius: 8px 8px 0px 0px;
+			background-color: #E5E5EA;
+			cursor: pointer;
+
+			span {
+				font-size: 20px;
+				font-weight: 600;
+			}
+
+			padding: 16px 24px 16px 24px;
+		}
+	}
+}
+
+.building {
+	display: flex;
+	gap: 19px;
+	flex-wrap: wrap;
+	width: 1200px;
+	position: relative;
+	img{
+		cursor: pointer;
+	}
+}
+
+.sectionOfBuilding {
+	width: 384px;
+	height: 240px;
+	border-radius: 32px;
+	background-color: #fff;
+	padding: 32px;
+
+	span {
+		font-size: 20px;
+		font-weight: 600;
+	}
+}
+
+@media screen and (max-width:1200px) {
+	.cardDetail {
+		transform: scale(0.67);
+	}
+
+	.cardDetail_overlay {
+		padding-top: 65px;
+	}
+
+	.building {
+		transform: scale(0.85);
+    display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.overlay {
+		padding-top: 20px !important;
+		padding-left: 50px !important;
+	}
+}

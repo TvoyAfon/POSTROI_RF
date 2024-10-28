@@ -1,0 +1,25 @@
+.buttonContainer{
+	width: 165px;
+	height: 20px;
+	display: flex;
+	
+	button{
+		width: 20px;
+		height: 20px;
+		border-radius: 70px;
+		color:white;
+    font-size: 14px;
+		background-color: #C5C5C5;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		
+	}
+
+	hr{
+		width: 25px;
+		height: 5px;
+		background-color:#C5C5C5;
+		border: none;
+	}
+}

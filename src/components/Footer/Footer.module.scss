@@ -1,0 +1,116 @@
+.footer {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	width: 90%; // Изменено на 90% для лучшей адаптивности
+	max-width: 1200px; // Убедитесь, что максимальная ширина остается
+	margin: 0 auto; // Центрирование футера
+
+	&_section {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.firstSection,
+	.secondsection,
+	.thirdsection,
+	.fourthsection {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+
+		span {
+			font-size: 14px;
+			font-weight: 300;
+			cursor: pointer;
+		}
+
+		&_section {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			padding-bottom: 16px;
+		}
+	}
+}
+
+.underfooter {
+	display: flex;
+	gap: 24px;
+	padding-bottom: 32px;
+
+	&_section {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	span {
+		font-size: 12px;
+	}
+}
+
+// Адаптивные стили
+@media screen and (max-width: 1200px) {
+	.footer {
+		width: 95%; // Увеличение ширины для меньших экранов
+	}
+
+	.footer_overlay {
+		transform: scale(0.93);
+	}
+
+	.footer_section {
+		// Переключение на колонку
+		gap: 20px; // Уменьшение отступов
+	}
+
+	.firstSection,
+	.secondsection,
+	.thirdsection,
+	.fourthsection {
+		gap: 16px; // Уменьшение отступов
+	}
+
+	.underfooter {
+		// Переключение на колонку
+		gap: 16px; // Уменьшение отступов
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.footer {
+		gap: 30px; // Уменьшение отступов
+	}
+
+	.underfooter {
+		gap: 12px; // Уменьшение отступов
+	}
+
+	span {
+		font-size: 12px; // Уменьшение размера шрифта
+	}
+
+	.firstSection,
+	.secondsection,
+	.thirdsection,
+	.fourthsection {
+		span {
+			font-size: 12px; // Уменьшение размера шрифта для ссылок
+		}
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.footer {
+		gap: 20px; // Уменьшение отступов
+	}
+
+	.underfooter {
+		gap: 10px; // Уменьшение отступов
+	}
+
+	span {
+		font-size: 10px; // Уменьшение размера шрифта
+	}
+}

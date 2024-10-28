@@ -1,0 +1,48 @@
+.leaveConfirmModal {
+	width: 436px;
+	height: 210px;
+	border-radius: 32px;
+	padding: 32px;
+	gap: 32px;
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	align-items: center;
+	box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 14px 0px, rgba(0, 0, 0, 0.05) 0px 2px 2px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px;
+	z-index: 11;
+	
+	animation: showPopup 0.3s ease-in-out;
+
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 450px;
+	left: 50%;
+
+	button {
+		width: 170px;
+		height: 40px;
+		border-radius: 8px;
+		color: white;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+.button1 {
+	background-color: #8E8E93;
+}
+
+.button2 {
+	background-color: #7099ED;
+}
+
+@keyframes showPopup{
+	from{
+   opacity: 0;
+	}
+	to{
+    opacity: 1;
+	}
+}

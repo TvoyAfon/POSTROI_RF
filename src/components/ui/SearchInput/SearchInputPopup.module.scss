@@ -1,0 +1,19 @@
+.inputPopup_container{
+    width: 1200px;
+    height: 150px;
+    border-radius: 32px;
+    background-color: white;
+    margin-top: 10px;
+    position: absolute;
+    z-index: 6;
+    animation: showInputPopup 0.4s ease-in-out;
+}
+
+@keyframes showInputPopup {
+    from{
+      opacity: 0;
+    }
+    to{
+       opacity: 1;
+    }
+  }

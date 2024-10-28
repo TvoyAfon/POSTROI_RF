@@ -1,0 +1,26 @@
+.button {
+    width: 30px;
+    height: 30px;
+    border-radius: 78px;
+    color: #262626;
+    cursor: pointer;
+    position: relative;
+    background:#fff !important;
+
+    &:hover{
+        span{
+            color:#fff !important;
+        }
+    }
+
+    span {
+        font-size: 30px;
+        transition: color 300ms ease-in-out;
+    }
+
+    &:hover {
+        color: #fff;
+        background: #383940 !important;
+        transition: all 300ms ease-in-out;
+    }
+}

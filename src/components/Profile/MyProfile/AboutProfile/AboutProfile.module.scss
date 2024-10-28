@@ -1,0 +1,30 @@
+.about {
+	display: flex;
+	flex-direction: column;
+}
+
+.editServices {
+	width: 1200px;
+	background-color: #fff;
+	border-radius: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	padding: 32px;
+	position: relative;
+	img{
+		cursor: pointer;
+	}
+}
+
+@media screen and (max-width:1200px) {
+	.editServices{
+		transform: scale(0.8);
+	}
+	.overlay_editServices{
+		padding-top: 93px !important;
+	}
+	.about{
+		margin-top: 60px;
+	}
+}

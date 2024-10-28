@@ -1,0 +1,46 @@
+.cardVakancy {
+	width: 1104px;
+	padding: 32px;
+	background-color: #F4F3F1;
+	border-radius: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+
+.cardVakancyInfo {
+	background-color: #fff;
+	border-radius: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	padding: 32px;
+	width: 895px;
+
+	li {
+		list-style-type: disc;
+	}
+}
+
+.cardVakancyBox {
+	background-color: #fff;
+	border-radius: 32px;
+	padding: 32px;
+	width: 282px;
+	height: 251px;
+	position: relative;
+}
+
+@media screen and (max-width:1300px) {
+	.cardVakancy_container {
+		transform: scale(0.65);
+		position: absolute;
+		top: -50px;
+	}
+
+	.cardVakancy_overlay {
+		padding-top: 0px !important;
+
+
+	}
+}

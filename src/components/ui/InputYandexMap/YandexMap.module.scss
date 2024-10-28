@@ -1,0 +1,18 @@
+.yandexMapContainer{
+  animation: showMap 0.15s ease-in-out;
+}
+
+@media screen and (max-width:1200px) {
+	.yandexMapContainer{
+		width: 680px !important;
+	}
+}
+
+@keyframes showMap {
+	from{
+		 height: 0px;
+	}
+	to{
+			height: 350px;
+	}
+}

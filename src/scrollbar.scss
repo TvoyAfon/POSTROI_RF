@@ -1,0 +1,23 @@
+@mixin scrollbar-thumb {
+	width: 8px;
+	border-radius: 32px;
+	color: #7099ED;
+}
+
+@mixin scrollbar-track {
+	width: 8px;
+	color: #F4F3F1;
+}
+
+* {
+	scrollbar-track-color: #F4F3F1;
+	scrollbar-width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+	@include scrollbar-thumb()
+}
+
+*::-webkit-scrollbar-track {
+	@include scrollbar-track()
+}

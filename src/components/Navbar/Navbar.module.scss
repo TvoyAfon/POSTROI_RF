@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@mixin buttons_font {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+@mixin flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.navbar_overlay {
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+}
+
+.navbar {
+    white-space: nowrap;
+    width: 1200px;
+    padding: 359px 10px 359px 10px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    position: fixed;
+
+
+    &_logo {
+        font-size: 24px;
+        /* изменено на относительное значение */
+        font-weight: 700;
+        color: #383940;
+        cursor: pointer;
+    }
+
+    &_navigation {
+        padding-left: 12px;
+        list-style-type: none;
+        color: #262626;
+        font-weight: 450;
+
+        li {
+            cursor: pointer
+        }
+
+        ;
+
+    }
+
+    &_buttons {
+        font-weight: 200;
+        display: flex;
+        gap: 5%;
+    }
+}
+
+.button_menu {
+    width: 40px;
+    height: 40px;
+    display: none;
+    transition: background-color 0.4s ease-in-out;
+}
+
+.navbarmenu {
+    padding: 32px;
+    background-color: white;
+    width: 320px;
+    height: 200px;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 14px 0px, rgba(0, 0, 0, 0.1) 0px 2px 2px 0px, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px;
+    z-index: 3;
+    position: fixed;
+    animation: openPopUp 0.4s ease-in-out forwards;
+    position: absolute;
+    top: 250% !important;
+    left: 38% !important;
+
+}
+
+.navbarPopup_button {
+
+    display: none;
+    border-radius: 16px;
+    color: white;
+    z-index: 9;
+    cursor: pointer;
+
+}
+
+.nav_navigate {
+    display: flex;
+    align-items: center !important;
+    gap: 60px;
+    padding-right: 20px;
+    padding-top: 17px;
+    position: relative;
+}
+
+
+@media screen and (min-width:1200px) {
+    .button_menu {
+        display: none;
+    }
+}
+
+
+@media screen and (max-width:1200px) {
+    .navbar_navigation {
+        display: none;
+    }
+
+    .button_menu {
+        display: block;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: center;
+        gap: 240px;
+
+    }
+
+    .navbarPopup_button {
+        display: block;
+    }
+}
+
+
+
+
+
+@media screen and (min-width:1200px) {
+    .navbarmenu_popup {
+        display: none;
+    }
+
+}
+
+@keyframes openPopUp {
+    from {
+        opacity: 0;
+        transform: translate(-33%, -100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-33%, -59.4%);
+    }
+}

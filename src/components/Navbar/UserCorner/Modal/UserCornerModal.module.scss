@@ -1,0 +1,63 @@
+.modalNotificat {
+
+	background-color: white;
+	border-radius: 32px;
+	gap: 32px;
+	display: flex;
+	flex-direction: column;
+
+	align-items: center;
+	width: 368px;
+	height: 605px;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 14px 0px, rgba(0, 0, 0, 0.1) 0px 2px 2px 0px, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px;
+
+	position: absolute;
+	top: 65px;
+	right: -200px;
+	animation: showPopup 0.6s ease-in-out;
+
+	&_section {
+		overflow-y: scroll;
+		scrollbar-width: none !important;
+	}
+
+	&_text {
+		display: flex;
+		justify-content: space-between;
+		position: fixed;
+		background-color: white;
+		width: 320px;
+		height: 40px;
+		z-index: 2;
+		top: 85px;
+		padding-top: 16px;
+		border-radius: 8px;
+		padding-bottom: 16;
+		animation: showPopupText 0.6s ease-in-out;
+
+	}
+}
+
+@keyframes showPopup {
+	from {
+		top: -100px;
+		opacity: 0;
+	}
+
+	to {
+		top: 70px;
+		opacity: 1;
+	}
+}
+
+@keyframes showPopupText {
+	from {
+		top: -100px;
+		opacity: 0;
+	}
+
+	to {
+		top: 90px;
+		opacity: 1;
+	}
+}

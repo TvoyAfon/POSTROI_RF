@@ -1,0 +1,46 @@
+.fullPortfolio {
+	width: 1200px;
+	background-color: #fff;
+	border-radius: 32px;
+	padding: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	height: 700px;
+}
+
+.popup_album {
+	width: 193px;
+	padding: 22px;
+	border-radius: 8px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	position: absolute;
+	top: 30px;
+	right: 0px;
+	z-index: 2;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.albumImagePopUp {
+	width: 120px;
+	height: 60px;
+	overflow: hidden;
+	background-color: #383940;
+	border-radius: 12px;
+	padding: 16px;
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	position: absolute;
+	top: 122px;
+
+	img {
+		cursor: pointer;
+
+	}
+
+	transition:all 0.33s ease-in-out;
+}

@@ -1,0 +1,11 @@
+.reviews {
+	&__rating {
+		height: 0px;
+		transition: height 300ms;
+
+
+		&-open {
+			height: 180px;
+		}
+	}
+}
