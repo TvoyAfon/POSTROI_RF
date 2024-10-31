@@ -19,7 +19,6 @@ const Messages = () => {
 		isMessagesSearchFailed,
 		isFullScreen,
 		replyId,
-		messagesRefsMap
 	} = useSelector((state: RootState) => state.chat)
 	const dispath = useDispatch()
 	const [isLoading, setIsLoading] = useState<boolean>(false)

@@ -1,11 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+export interface IHierarchy {
+	category1: string,
+	category2: string,
+	category3: string,
+	category4: string,
+	id: number
+}
+
+
+interface IState {
+	selectedHierarchy: IHierarchy,
+	idForFilters: string[]
+}
+
+const initialState: IState = {
 	selectedHierarchy: {
-		category: '',
-		subCategories: [],
-		subsubCategories: [],
+		category1: '',
+		category2: '',
+		category3: '',
+		category4: '',
+		id: 0
 	},
+	idForFilters: []
 }
 
 const createOrderHierarchySlice = createSlice({
@@ -17,9 +34,12 @@ const createOrderHierarchySlice = createSlice({
 		},
 		clearSelectedHierarchy: (state) => {
 			state.selectedHierarchy = initialState.selectedHierarchy
+		},
+		setIdForFilters: (state, action) => {
+			state.idForFilters = action.payload
 		}
-	},
+	}
 })
 
-export const { setSelectedHierarchy, clearSelectedHierarchy } = createOrderHierarchySlice.actions
+export const { setSelectedHierarchy, clearSelectedHierarchy, setIdForFilters } = createOrderHierarchySlice.actions
 export default createOrderHierarchySlice.reducer

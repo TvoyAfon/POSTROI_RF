@@ -47,7 +47,7 @@ const CreateOrder: React.FC = () => {
   const data = useCreateOrder()
 
   const handleContinue = async () => {
-    if (!dataOrder.data.categoryType) {
+    if (!dataOrder.data.category1) {
       dispatch(addCategoryError(true))
     } else dispatch(addCategoryError(false))
 
@@ -119,9 +119,11 @@ const CreateOrder: React.FC = () => {
       dispatch(setColorNav(''))
       dispatch(resetAllSteps())
       dispatch(setSelectedHierarchy({
-        category: '',
-        subCategories: [],
-        subsubCategories: [],
+        category1: '',
+        category2: '',
+        category3: '',
+        category4: '',
+        id: null
       }))
       dispatch(clearOrderData())
     }
@@ -130,9 +132,11 @@ const CreateOrder: React.FC = () => {
     dispatch(setColorNav(''))
     dispatch(resetAllSteps())
     dispatch(setSelectedHierarchy({
-      category: '',
-      subCategories: [],
-      subsubCategories: [],
+      category1: '',
+      category2: '',
+      category3: '',
+      category4: '',
+      id: null
     }))
     dispatch(clearOrderData())
   }
@@ -150,9 +154,11 @@ const CreateOrder: React.FC = () => {
         <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 145, paddingBottom: 32 }}>
           <div style={{ display: 'flex', gap: 16, position: 'relative' }}>
             <BreadCrumbs
-              subsubCategory={selectedHierarchy.subsubCategories[0]}
-              subCategory={selectedHierarchy.subCategories[0]}
-              category={selectedHierarchy.category} />
+              category1={selectedHierarchy.category1}
+              category2={selectedHierarchy.category2}
+              category3={selectedHierarchy.category3}
+              category4={selectedHierarchy.category4}
+            />
             <CreateOrderBox />
             <div
               style={{ borderRadius: changeBorderRadius() }}

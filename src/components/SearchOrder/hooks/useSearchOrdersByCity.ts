@@ -14,7 +14,7 @@ export const useSearchOrdersByCity = (city: string | undefined, currentPage: str
 		const filteredByCity = async () => {
 			try {
 
-				if (currentPage === 'Заказы') {
+				if (currentPage === 'Найти заказ') {
 					dispatch(setIsOrdersLoading(true))
 					const filteredOrdersByCity = await getFormattedOrders({
 						limit: 100,
@@ -27,6 +27,7 @@ export const useSearchOrdersByCity = (city: string | undefined, currentPage: str
 				}
 				else if (currentPage === 'Мои заказы') {
 					dispatch(setIsMyOrdersLoading(true))
+					console.log('вызвался в моих заказх')
 					if (!user?.id) return
 					const filteredMyOrdersByCity = await getMyFormattedOrders({
 						limit: 100,

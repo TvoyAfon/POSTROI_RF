@@ -1,243 +1,136 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import caret from '../../../assets/images/navbar/caret-up-solid 1 (4).svg'
-import { RootState } from '../../../store/store'
-import { categoriesWithSubSections } from '../../SearchOrder/SearchOrderHeader/SearchOrderModal/categoriesWithSub'
-import CheckboxButton from '../CheckboxButton/CheckboxButton'
+import React, { CSSProperties, useEffect, useState } from 'react'
+import { SubCategory } from '../../../hooks/categoryList/types'
+import { useGetCategoryList } from '../../../hooks/categoryList/useGetCategoryList'
+import { IHierarchy } from '../../../store/slices/other/categoriesList'
 import styles from './CategoriesList.module.scss'
-import { buttonStyleForCatList, categoriesStyles, subCategoriesStyles } from './styles/stylesCategoriesList'
-import { ICategoriesList } from './types/types.props'
+import CategoryItem from './CategoryItem/CategoryItem'
+import { buttonStyleForCatList } from './styles/stylesCategoriesList'
 
-const CategoriesList: React.FC<ICategoriesList> = ({
-	onCategorySelect,
-	isFilter,
-	isAddFavorites = false,
-	isCreateOrder = false,
-	isSigns = false,
-	setSelectedHierarchy,
-	selectedHierarchy,
-	style,
-}) => {
-	const { categories } = useSelector((state: RootState) => state.favCategories)
+interface ICategoriesList {
+	style?: CSSProperties,
+	handleSetCategories?: (updatedHierarchy: IHierarchy) => void,
+	handleSetFilters?: () => void,
+	selectedHierachy?: IHierarchy
+}
 
-	const [currentCat, setCurrentCat] = useState<string>(selectedHierarchy?.category || '')
-	const [currentSubSection, setCurrentSubSection] = useState<any[]>([])
-	const [selectedSubCategories, setSelectedSubCategories] = useState<string[]>(selectedHierarchy?.subCategories || [])
-	const [currentSubSubSection, setCurrentSubSubSection] = useState<any[]>([])
-	const [selectedSubsubCategories, setSelectedSubsubCategories] = useState<string[]>(selectedHierarchy?.subsubCategories || [])
+const CategoriesList: React.FC<ICategoriesList> = ({ style, handleSetCategories }) => {
 
 
-	const { data } = useSelector((state: RootState) => state.createOrderData)
-	const { dataSigns } = useSelector((state: RootState) => state.signsData)
+	const categories = useGetCategoryList()
+	/* Рендерим список категорий */
+	const [currentCategory, setCurrentCategory] = useState('') /* lvl 1*/
+	const [currentSubCategory, setCurrentSubCategory] = useState('') /* lvl2 */
+	const [currentSubSubCategory, setCurrentSubSubCategory] = useState('') /* lvl3 */
+	const [currentSubSubSubCategory, setCurrentSubSubSubCategory] = useState('')  /* lvl4 */
+	const [currentSubSection, setCurrentSubSection] = useState<SubCategory[]>([])
+	const [currentSubSubSection, setCurrentSubSubSection] = useState<SubCategory[]>([])
+	const [currentSubSubSubSection, setCurrentSubSubSubSection] = useState<SubCategory[]>([])
 
-	const handleCategoryClick = (category: any) => {
-		setCurrentCat(category.title)
-		setCurrentSubSection(category.subcategories)
+	const [id, setId] = useState<number[]>([]) /* CREATE ORDER */
 
-		if (isAddFavorites) {
-			setSelectedHierarchy && setSelectedHierarchy({
-				category: currentCat,
-				subCategories: selectedSubCategories,
-				subsubCategories: selectedSubsubCategories
-			})
-		}
-		setSelectedSubCategories([])
+	const handleClickCategoryLvl1 = (category: string, subCategory: SubCategory[], idLvl1: number) => {
+
+		setCurrentCategory(category)
+		setCurrentSubSection(subCategory)
 		setCurrentSubSubSection([])
+		setCurrentSubSubSubSection([])
+
+		setId([idLvl1])
+	}
+	const handleClickCategoryLvl2 = (subsubCategory: SubCategory[], subCategoryName: string, idLvl2: number) => {
+		setCurrentSubSubSection(subsubCategory)
+		setCurrentSubCategory(subCategoryName)
+		setCurrentSubSubSubSection([])
+
+		setId([id[0], idLvl2])
+
+		console.log(id)
+	}
+	const handleClickCategoryLvl3 = (subsubsubCategory: SubCategory[], subsubsubCategoryName: string, idLvl3: number) => {
+		setCurrentSubSubSubSection(subsubsubCategory)
+		setCurrentSubSubCategory(subsubsubCategoryName)
+
+		setId([id[0], id[1], idLvl3])
 	}
 
+	const handleClickCategoryLvl4 = (subsubsubsubCategory: SubCategory[], subsubsubsubCategoryName: string, idLvl4: number) => {
+		setCurrentSubSubSubSection(subsubsubsubCategory)
+		setCurrentSubSubSubCategory(subsubsubsubCategoryName)
 
-
-	const isSavedCategory = (categoryLocal: string): boolean => {
-		return categories.some(category => category.name === categoryLocal)
+		setId([id[0], id[1], id[2], idLvl4])
 	}
 
-	const isSavedSubCategory = (subCategoryLocal: string): boolean => {
-		return categories.some(category => category.subCategories.some(subcat => subcat.name === subCategoryLocal))
+	const getStyle = (categoryId: number, index: number) => {
+		if (id[index] === categoryId) {
+			return { ...buttonStyleForCatList }
+		}
 	}
 
-	const isSavedSubSubCategory = (subsubCategoryLocal: string): boolean => {
-		return categories.some(category =>
-			category.subCategories.some(sub => sub.subsubcategories?.some(subsub => subsub.name === subsubCategoryLocal))
-		)
-	}
-	const handleSubCategoryChange = useCallback((subCategory: any) => {
-		const hasSubSubCategories = subCategory.sections && subCategory.sections.length > 0
-
-		setSelectedSubCategories(prev => {
-			const isSelected = prev.includes(subCategory.title)
-			if (isSelected) {
-				setSelectedSubsubCategories(currentSubs =>
-					currentSubs.filter(sub => !subCategory.sections.includes(sub))
-				)
-				return prev.filter(item => item !== subCategory.title)
-			} else {
-				const newSubCategories = isCreateOrder ? [subCategory.title] : [...prev, subCategory.title]
-				if (hasSubSubCategories) {
-					setCurrentSubSubSection(subCategory.sections)
-				}
-				return newSubCategories
-			}
-		})
-	}, [isCreateOrder])
-
-
-	const handleSubCategoryClick = (subCategory: any) => {
-
-		setCurrentSubSubSection(subCategory.sections)
-
-		setSelectedSubCategories((prevSelected) => {
-			if (prevSelected.includes(subCategory.title)) {
-
-				return prevSelected.filter(sub => sub !== subCategory.title)
-			} else {
-
-				return [subCategory.title]
-			}
-		})
-	}
-
-	const handleSubSubCategoryClick = useCallback((subsubCat: any) => {
-		setSelectedSubsubCategories(prevSelected =>
-			prevSelected.includes(subsubCat) ?
-				prevSelected.filter(sub => sub !== subsubCat.title) :
-				[subsubCat]
-		)
-	}, [])
-
-	const handleSubsubCategoryChange = useCallback((subsubCategory: any) => {
-		const isSelected = selectedSubsubCategories.includes(subsubCategory)
-
-		setSelectedSubsubCategories(prev => {
-			if (isSelected) {
-				return prev.filter(item => item !== subsubCategory)
-			} else {
-				return isCreateOrder ? [subsubCategory] : [...prev, subsubCategory]
-			}
-		})
-	}, [isCreateOrder, selectedSubsubCategories])
 	useEffect(() => {
-		if (currentCat) {
-			onCategorySelect && onCategorySelect(currentCat, selectedSubCategories.join(', '), selectedSubsubCategories.join(', '))
+		handleSetCategories && handleSetCategories({
+			category1: currentCategory,
+			category2: currentSubCategory,
+			category3: currentSubSubCategory,
+			category4: currentSubSubSubCategory,
+			id: id[id.length - 1]
+		})
+	}, [currentCategory, currentSubCategory, currentSubSubCategory, currentSubSubSubCategory, id])
 
-			setSelectedHierarchy && setSelectedHierarchy({
-				category: currentCat,
-				subCategories: selectedSubCategories,
-				subsubCategories: selectedSubsubCategories,
-			})
-
-		}
-	}, [currentCat, selectedSubCategories, selectedSubsubCategories])
-
-
-
-	const getCategoryStyle = (categoryTitle: string) => {
-		if (isAddFavorites && isSavedCategory(categoryTitle)) {
-			return { ...buttonStyleForCatList }
-		}
-		if (currentCat === categoryTitle) {
-			return { ...buttonStyleForCatList }
-		}
-		if (isCreateOrder && data.categoryType === categoryTitle) {
-			return { ...buttonStyleForCatList }
-		}
-		if (isSigns && dataSigns.categoryType === categoryTitle) {
-			return { ...buttonStyleForCatList }
-		}
-		return {}
-	}
-
-	const getSubCategoryStyle = (subCategoryTitle: string) => {
-		if (isAddFavorites && isSavedSubCategory(subCategoryTitle)) {
-			return { ...buttonStyleForCatList }
-		}
-		if (selectedSubCategories.includes(subCategoryTitle))
-			return { ...buttonStyleForCatList }
-		if (isCreateOrder && data.subCategoryType === subCategoryTitle) {
-			return { ...buttonStyleForCatList }
-		}
-		if (isSigns && dataSigns.subCategoryType === subCategoryTitle) {
-			return { ...buttonStyleForCatList }
-		}
-	}
-
-	const getSubSubCategoryStyle = (subsubCat: string) => {
-		if (selectedSubsubCategories.includes(subsubCat)) {
-			return { ...buttonStyleForCatList }
-		}
-		if (isCreateOrder && data.subsubCategoryType === subsubCat) {
-			return { ...buttonStyleForCatList }
-		}
-	}
-
-	// Render categories
 	return (
 		<div style={style} className={styles['navbar_popup']}>
 			<div className={styles['navbar_popup_content']}>
 				<div className={styles['navbar_popup_content_categories']}>
 					<section>
-						{categoriesWithSubSections.map((category, index) => (
-							<div
-								onClick={() => handleCategoryClick(category)}
-								style={getCategoryStyle(category.title)}
-								className={styles[!isFilter ? 'navbar_popup_content_categories_category' : 'categories_categoryFilter']}
-								key={index}>
-								<span style={isFilter ? categoriesStyles : { fontWeight: 400, fontSize: 14 }}>
-									{category.title}
-								</span>
-								<img src={caret} alt="caret" />
-							</div>
+						{categories && categories.map(category => (
+							<CategoryItem
+								isCaret={true}
+								key={category.id}
+								style={getStyle(category.id, category.level - 1)!}
+								categoryName={category.category}
+								className={styles['categories_categoryFilter']}
+								handleClick={() => handleClickCategoryLvl1(category.category, category.sub_category, category.id)}
+							/>
 						))}
 					</section>
 				</div>
 				<div className={styles['navbar_popup_content_categories_subcategories']}>
-					{currentSubSection.map((subCategory, index) => {
-						const hasSubSubCategories = subCategory.sections && subCategory.sections.length > 0
-						const subCategoryStyle = getSubCategoryStyle(subCategory.title)
-						return (
-							<div key={index} >
-								{hasSubSubCategories ? (
-									<div
-										onClick={() => hasSubSubCategories && handleSubCategoryClick(subCategory)}
-										style={subCategoryStyle}
-										className={styles[!isFilter ? 'navbar_popup_content_subcategory' : 'categories_subCategoryFilter']}>
-										<span style={isFilter ? subCategoriesStyles : undefined}>{subCategory.title}</span>
-										<img src={caret} alt="caret" />
-									</div>
-								) : (
-									<>
-										{!isCreateOrder ? <CheckboxButton
-											onChange={() => handleSubCategoryChange(subCategory)}
-											checked={isAddFavorites ? isSavedSubCategory(subCategory.title) : data.subCategoryType === subCategory.title}
-											label={subCategory.title} /> :
-											<span
-												onClick={() => handleSubCategoryClick(subCategory)}
-												style={{ ...subCategoryStyle, fontWeight: 300, cursor: 'pointer' }}>{subCategory.title}</span>
-										}
-									</>
-								)}
-							</div>
-						)
-					})}
+					{currentSubSection.map(sub => (
+						<CategoryItem
+							key={sub.id}
+							isCaret={sub && sub.sub_category.length > 0 ? true : false}
+							style={getStyle(sub.id, sub.level - 1)!}
+							categoryName={sub.category}
+							className={styles['categories_categoryFilter']}
+							handleClick={() => handleClickCategoryLvl2(sub.sub_category, sub.category, sub.id)}
+						/>
+					))}
 				</div>
 				<div className={styles['navbar_popup_content_categories_subcategories_sub']}>
-					{currentSubSubSection.map((subSubCategory, index) => (
-						<div
-							key={index}
-							className={styles[!isFilter ? 'navbar_popup_content_subcategory' : 'categories_subsubCategoryFilter']}>
-							<>
-								{!isCreateOrder ?
-									<CheckboxButton
-										checked={isAddFavorites ? isSavedSubSubCategory(subSubCategory.title) : data.subsubCategoryType === subSubCategory.title}
-										onClick={() => handleSubsubCategoryChange(subSubCategory.title)}
-										label={subSubCategory.title} /> :
-
-									<span
-										style={getSubSubCategoryStyle(subSubCategory.title)}
-										onClick={() => handleSubSubCategoryClick(subSubCategory.title)}>{subSubCategory.title}</span>}
-							</>
-
-						</div>
+					{currentSubSubSection.map(subsub => (
+						<CategoryItem
+							key={subsub.id}
+							isCaret={subsub.sub_category.length > 0 ? true : false}
+							style={getStyle(subsub.id, subsub.level - 1)!}
+							categoryName={subsub.category}
+							className={styles['categories_categoryFilter']}
+							handleClick={() => handleClickCategoryLvl3(subsub.sub_category, subsub.category, subsub.id)}
+						/>
 					))}
+				</div>
+				<div
+					style={{ width: 100, overflow: 'hidden', textOverflow: 'ellipsis' }}
+					className={styles['navbar_popup_content_categories_subcategories_sub']}>
+					{
+						currentSubSubSubSection.map(subsubsub => (
+							<CategoryItem
+								key={subsubsub.id}
+								isCaret={false}
+								style={getStyle(subsubsub.id, subsubsub.level - 1)!}
+								categoryName={subsubsub.category}
+								className={styles['categories_categoryFilter']}
+								handleClick={() => handleClickCategoryLvl4(subsubsub.sub_category, subsubsub.category, subsubsub.id)} />
+						))
+					}
 				</div>
 			</div>
 		</div>

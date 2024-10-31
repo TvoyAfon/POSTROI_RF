@@ -11,10 +11,10 @@ const TruckingAndServicesRight: React.FC<IProjectAndDesignProps> = ({ currentTyp
 	return (
 		<div className={styles['cardDetail_mainContent_rightSide']}>
 			<img src={
-				currentType === 'Грузоперевозки' ? img_svg : undefined ||
+				currentType === 'Грузоперевозки' && img_svg ||
 					currentType === 'Услуги спецтехники' ? img_svg2 : undefined}
 				alt="right_svg" />
-			<div style={{...buttonPosition2,right:350}}>
+			<div style={{ ...buttonPosition2, right: 350 }}>
 				<Button
 					style={styleButtonBlue}>Просмотр заказов</Button>
 				<Button

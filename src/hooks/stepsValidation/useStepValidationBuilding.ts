@@ -14,7 +14,7 @@ export const useStepValidationBuilding = () => {
 			return true
 
 		}
-		if (step.stepComponentNumber === 1 && data.categoryType.length !== 0 && data.taskName.length !== 0) {
+		if (step.stepComponentNumber === 1 && data.category1.length !== 0 && data.taskName.length !== 0) {
 			dispatch(changeStep(step.stepComponentNumber + 1))
 
 		}

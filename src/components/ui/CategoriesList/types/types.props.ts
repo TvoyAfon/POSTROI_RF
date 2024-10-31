@@ -34,3 +34,11 @@ interface SubCategory {
 interface SubSubCategory {
 	title: string
 }
+
+export interface ISelectedCategories {
+	category1: string,
+	category2: string[],
+	category3: string[],
+	category4: string[],
+	selectedId: number[]
+}

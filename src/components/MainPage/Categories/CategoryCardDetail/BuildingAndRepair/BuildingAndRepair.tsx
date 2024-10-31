@@ -19,8 +19,8 @@ const BuildingAndRepair: React.FC = () => {
 		nav(ROUTES_NAVBAR.createOrder)
 		dispatch(addOrderData({
 			...data,
-			categoryType: Categories.Building,
-			subCategoryType: subCategory
+			category1: Categories.Building,
+			category2: subCategory
 		}))
 		dispatch(setSelectedHierarchy({
 			category: Categories.Building,

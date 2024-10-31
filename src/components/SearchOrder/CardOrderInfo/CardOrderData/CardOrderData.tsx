@@ -5,6 +5,7 @@ import { getDate } from '../../../../utils/date'
 import { ICardOrderInfo } from '../../../OrdersAndProjectsPage/section/props'
 import IconSignature from '../../../Profile/ui/IconSignature'
 import CardDetail from './CardDetail'
+import { orderDescStyles } from './styles/cardOrderStyles'
 import { getOrderInfo } from './utils'
 
 const CardOrderData: React.FC<ICardOrderInfo> = ({
@@ -39,7 +40,7 @@ const CardOrderData: React.FC<ICardOrderInfo> = ({
 					<span className='textSizeL'> {order.name.toUpperCase()}</span>
 				</div>
 				<span
-					style={{ fontSize: 16, fontWeight: 300, color: '#231F20', overflow: 'hidden', wordBreak: 'break-word', height: 84 }}>{order.description}
+					style={orderDescStyles}>{order.description}
 				</span>
 				<span style={{ color: '#231F20', fontWeight: 800 }}>{order.address}</span>
 				{

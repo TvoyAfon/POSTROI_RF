@@ -22,6 +22,8 @@ const UserLocationCity: React.FC<IUserLocationCity> = ({ setValue }) => {
     dispatch(changeCityCoords(coords))
   }
 
+
+
   return (
     <div className={styles.cityList}>
       {

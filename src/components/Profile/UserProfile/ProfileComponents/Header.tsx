@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import checkmarkIcon from '../../../../assets/images/profile/checkmark-badge.svg'
+import invalid_icon from '../../../../assets/images/profile/invalid_icon.svg'
 import locationIcon from '../../../../assets/images/profile/location.svg'
 import messageIcon from '../../../../assets/images/profile/message.svg'
 import ratingStarCheckedIcon from '../../../../assets/images/profile/rating-star-checked.svg'
@@ -17,11 +18,18 @@ interface IHeader {
 	city?: string,
 	phone?: string,
 	email?: string,
-	passportCheck: boolean | null | undefined
+	passportCheck: 'NO' | 'VALID' | 'INVALID' | 'MODERATE'
 }
 
 
 const Header: React.FC<IHeader> = ({ avatar, firstName, lastName, patronymic, city, phone, email, passportCheck }) => {
+
+	const checkPassport = (passportStatus: string) => {
+		if (passportStatus === 'VALID') {
+			return 'Паспорт подтвержден'
+		}
+		else return 'Паспорт не подтвержден'
+	}
 
 	const nav = useNavigate()
 	return (
@@ -80,17 +88,17 @@ const Header: React.FC<IHeader> = ({ avatar, firstName, lastName, patronymic, ci
 				}}>
 					E-mail подтверджён
 				</IconSignature>}
-				{passportCheck && <IconSignature icon={checkmarkIcon} signatureStyle={{
-					marginTop: '2px'
+				<IconSignature icon={checkPassport(passportCheck) === 'Паспорт подтвержден' ? checkmarkIcon : invalid_icon} signatureStyle={{
+					marginTop: '2px',
 				}}>
-					Паспорт проверен
-				</IconSignature>}
+					{checkPassport(passportCheck)}
+				</IconSignature>
 			</div>
-			<CloseButton 
-			onClick={() => nav(-1)}
-			style={{
-				marginLeft: 'auto'
-			}} />
+			<CloseButton
+				onClick={() => nav(-1)}
+				style={{
+					marginLeft: 'auto'
+				}} />
 		</div>
 	)
 }

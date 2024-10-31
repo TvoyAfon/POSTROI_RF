@@ -6,7 +6,7 @@ import { useModal } from '../../../hooks/useModal'
 import { ISearchOrderHeader } from '../../../interface/searchOrderWithMap.props'
 import { RootState } from '../../../store/store'
 import SearchOrderInput from '../../ui/OrderInput/SearchOrderInput'
-import { useSearchOrdersByName } from '../hooks/useSearchOrdersByName'
+import { useSearchOrders } from '../hooks/useSearchOrders'
 import styles from '../SearchOrder.module.scss'
 import CityAndRadius from './CityAndRadius/CityAndRadius'
 import SearchOrderModal from './SearchOrderModal/SearchOrderModal'
@@ -17,16 +17,14 @@ const
 
 		const { handleOpen, isOpen, handleClose } = useModal()
 		const [searchTerm, setSearchTerm] = useState('')
-		const { categoryOrder } = useSelector((state: RootState) => state.categoriesForFilterSlice)
+		const categoryOrder = useSelector((state: RootState) => state.categoriesForFilterSlice)
 
 		const handleSearchByName = (e: React.ChangeEvent<HTMLInputElement>) => {
 			setSearchTerm(e.target.value)
 		}
 
 		const debouncedValue = useDebounce(searchTerm, 400)
-		useSearchOrdersByName(debouncedValue!, 'Заказы')
-
-
+		useSearchOrders(debouncedValue!, 'Заказы', 'Москва')
 		return (
 			<>
 				{isOpen && <SearchOrderModal
@@ -52,7 +50,7 @@ const
 									style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
 									<h3
 										className='textSizeL'
-										style={{ cursor: 'pointer' }}>{categoryOrder}
+										style={{ cursor: 'pointer' }}>{categoryOrder.category1}
 									</h3>
 									<img style={{ cursor: 'pointer' }} src={caret} alt="caret" />
 								</div>

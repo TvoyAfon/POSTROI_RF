@@ -1,19 +1,19 @@
 import React, { CSSProperties } from 'react'
 
 interface BreadCrumbs {
-	category: string,
-	subCategory?: string,
-	subsubCategory?: string,
-	subsubsubCategory?: string,
+	category1: string,
+	category2?: string,
+	category3?: string,
+	category4?: string,
 	style?: CSSProperties
 }
 
-const BreadCrumbs: React.FC<BreadCrumbs> = ({ category, subCategory, subsubCategory, subsubsubCategory, style }) => {
+const BreadCrumbs: React.FC<BreadCrumbs> = ({ category1, category2, category3, category4, style }) => {
 	const categories = [
-		category,
-		subCategory,
-		subsubCategory,
-		subsubsubCategory,
+		category1,
+		category2,
+		category3,
+		category4,
 	]
 	const existingCategories = categories.filter(Boolean)
 

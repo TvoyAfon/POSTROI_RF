@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { displayDaysOnSite, getAgeWord } from '../../../../common/common'
+import { checkPassport, displayDaysOnSite, getAgeWord } from '../../../../common/common'
 
 import { RootState } from '../../../../store/store'
 import { flexRow } from '../../../CreateOrder/forms/styles/stylesCreateOrder'
@@ -20,18 +20,7 @@ const MiddleSide = () => {
 	const { user } = useSelector((state: RootState) => state.auth)
 	const [openMap, setOpenMap] = useState(false)
 
-	const checkPassport = () => {
-		switch (user?.passport) {
-			case 'INVALID':
-				return 'Не прошел проверку'
-			case 'NO':
-				return 'Подтвердить'
-			case 'VALID':
-				return 'Подтвержден'
-			default:
-				return 'Статус паспорта неизвестен' // Можно добавить обработку случая, если passport не соответствует ни одному из значений
-		}
-	}
+
 
 	return (
 		<>
@@ -132,8 +121,8 @@ const MiddleSide = () => {
 							</div>
 							:
 							<PassportConfirmModal updateData='user'>
-								<EditField name='Паспорт'
-									buttonText={checkPassport()} textStyle={{
+								<EditField name='Паспорт:'
+									buttonText={checkPassport(user?.passport!)} textStyle={{
 										color: '#8E8E93',
 										fontWeight: 600
 									}} />

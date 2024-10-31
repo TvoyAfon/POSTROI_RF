@@ -11,7 +11,7 @@ import { buttonPosition2, styleButtonBlue, styleButtonDark } from '../../styles/
 const ProjectAndDesignRight: React.FC<IProjectAndDesignProps> = ({ currentType }) => {
 	return (
 		<div className={styles['cardDetail_mainContent_rightSide']}>
-			<img src={currentType === 'Дизайн' ? right2_svg : undefined || currentType === 'Проектирование' ? right_svg : undefined}
+			<img src={currentType === 'Дизайн' && right2_svg || currentType === 'Проектирование' ? right_svg : undefined}
 				alt="right_svg" />
 			<div style={buttonPosition2}>
 				<Button

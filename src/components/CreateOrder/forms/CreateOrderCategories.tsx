@@ -19,12 +19,12 @@ const CreateOrderCategories: React.FC = () => {
 	const { selectedHierarchy } = useSelector((state: RootState) => state.createOrderHierarchySlice)
 
 	const categories = [
-		selectedHierarchy.category,
-		selectedHierarchy.subCategories[0],
-		selectedHierarchy.subsubCategories[0],
+		selectedHierarchy.category1,
+		selectedHierarchy.category2,
+		selectedHierarchy.category3,
+		selectedHierarchy.category4,
 	]
 	const existingCategories = categories.filter(Boolean)
-
 
 	const handleChangeTaskName = (e: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(addOrderData({
@@ -52,9 +52,10 @@ const CreateOrderCategories: React.FC = () => {
 					isOrder={true}
 				/>
 				{
-					data.categoryType.length !== 0 ? <div style={stylesCategories}>
-						<span >{existingCategories.join(' > ')}</span>
-					</div> : null
+					data.category1.length !== 0 ?
+						<div style={stylesCategories}>
+							<span >{existingCategories.join(' > ')}</span>
+						</div> : null
 				}
 			</div>
 			{error.categoriesError && <error.categoriesError />}

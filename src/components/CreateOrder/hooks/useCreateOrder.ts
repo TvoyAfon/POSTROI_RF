@@ -7,14 +7,14 @@ export const useCreateOrder = () => {
 	const orderData = useSelector((state: RootState) => state.createOrderData)
 	const { user } = useSelector((state: RootState) => state.auth)
 
-	if (!user?.id || !orderData.data.dateObjEnd || !orderData.data.dateObjStart || orderData.data.paymethod === null) return
+	if (!user?.id || !orderData.data.categoryId || !orderData.data.dateObjEnd || !orderData.data.dateObjStart || orderData.data.paymethod === null) return
 
 	const params: ICreateOrderParams = {
 		client_id: user.id,
 		title: orderData.data.taskName,
 		description: orderData.data.description,
 		address: orderData.data.address,
-		category_id: 2,     /* прокидывать айди нужно */
+		category_id: orderData.data.categoryId,
 		start_date: convertDate(orderData.data.dateObjStart),
 		end_date: convertDate(orderData.data.dateObjEnd),
 		payment_method: orderData.data.paymethod,

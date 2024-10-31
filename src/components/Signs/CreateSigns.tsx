@@ -94,10 +94,10 @@ const CreateSigns: React.FC = () => {
           className={styles['createSigns_container']}
         >
           <BreadCrumbs
-            subsubsubCategory={dataSigns.subsubsubCategoryType}
-            subsubCategory={dataSigns.subsubCategoryType}
-            subCategory={dataSigns.subCategoryType}
-            category={dataSigns.categoryType} />
+            category4={dataSigns.subsubsubCategoryType}
+            category3={dataSigns.subsubCategoryType}
+            category2={dataSigns.subCategoryType}
+            category1={dataSigns.categoryType} />
           <div
             className={styles['boxAndForms']}
             style={{ display: 'flex', gap: 24 }}>

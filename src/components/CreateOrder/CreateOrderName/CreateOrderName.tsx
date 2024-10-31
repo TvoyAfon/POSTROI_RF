@@ -56,7 +56,7 @@ const CreateOrderName: React.FC = () => {
     if (categoryName === Categories.Building) {
       dispatch(addOrderData({
         ...data,
-        categoryType: categoryName,
+        category1: categoryName,
         taskName: globalOrderData
       }))
 

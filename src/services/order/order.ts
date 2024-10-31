@@ -63,9 +63,6 @@ class OrderService {
 		return await sendAsync('patch', this.url.constructURL('files-remove', schema), links, { useAuthorization: true })
 	}
 
-	async categoryList() {
-		return await sendAsync('get', this.url.constructURL('category/list'))
-	}
 }
 
 export const orderService = new OrderService()

@@ -20,9 +20,9 @@ const SignsCategories: React.FC = () => {
 		}))
 	}
 	const categories = [
-		selectedHierarchy.category,
-		selectedHierarchy.subCategories[0],
-		selectedHierarchy.subsubCategories[0],
+		selectedHierarchy.category1,
+		selectedHierarchy.category2,
+		selectedHierarchy.category3,
 	]
 	const existingCategories = categories.filter(Boolean)
 

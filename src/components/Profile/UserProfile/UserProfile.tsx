@@ -43,7 +43,7 @@ const UserProfile = () => {
 		city: userData?.city?.name,
 		phone: userData?.phone,
 		email: userData?.email,
-		passportCheck: userData?.passport_check
+		passportCheck: userData?.passport!
 	}
 
 	const aboutUserInfo = {

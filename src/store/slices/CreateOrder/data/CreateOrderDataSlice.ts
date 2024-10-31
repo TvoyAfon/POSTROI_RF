@@ -15,7 +15,7 @@ const initialState: IState = {
 		dateObjEnd: null,
 		address: '',
 		telephone: '+7',
-		categoryType: '',
+		category1: '',
 		connect: {
 			chat: false,
 			phone: false
@@ -24,7 +24,6 @@ const initialState: IState = {
 		currentSocials: [],
 		is_send: false,
 		paymethod: PaymentMethod.EXECUTOR,
-		subCategoryType: '',
 		settings: {
 			contract: false,
 			push: false,
@@ -32,8 +31,10 @@ const initialState: IState = {
 			document: false
 		},
 		date: '',
-		subsubCategoryType: '',
-		subsubsubCategoryType: ''
+		category2: '',
+		category3: '',
+		category4: '',
+		categoryId: null
 	},
 	files: []
 }

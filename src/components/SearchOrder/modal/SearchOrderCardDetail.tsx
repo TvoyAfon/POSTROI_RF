@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import loc_svg from '../../../assets/images/createOrder_img/location.svg'
+import { convertNumberDateToString } from '../../../common/common'
 import { useModal } from '../../../hooks/useModal'
 import { PaymentMethod } from '../../../services/order/types/enums'
 import { IOrderFullInfo } from '../../../services/order/types/types'
@@ -74,11 +75,15 @@ const SearchOrderCardDetail: React.FC<{
 								<span>Способ оплаты:</span>
 								<span className='textSizeM'>{order.payment_method === PaymentMethod.ORGANIZATION ? 'На расчетный счет' : order.payment_method === PaymentMethod.EXECUTOR && 'Наличными или переводом на карту исполнителю'}</span>
 							</div>
+							<br />
 							<div style={flexRow}>
-								<span>Дата:</span>
-								<span className='textSizeM'>{`${order.start_date} - ${order.end_date}`}</span>
+								<span>Начать:</span>
+								<span className='textSizeM'>{convertNumberDateToString(order.start_date!)}</span>
 							</div>
-
+							<div style={flexRow}>
+								<span>Закончить:</span>
+								<span className='textSizeM'>{convertNumberDateToString(order.end_date!)}</span>
+							</div>
 						</section>
 						<section style={{ width: 1050, wordBreak: 'break-word' }}>
 							{order?.description}

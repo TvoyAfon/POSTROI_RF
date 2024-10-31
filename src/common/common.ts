@@ -128,3 +128,27 @@ export function convertDateRange(dateRange: string): string {
 }
 
 
+export const checkPassport = (key: string) => {
+  if (!key) return 'Статус паспорта неизвестен'
+  switch (key) {
+    case 'INVALID':
+      return 'Не прошел проверку'
+    case 'NO':
+      return 'Подтвердить'
+    case 'VALID':
+      return 'Подтвержден'
+
+  }
+}
+
+export const convertNumberDateToString = (dateString: string) => {
+  if (!dateString) return '-'
+  const months: string[] = [
+    "января", "февраля", "марта", "апреля", "мая", "июня",
+    "июля", "августа", "сентября", "октября", "ноября", "декабря"
+  ]
+
+  const [year, month, day] = dateString.split("-").map(Number)
+  const monthName = months[month - 1]
+  return `${day} ${monthName} ${year}`
+}

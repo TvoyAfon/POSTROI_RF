@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import loc_svg from '../../../assets/images/createOrder_img/location.svg'
 import { formatDateForOrder } from '../../../common/commonTime'
@@ -11,7 +11,9 @@ import { flexRow } from './styles/stylesCreateOrder'
 const CreateOrderDemo: React.FC = () => {
 	const { data, files } = useSelector((state: RootState) => state.createOrderData)
 
-	console.log(data)
+	useEffect(() => {
+		console.log(data)
+	}, [])
 
 	// Функция для проверки, является ли файл изображением
 	const isImageFile = (fileName: string) => {

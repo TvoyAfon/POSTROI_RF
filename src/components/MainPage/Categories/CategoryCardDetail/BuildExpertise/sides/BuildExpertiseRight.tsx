@@ -10,7 +10,7 @@ const BuildExpertiseRight: React.FC<IProjectAndDesignProps> = ({ currentType }) 
 	return (
 		<div className={styles['cardDetail_mainContent_rightSide']}>
 			<img src={
-				currentType === '2' ? img_svg2 : undefined ||
+				currentType === '2' && img_svg2 ||
 					currentType === '1' ? img_svg : undefined}
 				alt="right_svg" />
 			<div style={{ ...buttonPosition2, top: 210, left: 660 }}>	<Button

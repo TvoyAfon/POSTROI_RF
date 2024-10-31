@@ -7,16 +7,12 @@ import { ROUTES_NAVBAR } from '../../routes/routes'
 
 import { useQuery } from 'react-query'
 import { useDispatch, useSelector } from 'react-redux'
-import useDebounce from '../../hooks/useDebounce'
 import { projectService } from '../../services/project/project.service'
 import { setCitiesByDefault } from '../../store/slices/CurrentCitySlice'
-import { addMyOrders } from '../../store/slices/orders/ordersSlice'
 import { RootState } from '../../store/store'
-import { getMyFormattedOrders } from '../../utils/order-formatting'
 import UserLocation from '../Navbar/UserLocation/UserLocation'
 import FilterOrder from '../SearchOrder/FilterOrder/FilterOrder'
-import { useSearchOrdersByCity } from '../SearchOrder/hooks/useSearchOrdersByCity'
-import { useSearchOrdersByName } from '../SearchOrder/hooks/useSearchOrdersByName'
+import { useSearchOrders } from '../SearchOrder/hooks/useSearchOrders'
 import CityAndRadius from '../SearchOrder/SearchOrderHeader/CityAndRadius/CityAndRadius'
 import SearchOrderModal from '../SearchOrder/SearchOrderHeader/SearchOrderModal/SearchOrderModal'
 import SearchMyOrderFilter from '../SearchOrder/SearchOrderHeader/ui/SearchMyOrderFilter'
@@ -57,8 +53,8 @@ const OrdersAndProjectsPage = () => {
 
 	const sectionRef = useRef<HTMLDivElement>(null)
 	const [search, setSearch] = useState('')
-	const { ordersList, myOrdersList, myOrdersPage } = useSelector((state: RootState) => state.orders)
-	const { categoryOrder } = useSelector((state: RootState) => state.categoriesForFilterSlice)
+	const { ordersList, myOrdersList } = useSelector((state: RootState) => state.orders)
+	const categoryOrder = useSelector((state: RootState) => state.categoriesForFilterSlice)
 
 	const { user } = useSelector((state: RootState) => state.auth)
 
@@ -68,29 +64,6 @@ const OrdersAndProjectsPage = () => {
 		refetchOnWindowFocus: false,
 		refetchOnReconnect: false
 	})
-
-	useEffect(() => {
-		(async () => {
-			if (!user?.id) return
-			try {
-				console.log('вызвался 2')
-				const formattedOrders = await getMyFormattedOrders({
-					client_id: user.id,
-					limit: 100,
-					page: myOrdersPage
-				})
-				if (!formattedOrders) return
-				dispatch(addMyOrders({ orders: formattedOrders, addFlag: 'rewrite' }))
-			}
-			catch (error) {
-				console.log(error)
-			}
-			finally {
-
-			}
-		})()
-
-	}, [user?.id])
 
 	useEffect(() => {
 		if (!data) return
@@ -124,8 +97,6 @@ const OrdersAndProjectsPage = () => {
 			[Sections.MYORDERS]: myOrdersList,
 			[Sections.ORDERS]: ordersList,
 		}[currentCategory]
-
-
 		return currentCards && currentCards.length > 0 ? currentCards : []
 	}, [currentCategory, myOrdersList, ordersList])
 
@@ -143,10 +114,7 @@ const OrdersAndProjectsPage = () => {
 		setSearch(e.target.value)
 	}
 
-	const debouncedOrdersValue = useDebounce(search, 400)
-	/*	useGetOrdersByCategory(categoryOrder, subCategoryOrder, currentSubCategory) */
-	useSearchOrdersByName(debouncedOrdersValue!, currentCategory)
-	useSearchOrdersByCity(user?.city_name, 'Заказы')
+	useSearchOrders(search, currentSubCategory, user?.city_name)
 
 	return (
 		<>
@@ -203,7 +171,7 @@ const OrdersAndProjectsPage = () => {
 								<span
 									style={{ cursor: 'pointer' }}
 									className='textSizeL'
-									onClick={() => setIsOpenModal(true)} >{categoryOrder}</span>
+									onClick={() => setIsOpenModal(true)} >{categoryOrder.category1}</span>
 								<img src={caret} alt="caret" />
 							</div>}
 						{isOpenModal &&

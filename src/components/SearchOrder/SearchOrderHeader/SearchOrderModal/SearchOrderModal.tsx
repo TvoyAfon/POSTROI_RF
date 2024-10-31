@@ -1,12 +1,13 @@
 
-import React, { CSSProperties, useRef, useState } from 'react'
+import React, { CSSProperties, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useOutsideClick } from '../../../../hooks/useOutside'
 import { clearFavorites } from '../../../../store/slices/CategoriesFavorites/CategoriesFavorites'
-import { addCategoriesOrder } from '../../../../store/slices/CategoriesForFilter/CategoriesForFilterSlice'
+import { addCategoriesOrder, clearCategories } from '../../../../store/slices/CategoriesForFilter/CategoriesForFilterSlice'
 import { RootState } from '../../../../store/store'
 import Button from '../../../ui/Button/Button'
-import CategoriesList from '../../../ui/CategoriesList/CategoriesList'
+import CategoriesListFilter from '../../../ui/CategoriesList/CategoriesListFilter'
+import { ISelectedCategories } from '../../../ui/CategoriesList/types/types.props'
 import ModalContainer from '../../../ui/Modal/ModalContainer'
 import SearchOrderFavourites from './SearchOrderFavourites'
 import SearchOrderModalSection from './SearchOrderModalSection'
@@ -18,8 +19,17 @@ interface ISearchOrderModal {
 
 const SearchOrderModal: React.FC<ISearchOrderModal> = ({ onClose, style }) => {
 	const ref = useRef<HTMLDivElement>(null)
-	const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
-	const [selectedsubCategory, setSelectedsubCategory] = useState<string | null>(null)
+
+	const catFilter = useSelector((state: RootState) => state.categoriesForFilterSlice)
+
+	const [currentCategories, setCurrentCategories] = useState<ISelectedCategories>({
+		category1: catFilter.category1 || '',
+		category2: catFilter.category2 || [],
+		category3: catFilter.category3 || [],
+		category4: catFilter.category4 || [],
+		selectedId: catFilter.id || []
+	})
+
 	const [selectedSection, setSelectedSection] = useState<string>('Все категории')
 	const { user } = useSelector((state: RootState) => state.auth)
 	useOutsideClick(ref, onClose)
@@ -31,45 +41,44 @@ const SearchOrderModal: React.FC<ISearchOrderModal> = ({ onClose, style }) => {
 			return dispatch(clearFavorites())
 		}
 		else if (selectedSection === 'Все категории') {
-			setSelectedCategory(null) // Reset selected category
-			dispatch(addCategoriesOrder({
-				categoryOrder: 'Выберите категорию заказов',
-				subCategoryOrder: ''
-			}))
+			dispatch(clearCategories())
 			onClose()
 		}
 	}
-
-	const handleCategorySelect = (category: string, subCategory: string) => {
-		setSelectedCategory(category)
-		setSelectedsubCategory(subCategory)
-	}
-
 	const handleApplyCategory = () => {
 
-		if (selectedCategory && selectedsubCategory) {
+		if (currentCategories.category1) {
 			dispatch(addCategoriesOrder({
-				categoryOrder: selectedCategory,
-				subCategoryOrder: selectedsubCategory
+				category1: currentCategories.category1,
+				category2: currentCategories.category2,
+				category3: currentCategories.category3,
+				category4: currentCategories.category4,
+				id: currentCategories.selectedId
 			}))
 			onClose() // Close the modal
 		}
 	}
+
+	useEffect(() => {
+		console.log(catFilter)
+	}, [catFilter])
 
 	return (
 		<ModalContainer
 			zIndex={11}
 			style={{ width: 1170, top: 335, borderRadius: selectedSection === 'Избранное' ? '32px 32px 32px 32px' : '0px 0px 32px 32px', ...style }} isOnOverlay>
 			<div ref={ref}>
-				{user?.id && <SearchOrderModalSection
-					setSelectedSection={setSelectedSection}
-					selectedSection={selectedSection}
-				/>}
+				{user?.id &&
+					<SearchOrderModalSection
+						setSelectedSection={setSelectedSection}
+						selectedSection={selectedSection}
+					/>}
 				<div style={{ paddingTop: 16, paddingBottom: 16 }}>
 					{selectedSection === 'Все категории' ?
-						<CategoriesList
-							isFilter={true}
-							onCategorySelect={handleCategorySelect} /> :
+						<CategoriesListFilter
+							currentCategories={currentCategories}
+							setCurrentCategories={setCurrentCategories}
+						/> :
 						selectedSection === 'Избранное' && <SearchOrderFavourites />}
 				</div>
 				<div style={{ display: 'flex', gap: 16, alignItems: 'center', paddingTop: 16 }}>

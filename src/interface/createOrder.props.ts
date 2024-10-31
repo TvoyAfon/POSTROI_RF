@@ -55,10 +55,11 @@ export interface IOrderData {
 	address: string,
 	telephone: string,
 
-	categoryType: string,
-	subCategoryType: string,
-	subsubCategoryType: string,
-	subsubsubCategoryType: string
+	category1: string,
+	category2: string,
+	category3: string,
+	category4: string,
+	categoryId: number | null
 }
 
 export interface IOrderFile {

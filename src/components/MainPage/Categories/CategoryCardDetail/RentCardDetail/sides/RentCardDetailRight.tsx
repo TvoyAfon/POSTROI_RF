@@ -10,7 +10,7 @@ import { buttonPosition2, styleButtonBlue, styleButtonDark } from '../../styles/
 const RentCardDetailRight: React.FC<IProjectAndDesignProps> = ({ currentType }) => {
 	return (
 		<div className={styles['cardDetail_mainContent_rightSide']}>
-			<img src={currentType === '1' ? img1_svg : undefined || currentType === '2' ? img2_svg : undefined || currentType === '3' ? img3_svg : undefined}
+			<img src={currentType === '1' && img1_svg || currentType === '2' && img2_svg || currentType === '3' ? img3_svg : undefined}
 				alt="right_svg" />
 			<div style={{ ...buttonPosition2, top: 200 }}>	<Button
 				style={styleButtonBlue}>Просмотр заказов</Button>
