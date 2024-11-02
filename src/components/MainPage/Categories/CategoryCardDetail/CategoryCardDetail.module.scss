@@ -82,7 +82,8 @@
 	flex-wrap: wrap;
 	width: 1200px;
 	position: relative;
-	img{
+
+	img {
 		cursor: pointer;
 	}
 }
@@ -110,9 +111,11 @@
 	}
 
 	.building {
-		transform: scale(0.85);
-    display: grid;
+		padding-top: 75px;
+		transform: scale(0.95);
+		display: grid;
 		grid-template-columns: 1fr 1fr;
+
 	}
 
 	.overlay {

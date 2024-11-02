@@ -9,8 +9,8 @@ import { ISelectedCategories } from './types/types.props'
 
 interface ICategoriesListFilter {
 	style?: CSSProperties,
-	setCurrentCategories?: React.Dispatch<SetStateAction<ISelectedCategories>>,
-	currentCategories?: ISelectedCategories
+	setCurrentCategories: React.Dispatch<SetStateAction<ISelectedCategories>>,
+	currentCategories: ISelectedCategories
 }
 
 const CategoriesListFilter: React.FC<ICategoriesListFilter> = ({ style, setCurrentCategories, currentCategories }) => {
@@ -22,7 +22,7 @@ const CategoriesListFilter: React.FC<ICategoriesListFilter> = ({ style, setCurre
 
 	const handleClickCategoryLvl1 = (catId: number, catName: string, subCategory: SubCategory[]) => {
 
-		setCurrentCategories && setCurrentCategories(prev => ({
+		setCurrentCategories(prev => ({
 			...prev,
 			selectedId: [catId],
 			category1: catName
@@ -37,7 +37,7 @@ const CategoriesListFilter: React.FC<ICategoriesListFilter> = ({ style, setCurre
 		setCurrentSubSubSection(subCategory)
 		setCurrentSubSubSubSection([])
 
-		setCurrentCategories && setCurrentCategories(prev => ({
+		setCurrentCategories(prev => ({
 			...prev,
 			category2: [catName],
 			selectedId: [catId]
@@ -47,7 +47,7 @@ const CategoriesListFilter: React.FC<ICategoriesListFilter> = ({ style, setCurre
 	const handleClickCategoryLvl3 = (subCategory: SubCategory[], catName: string, catId: number) => {
 		setCurrentSubSubSubSection(subCategory)
 
-		setCurrentCategories && setCurrentCategories(prev => ({
+		setCurrentCategories(prev => ({
 			...prev,
 			selectedId: [catId],
 			category3: [catName]
@@ -58,7 +58,7 @@ const CategoriesListFilter: React.FC<ICategoriesListFilter> = ({ style, setCurre
 	const handleCheckBoxClick = (catId: number, catName: string, level: number) => {
 		if (!currentCategories?.selectedId) return
 		if (level === 2) {
-			setCurrentCategories && setCurrentCategories(prev => ({
+			setCurrentCategories(prev => ({
 				...prev,
 				selectedId: [...currentCategories!.selectedId, catId],
 				category2: [...prev.category2, catName]
@@ -66,14 +66,14 @@ const CategoriesListFilter: React.FC<ICategoriesListFilter> = ({ style, setCurre
 		}
 		if (level === 3) {
 
-			setCurrentCategories && setCurrentCategories(prev => ({
+			setCurrentCategories(prev => ({
 				...prev,
 				selectedId: [...currentCategories.selectedId, catId],
 				category3: [...prev.category3, catName]
 			}))
 		}
 		if (level === 4) {
-			setCurrentCategories && setCurrentCategories(prev => ({
+			setCurrentCategories(prev => ({
 				...prev,
 				selectedId: [...currentCategories.selectedId, catId],
 				category4: [...prev.category4, catName]
@@ -82,7 +82,7 @@ const CategoriesListFilter: React.FC<ICategoriesListFilter> = ({ style, setCurre
 
 	}
 	const isChecked = (catName: string, level: number) => {
-		if (!currentCategories?.selectedId) return
+		if (currentCategories.selectedId) return
 		if (level === 2 && currentCategories.category2.includes(catName)) {
 			return true
 		}
@@ -95,6 +95,7 @@ const CategoriesListFilter: React.FC<ICategoriesListFilter> = ({ style, setCurre
 	}
 
 	const getStyleForCategory = (catName: string, currentCat: string) => {
+		if (!currentCat) return
 		if (catName === currentCat) {
 			return { ...buttonStyleForCatList }
 		}
@@ -108,7 +109,7 @@ const CategoriesListFilter: React.FC<ICategoriesListFilter> = ({ style, setCurre
 							<CategoryItem
 								key={category.id}
 								isCaret={true}
-								style={getStyleForCategory(category.category, currentCategories!.category1)}
+								style={getStyleForCategory(category.category, currentCategories?.category1)}
 								categoryName={category.category}
 								className={styles['categories_categoryFilter']}
 								handleClick={() => handleClickCategoryLvl1(category.id, category.category, category.sub_category)}
@@ -122,7 +123,7 @@ const CategoriesListFilter: React.FC<ICategoriesListFilter> = ({ style, setCurre
 							{sub && sub.sub_category.length > 0 ?
 								<CategoryItem
 									key={sub.id}
-									style={getStyleForCategory(sub.category, currentCategories!.category2[0])}
+									style={getStyleForCategory(sub.category, currentCategories.category2[0])}
 									isCaret={true}
 									categoryName={sub.category}
 									className={styles['categories_categoryFilter']}
@@ -143,7 +144,7 @@ const CategoriesListFilter: React.FC<ICategoriesListFilter> = ({ style, setCurre
 								subsub && subsub.sub_category.length > 0 ?
 									<CategoryItem
 										key={subsub.id}
-										style={getStyleForCategory(subsub.category, currentCategories!.category3[0])}
+										style={getStyleForCategory(subsub.category, currentCategories.category3[0])}
 										categoryName={subsub.category}
 										className={styles['categories_categoryFilter']}
 										handleClick={() => handleClickCategoryLvl3(subsub.sub_category, subsub.category, subsub.id)}

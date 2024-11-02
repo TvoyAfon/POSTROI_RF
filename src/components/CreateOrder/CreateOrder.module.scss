@@ -31,3 +31,14 @@
         right: 16px;
     }
 }
+
+@media screen and (max-width:1200px) {
+    .create_order {
+        transform: scale(0.7);
+
+        &_content {
+            position: absolute !important;
+
+        }
+    }
+}

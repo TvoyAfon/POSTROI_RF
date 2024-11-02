@@ -34,14 +34,14 @@
 }
 
 @media screen and (max-width:1200px) {
-	.settings__container{
-		transform: scale(0.65);
+	.settings__container {
+		transform: scale(0.7);
 		position: absolute;
-		top:-105px;
+		top: -115px;
 	}
 
-	.settings{
+	.settings {
 		padding-top: 0px !important;
-	
+
 	}
 }

@@ -9,5 +9,5 @@ export const orderDescStyles: CSSProperties = {
 	WebkitBoxOrient: 'vertical',
 	overflow: 'hidden',
 	WebkitLineClamp: 4, // Вы можете изменить количество строк, которое будет отображаться
-	height: 70
+	height: 40
 }

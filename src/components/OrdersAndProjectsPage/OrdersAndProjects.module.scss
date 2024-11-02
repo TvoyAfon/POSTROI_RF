@@ -21,7 +21,7 @@
 	gap: 32px;
 	position: absolute;
 	z-index: 2;
-	border: 1px solid rgba(0,0,0,0.15);
+	border: 1px solid rgba(0, 0, 0, 0.15);
 
 	&_header {
 		display: flex;
@@ -90,6 +90,7 @@
 @media screen and (max-width:1200px) {
 	.container_overlay {
 		padding-top: 32px !important;
+
 	}
 
 	.container {

@@ -3,7 +3,7 @@
 	justify-content: center;
 	position: relative;
 	padding-top: 120px;
-	
+
 	&__info {
 		background: #fff;
 		border-radius: 32px;
@@ -26,5 +26,16 @@
 		display: flex;
 		gap: 32px;
 		width: 1200px;
+	}
+}
+
+@media screen and (max-width:1200px) {
+	.profile_navigation {
+		visibility: hidden !important;
+	}
+
+	.profile {
+		transform: scale(0.9);
+		padding-top: 0px;
 	}
 }

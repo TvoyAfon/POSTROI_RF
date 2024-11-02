@@ -1,9 +1,10 @@
 import React, { FC, useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useModal } from '../../../../../hooks/useModal'
 import { useOutsideClick } from '../../../../../hooks/useOutside'
 import { IPassportModal } from '../../../../../interface/user.props'
 import { userService } from '../../../../../services/user/user.service'
+import { changeUser } from '../../../../../store/slices/AuthSlice/AuthSlice'
 import { RootState } from '../../../../../store/store'
 import ErrorSignature from '../../../../Auth/ui/ErrorSignature'
 import Button from '../../../../ui/Button/Button'
@@ -19,6 +20,7 @@ const PassportConfirmModal: FC<IPassportModal> = ({ children }) => {
 	const { user } = useSelector((state: RootState) => state.auth)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(false)
+	const dispatch = useDispatch()
 
 
 	const ref = useRef<HTMLDivElement>(null)
@@ -110,6 +112,11 @@ const PassportConfirmModal: FC<IPassportModal> = ({ children }) => {
 				entity_give: formValues.issuedBy,
 				code: formValues.code
 			}, formData)
+
+			dispatch(changeUser({
+				...user,
+				passport: 'MODERATE'
+			}))
 			handleClose()
 		} catch (error) {
 			console.log(error)
@@ -123,12 +130,13 @@ const PassportConfirmModal: FC<IPassportModal> = ({ children }) => {
 		<>
 			<children.type {...children.props} s onEdit={handleOpen} />
 			<BaseModal ref={ref} isOpen={isOpen} style={{
-				height: 750,
-				marginTop: 100
+				height: 650,
+				marginTop: 100,
 			}}>
 				<form onSubmit={handleSubmit} style={{
 					display: 'flex',
 					flexDirection: 'column', gap: '32px',
+					position: 'relative'
 				}}>
 					<ModalHeader text='Паспорт' onClose={handleClose} />
 					<div style={{
@@ -203,9 +211,15 @@ const PassportConfirmModal: FC<IPassportModal> = ({ children }) => {
 						<PassportPhoto setPhoto={setPhoto} />
 						<Button
 							style={{ width: "97%" }}>{loading ? <Loader textStyle={{ color: 'white' }} /> : 'Подтвердить'}</Button>
-						{error && <ErrorSignature style={{ textAlign: 'center' }}>Заполните все поля</ErrorSignature>}
+
 					</div>
+					{error &&
+						<ErrorSignature
+							style={{ textAlign: 'center', position: 'absolute', bottom: -22, left: '27%' }}>
+							Заполните все поля корректно
+						</ErrorSignature>}
 				</form>
+
 			</BaseModal>
 		</>
 	)

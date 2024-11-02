@@ -1,4 +1,7 @@
+import searchorder_img from '../assets/images/other/patterns 1.png'
+import { DocumentType } from '../components/CreateOrder/edit/ui/Files/DocumentCard'
 import { IS_PRODUCTION } from '../config/config'
+import { IOrderFile } from '../services/order/types/types'
 
 export function getProtocol() {
   return IS_PRODUCTION ? 'https' : 'http'
@@ -151,4 +154,50 @@ export const convertNumberDateToString = (dateString: string) => {
   const [year, month, day] = dateString.split("-").map(Number)
   const monthName = months[month - 1]
   return `${day} ${monthName} ${year}`
+}
+
+export const checkPhotoFormat = (files: IOrderFile[]) => {
+  if (!files || files.length === 0) {
+    return searchorder_img // Return default image if no files are present
+  }
+
+  const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.svg']
+
+  const foundFile = files.find(file => {
+    return validExtensions.some(ext => file.filename.toLowerCase().endsWith(`${ext}`))
+  })
+
+  return foundFile ? foundFile.file : searchorder_img
+
+}
+
+export const checkFileFormat = (file: IOrderFile): boolean => {
+  const validExtensions = ['.pdf', '.docx', '.doc', '.txt', '.xlsx']
+
+  // Get the file extension by extracting the part after the last dot
+  const extension = file.filename.slice((file.filename.lastIndexOf(".")) || Infinity)
+
+  // Check if the extension is in the list of validExtensions
+  return validExtensions.some(validExtension => validExtension === extension)
+}
+
+
+export const fileType = (file: IOrderFile): DocumentType => {
+  // Split the filename by dots to get the extension
+  const extensions = file.filename.split('.')
+  const extension = extensions[extensions.length - 1].toLowerCase() // Get 
+  switch (extension) {
+    case 'pdf':
+      return 'pdf'
+    case 'doc':
+    case 'docx':
+      return 'word'
+    case 'xls':
+    case 'xlsx':
+      return 'xls'
+    case 'txt':
+      return 'txt'
+    default:
+      return 'generic' // Return 'generic' for unsupported file types
+  }
 }

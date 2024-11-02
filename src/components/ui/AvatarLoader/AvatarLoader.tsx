@@ -38,6 +38,7 @@ const AvatarLoader: React.FC<IAvatarLoader> = ({ onClose, stateValue, handleChan
 	useOutsideClick(ref, onClose)
 
 	useEffect(() => {
+		if (!avatar) return
 		if (avatar instanceof File) {
 			setImageUrl(URL.createObjectURL(avatar))
 		} else {

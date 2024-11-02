@@ -11,7 +11,6 @@ import { ICardOrderInfo } from '../../OrdersAndProjectsPage/section/props'
 import IconSignature from '../../Profile/ui/IconSignature'
 import SignsCardDeleteConfirm from '../../Signs/SignsCard/modal/SignsCardDeleteConfirm'
 import Button from '../../ui/Button/Button'
-import CardOrderClarify from '../modal/CardOrderClarify'
 import SearchOrderCardDetail from '../modal/SearchOrderCardDetail'
 import CardOrderData from './CardOrderData/CardOrderData'
 import styles from './CardOrderInfo.module.scss'
@@ -24,7 +23,6 @@ const CardOrderInfo: React.FC<ICardOrderInfo> = ({
 	...order
 }) => {
 	const { handleOpen, isOpen, handleClose } = useModal()
-	const [openClarify, setOpenClarify] = useState(false)
 	const nav = useNavigate()
 	const dispatch = useDispatch()
 	const [isOpenConfirm, setIsOpenConfirm] = useState(false)
@@ -88,8 +86,6 @@ const CardOrderInfo: React.FC<ICardOrderInfo> = ({
 					onDelete={handleDelete}
 					onClose={() => setIsOpenConfirm(false)}
 					cardType='Заказ' />}
-			{openClarify &&
-				<CardOrderClarify onClose={() => setOpenClarify(false)} />}
 			{isOpen &&
 				<SearchOrderCardDetail
 					onDelete={handleDelete}
@@ -135,7 +131,7 @@ const CardOrderInfo: React.FC<ICardOrderInfo> = ({
 										</Button>
 										<Button onClick={(event) => {
 											event.stopPropagation()
-											setOpenClarify(true)
+
 										}} style={{ backgroundColor: '#8E8E93', fontSize: 14, fontWeight: 400 }}>Уточнить детали</Button>
 										<Button style={{ fontSize: 14, fontWeight: 400 }}>Показать телефон</Button>
 									</>

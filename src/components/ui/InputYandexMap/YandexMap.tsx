@@ -1,24 +1,25 @@
-import { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { type YMapLocationRequest } from 'ymaps3'
 import { reactify, YMap, YMapDefaultFeaturesLayer, YMapDefaultSchemeLayer, YMapListener, YMapMarker } from '../../../../lib/ymaps'
 import markerDefault from '../../../assets/images/other/GEOMARKER.svg'
 import markerCircle from '../../../assets/images/other/GEOMARKER_CIRCLE (1).svg'
-import { useOutsideClick } from '../../../hooks/useOutside'
 import { changeCityCoords } from '../../../store/slices/CurrentCitySlice'
 import { RootState } from '../../../store/store'
 import { zoomRange } from './settings/yandexMapSettings'
+import { IYandexMap } from './types/yandexMap.props'
 import styles from './YandexMap.module.scss'
 
 
-const YandexMap: React.FC<{ styleContainer?: CSSProperties, isYandexMapForOrders?: boolean }> = ({ styleContainer, isYandexMapForOrders = false }) => {
+
+const YandexMap: React.FC<IYandexMap> = ({ styleContainer, isYandexMapForOrders = false, handleClickMarker, selectedId }) => {
   const { cityCoords } = useSelector((state: RootState) => state.currentCity)
   const dispatch = useDispatch()
   const [zoom, setZoom] = useState(13)
   const [coordinates, setCoordinates] = useState({ lat: cityCoords.lat, lon: cityCoords.lon })
   const { ordersList } = useSelector((state: RootState) => state.orders)
-  const [selectedMarkerId, setSelectedMarkerId] = useState<number | null>(null)
+
   const ref = useRef<HTMLImageElement>(null)
   const yMapRef = useRef(null)
 
@@ -26,7 +27,7 @@ const YandexMap: React.FC<{ styleContainer?: CSSProperties, isYandexMapForOrders
     setCoordinates({ lat: cityCoords.lat, lon: cityCoords.lon })
   }, [cityCoords])
 
-  useOutsideClick(ref, () => setSelectedMarkerId(null))
+
 
   // Handle the end of drag event for marker
   const handleDragEnd = useCallback((coords: any) => {
@@ -40,9 +41,7 @@ const YandexMap: React.FC<{ styleContainer?: CSSProperties, isYandexMapForOrders
     zoom: zoom,
   }), [coordinates, zoom])
 
-  const handleMarkerClick = useCallback((id: number) => {
-    setSelectedMarkerId(id)
-  }, [])
+
 
   const handleClickMap = useCallback((event: any) => {
     console.log(event)
@@ -85,13 +84,18 @@ const YandexMap: React.FC<{ styleContainer?: CSSProperties, isYandexMapForOrders
           <YMapMarker
             key={order.id}
             draggable={false}
+            onClick={handleClickMarker ? () => handleClickMarker(order, order.id) : undefined}
             coordinates={reactify.useDefault([order.longitude, order.latitude])}
-            onClick={() => handleMarkerClick(order.id)}  // Using memoized handler
+          // Using memoized handler
           >
             <img
               ref={ref}
-              style={{ cursor: 'pointer', width: selectedMarkerId === order.id ? 50 : undefined, height: selectedMarkerId === order.id ? 50 : undefined }}
-              src={selectedMarkerId === order.id ? markerDefault : markerCircle}
+              style={{
+                cursor: 'pointer',
+                width: selectedId === order.id ? 50 : undefined,
+                height: selectedId === order.id ? 50 : undefined
+              }}
+              src={selectedId === order.id ? markerDefault : markerCircle}
               alt="marker"
             />
           </YMapMarker>

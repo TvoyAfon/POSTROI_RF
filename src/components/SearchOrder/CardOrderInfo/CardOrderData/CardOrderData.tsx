@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import timeClocksIcon from '../../../../assets/images/createOrder_img/time-clocks.svg'
-import searchorder_img from '../../../../assets/images/other/patterns 1.png'
+import { checkPhotoFormat } from '../../../../common/common'
 import { getDate } from '../../../../utils/date'
 import { ICardOrderInfo } from '../../../OrdersAndProjectsPage/section/props'
 import IconSignature from '../../../Profile/ui/IconSignature'
@@ -29,13 +29,14 @@ const CardOrderData: React.FC<ICardOrderInfo> = ({
 			<img
 				style={
 					{ width: 317, height: 317, borderRadius: 16, objectFit: 'cover' }}
-				src={order.files && order.files.length > 0 ? order.files[0].file : searchorder_img}
+				src={checkPhotoFormat(order.files)}
 				alt="img"
 			/>
 			<section
 				style={!openMap ?
 					{ display: 'flex', flexDirection: 'column', gap: 8, paddingLeft: '24px' } :
 					{ display: 'flex', flexDirection: 'column', textAlign: 'center', gap: 8 }}>
+
 				<div style={{ wordBreak: 'break-word', paddingTop: '24px' }}>
 					<span className='textSizeL'> {order.name.toUpperCase()}</span>
 				</div>
@@ -79,6 +80,7 @@ const CardOrderData: React.FC<ICardOrderInfo> = ({
 						</IconSignature>
 					}
 				</div>
+				<span style={{ color: '#8E8E93', fontWeight: 600 }}>{order.category_path}</span>
 			</section>
 		</div>
 	)

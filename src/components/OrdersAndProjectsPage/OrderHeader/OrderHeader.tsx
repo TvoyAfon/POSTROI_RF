@@ -17,7 +17,7 @@ const OrderHeader: React.FC<{
 	})
 
 	const categories = [
-		{ name: 'Заказы', count: ordersList.length },
+		{ name: 'Заказы', count: ordersList ? ordersList.length : 0 },
 		{ name: 'Проекты', count: localStorage.getItem('count_projects') },
 	]
 

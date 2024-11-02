@@ -39,7 +39,7 @@ const CreateOrder: React.FC = () => {
   const { isDirtyFieldForOrder } = useSelector((state: RootState) => state.checkDirtyField)
   const { isLogoClick } = useSelector((state: RootState) => state.opemModalConfirm)
   const { isOpenConfirmModal } = useSelector((state: RootState) => state.opemModalConfirm)
-  const { selectedHierarchy } = useSelector((state: RootState) => state.createOrderHierarchySlice)
+  const orderData = useSelector((state: RootState) => state.createOrderData)
   const { user } = useSelector((state: RootState) => state.auth)
 
   const [error, setError] = useState(false)
@@ -151,13 +151,13 @@ const CreateOrder: React.FC = () => {
         onClose={() => setError(false)}
         text='Подтвердите ваш номер телефона' />}
       {orderDone ? <CreateOrderDone signsOrOrder={'order'} /> :
-        <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 145, paddingBottom: 32 }}>
-          <div style={{ display: 'flex', gap: 16, position: 'relative' }}>
+        <div className={styles['create_order']} style={{ display: 'flex', justifyContent: 'center', paddingTop: 145, paddingBottom: 32 }}>
+          <div className={styles['create_order_content']} style={{ display: 'flex', gap: 16, position: 'relative' }}>
             <BreadCrumbs
-              category1={selectedHierarchy.category1}
-              category2={selectedHierarchy.category2}
-              category3={selectedHierarchy.category3}
-              category4={selectedHierarchy.category4}
+              category1={orderData.data.category1}
+              category2={orderData.data.category2}
+              category3={orderData.data.category3}
+              category4={orderData.data.category4}
             />
             <CreateOrderBox />
             <div

@@ -9,7 +9,7 @@ import { addSignsData } from '../../../../store/slices/Signs/dataSigns/DataSigns
 import { RootState } from '../../../../store/store'
 import BreadCrumbs from '../../../ui/BreadCrumbs/BreadCrumbs'
 import Button from '../../../ui/Button/Button'
-import CategoriesListFilter from '../../../ui/CategoriesList/CategoriesListFilter'
+import CategoriesList from '../../../ui/CategoriesList/CategoriesList'
 import { categoriesStyles } from '../../../ui/CategoriesList/styles/stylesCategoriesList'
 import CloseButton from '../../../ui/CloseButton/CloseButton'
 import ModalContainer from '../../../ui/Modal/ModalContainer'
@@ -23,6 +23,7 @@ const CategoriesOrderModal: React.FC<{ isOrder: boolean }> = ({ isOrder }) => {
 	const { data } = useSelector((state: RootState) => state.createOrderData)
 	const { dataSigns } = useSelector((state: RootState) => state.signsData)
 	const { selectedHierarchy } = useSelector((state: RootState) => state.createOrderHierarchySlice)
+
 
 	const handleSetSelectedHierarchy = (updatedHierarchy: IHierarchy) => {
 		dispatch(setSelectedHierarchy(updatedHierarchy))
@@ -64,7 +65,7 @@ const CategoriesOrderModal: React.FC<{ isOrder: boolean }> = ({ isOrder }) => {
 				<ModalContainer
 					zIndex={11}
 					isOnOverlay={true}
-					style={{ position: 'fixed', width: 1190, height: 560 }}>
+					style={{ position: 'fixed', width: 1190, height: 560, top: '50%', left: '50%' }}>
 					<div className='flex-column gap-medium'>
 						<BreadCrumbs
 							style={{ position: 'absolute', top: 75, left: 32 }}
@@ -77,7 +78,9 @@ const CategoriesOrderModal: React.FC<{ isOrder: boolean }> = ({ isOrder }) => {
 							<span style={{ paddingBottom: 48 }} className='textSizeL'>Подкатегория заказа</span>
 							<CloseButton onClick={handleClose} />
 						</div>
-						<CategoriesListFilter />
+						<CategoriesList
+							handleSetCategories={handleSetSelectedHierarchy}
+						/>
 						<Button
 							onClick={handleApply}
 							style={{ width: '10%' }}>Выбрать</Button>

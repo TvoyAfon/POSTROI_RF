@@ -1,17 +1,18 @@
 import Button from '../../../ui/Button/Button'
+import styles from '../UserProfile.module.scss'
 import { navs } from './navs'
 
 const ProfileNavigation = () => {
- 
-	const handleScroll = () =>{
+
+	const handleScroll = () => {
 		window.scrollTo({
-			behavior:'smooth',
-			top:100
+			behavior: 'smooth',
+			top: 100
 		})
 	}
 
 	return (
-		<div style={{
+		<div className={styles['profile_navigation']} style={{
 			display: 'flex',
 			flexDirection: 'column',
 			gap: '8px',
@@ -20,7 +21,7 @@ const ProfileNavigation = () => {
 		}}>
 			{
 				navs.map(nav => (
-					<Button variant='white' onClick={handleScroll}  key={nav.url} style={{
+					<Button variant='white' onClick={handleScroll} key={nav.url} style={{
 						fontSize: '14px',
 					}}>
 						{nav.name}

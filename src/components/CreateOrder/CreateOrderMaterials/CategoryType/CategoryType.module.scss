@@ -1,8 +1,9 @@
 .vendor {
-  position: relative;
+	position: relative;
 
 }
-.categoryType{
+
+.categoryType {
 	width: 1200px;
 	height: 413px;
 	background-color: #fff;
@@ -11,10 +12,11 @@
 }
 
 @media screen and (max-width:1200px) {
-	.categoryType_overlay{
-		padding-top: 25px !important;
+	.categoryType_overlay {
+		padding-top: 60px !important;
 	}
-	.categoryType{
+
+	.categoryType {
 		transform: scale(0.65);
 	}
 }

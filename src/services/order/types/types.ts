@@ -136,7 +136,8 @@ export interface IOrderInfo {
 	publish_at: string | null
 	created_at: string
 	sub_category: ISubCategory
-	files: IOrderFile[]
+	files: IOrderFile[],
+	category_path: string
 }
 
 export interface IOrderFullInfo extends Omit<IOrderInfo, 'executor_id' | 'sub_category_id' | 'client_id'> {

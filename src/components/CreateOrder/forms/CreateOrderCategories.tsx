@@ -16,13 +16,13 @@ const CreateOrderCategories: React.FC = () => {
 
 	const { data } = useSelector((state: RootState) => state.createOrderData)
 	const { error } = useSelector((state: RootState) => state.createOrderValidation)
-	const { selectedHierarchy } = useSelector((state: RootState) => state.createOrderHierarchySlice)
+	const orderData = useSelector((state: RootState) => state.createOrderData)
 
 	const categories = [
-		selectedHierarchy.category1,
-		selectedHierarchy.category2,
-		selectedHierarchy.category3,
-		selectedHierarchy.category4,
+		orderData.data.category1,
+		orderData.data.category2,
+		orderData.data.category3,
+		orderData.data.category4,
 	]
 	const existingCategories = categories.filter(Boolean)
 

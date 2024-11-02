@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import cameraIcon from '../../../../assets/images/profile/camera.png'
 import userDefault from '../../../../assets/images/profile/user-default.svg'
+import { useGetFileByUrl } from '../../../../hooks/urlToFile/useGetFileByUrl'
 import { useModal } from '../../../../hooks/useModal'
 import { RootState } from '../../../../store/store'
 import Avatar from '../../../ui/Avatar/Avatar'
@@ -14,11 +15,15 @@ import styles from '../MyProfile.module.scss'
 import { navs } from '../navs'
 
 const LeftSide = () => {
+	const { user } = useSelector((state: RootState) => state.auth)
+	const { file } = useGetFileByUrl(user?.profile_photo as string, 'avatar')
 	const navigate = useNavigate()
 	const { handleClose, handleOpen, isOpen } = useModal()
-	const { user } = useSelector((state: RootState) => state.auth)
-	const [avatar, setAvatar] = useState<File>()
+
+	const [avatar, setAvatar] = useState<File | undefined>(file)
 	const [error, setError] = useState(false)
+
+
 
 	const handleChangePhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files) {

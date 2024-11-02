@@ -36,7 +36,7 @@ const AlbumDetail: React.FC<IAlbumDetail> = ({ album_id, onClose, stateValue, ch
 	return (
 		<>
 			{stateValue && <ModalContainer
-				style={{ width: 990, position: 'fixed' }}
+				style={{ width: 990, position: 'fixed', top: '50%', left: '50%' }}
 				zIndex={11}
 				isOnOverlay>
 				<div className={styles['album_detail']} ref={ref} >
@@ -57,7 +57,7 @@ const AlbumDetail: React.FC<IAlbumDetail> = ({ album_id, onClose, stateValue, ch
 						style={{ display: 'flex', gap: 8, flexWrap: 'wrap', height: 400, overflowY: 'scroll' }}>
 						{!loading ? album?.files.map(el => (
 							<PortfolioCurrentImage
-							checkMyAlbum={checkMyAlbum}
+								checkMyAlbum={checkMyAlbum}
 								albumId={album.album_id}
 								photoName={el.name}
 								photoLink={el.link} />
@@ -65,7 +65,7 @@ const AlbumDetail: React.FC<IAlbumDetail> = ({ album_id, onClose, stateValue, ch
 							<Loader
 								style={{ position: 'absolute', top: 15, left: 400, fontSize: 16 }} />
 						}
-						{checkMyAlbum&& album?.album_id && <PotrfolioPhotoLoader
+						{checkMyAlbum && album?.album_id && <PotrfolioPhotoLoader
 							albumId={album.album_id} />}
 					</section>
 				</div>

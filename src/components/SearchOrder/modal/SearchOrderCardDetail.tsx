@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import loc_svg from '../../../assets/images/createOrder_img/location.svg'
-import { convertNumberDateToString } from '../../../common/common'
+import { checkFileFormat, convertNumberDateToString, fileType } from '../../../common/common'
 import { useModal } from '../../../hooks/useModal'
 import { PaymentMethod } from '../../../services/order/types/enums'
 import { IOrderFullInfo } from '../../../services/order/types/types'
+import DocumentCard from '../../CreateOrder/edit/ui/Files/DocumentCard'
 import { flexRow } from '../../CreateOrder/forms/styles/stylesCreateOrder'
 import SignsCardComplaint from '../../Signs/SignsCard/modal/SignsCardComplaint'
 import SignsCardDeleteConfirm from '../../Signs/SignsCard/modal/SignsCardDeleteConfirm'
@@ -22,8 +23,8 @@ const SearchOrderCardDetail: React.FC<{
 
 	const { handleClose, handleOpen, isOpen } = useModal()
 	const [openDelete, setOpenDelete] = useState(false)
-
 	const nav = useNavigate()
+
 
 	return (
 		<>
@@ -40,7 +41,7 @@ const SearchOrderCardDetail: React.FC<{
 				zIndex={12}>
 				<div className='flex-column'>
 					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-						<span style={{ fontWeight: 700, color: '#8E8E93' }}>{''}</span>
+						<span style={{ fontWeight: 700, color: '#8E8E93' }}>{order.category_path}</span>
 						<CloseButton onClick={onClose} />
 					</div>
 					<span className='textSizeL'>{order.name}</span>
@@ -48,12 +49,20 @@ const SearchOrderCardDetail: React.FC<{
 						style={{ overflowY: 'scroll', display: 'flex', flexDirection: 'column', gap: 24, height: 500 }}>
 						<div
 							style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-							{order?.files && order.files.length > 0 ? order.files.map((photo) => (
-								<img
-									src={photo.file}
-									style={{ width: 140, height: 140, borderRadius: 14 }}
-									key={photo.filename}
-									alt={photo.filename} />
+							{order?.files && order.files.length > 0 ? order.files.map((file) => (
+
+								<>
+									{!checkFileFormat(file) ? <img
+										src={file.file}
+										style={{ width: 140, height: 140, borderRadius: 14 }}
+										key={file.filename}
+										alt={file.filename} /> :
+										<DocumentCard
+											isOnlyRead={true}
+											fileType={fileType(file)}
+											filename={file.filename} />
+									}
+								</>
 							)) : null}
 						</div>
 						<div style={flexRow}>

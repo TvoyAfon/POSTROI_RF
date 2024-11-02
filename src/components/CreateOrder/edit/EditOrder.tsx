@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import arrowLeft from '../../../assets/images/createOrder_img/arrow-left-02-grey.svg'
@@ -42,6 +42,7 @@ const EditOrder = () => {
 	const [isIncorrectFormat, setIsIncorrectFormat] = useState<boolean>(false)
 	const dispatch = useDispatch()
 
+	useEffect(() => { console.log('фАЙЛЫ', files) }, [files])
 	const order = useMemo(() => myOrdersList.find((order) => order.id === Number(orderId)), [myOrdersList, orderId])
 
 	if (!order) {

@@ -2,12 +2,20 @@ import React from 'react'
 import { IFilterOrder } from '../../../interface/modal.props'
 import Button from '../../ui/Button/Button'
 import CategoriesListFilter from '../../ui/CategoriesList/CategoriesListFilter'
+import { ISelectedCategories } from '../../ui/CategoriesList/types/types.props'
 import CloseButton from '../../ui/CloseButton/CloseButton'
 import ModalContainer from '../../ui/Modal/ModalContainer'
 
 const FilterOrder: React.FC<IFilterOrder> = ({ handleCloseFilter }) => {
 	const filters = ['Все', 'Частные', 'Организации']
 
+	const currentCat: ISelectedCategories = {
+		category1: '',
+		category2: [],
+		category3: [],
+		category4: [],
+		selectedId: []
+	}
 
 	/*	const handleApply = () => {
 			if (currentCat && currentSubCategory) {
@@ -32,7 +40,8 @@ const FilterOrder: React.FC<IFilterOrder> = ({ handleCloseFilter }) => {
 					))}
 				</div>
 				<CategoriesListFilter
-
+					currentCategories={currentCat}
+					setCurrentCategories={() => ''}
 				/>
 			</div>
 			<Button

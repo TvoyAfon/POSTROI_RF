@@ -1,5 +1,5 @@
 import React from 'react'
-import pattern from '../../../assets/images/other/patterns 1.png'
+import { checkPhotoFormat } from '../../../common/common'
 import { IOrderFullInfo } from '../../../services/order/types/types'
 import styles from '../OrdersAndProjects.module.scss'
 import { compactCardStyle } from './styles/compactCardStyles'
@@ -7,7 +7,7 @@ import { compactCardStyle } from './styles/compactCardStyles'
 const CompactOrderCard: React.FC<IOrderFullInfo> = ({ address, description, files, name }) => {
 	return (
 		<div className={styles['compactOrderCard']}>
-			<img src={files && files.length > 0 ? files[0].file : pattern} alt="img" />
+			<img src={checkPhotoFormat(files)} alt="avatar" />
 			<div className='flex-column gap-medium' style={{ padding: 8, alignItems: 'center' }}>
 				<span
 					className='textSizeL'

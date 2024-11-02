@@ -24,7 +24,7 @@ const MyOrderSection: React.FC<IOrderSectionProps> = () => {
 						}}
 					/>
 					:
-					myOrdersList.length
+					myOrdersList && myOrdersList.length
 						?
 						<>
 							{

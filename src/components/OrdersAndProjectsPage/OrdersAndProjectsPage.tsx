@@ -7,12 +7,14 @@ import { ROUTES_NAVBAR } from '../../routes/routes'
 
 import { useQuery } from 'react-query'
 import { useDispatch, useSelector } from 'react-redux'
+import { IOrderFullInfo } from '../../services/order/types/types'
 import { projectService } from '../../services/project/project.service'
 import { setCitiesByDefault } from '../../store/slices/CurrentCitySlice'
 import { RootState } from '../../store/store'
 import UserLocation from '../Navbar/UserLocation/UserLocation'
 import FilterOrder from '../SearchOrder/FilterOrder/FilterOrder'
-import { useSearchOrders } from '../SearchOrder/hooks/useSearchOrders'
+import { CurrentPage, useSearchOrders } from '../SearchOrder/hooks/useSearchOrders'
+import CardOrderRespond from '../SearchOrder/modal/CardOrderRespond'
 import CityAndRadius from '../SearchOrder/SearchOrderHeader/CityAndRadius/CityAndRadius'
 import SearchOrderModal from '../SearchOrder/SearchOrderHeader/SearchOrderModal/SearchOrderModal'
 import SearchMyOrderFilter from '../SearchOrder/SearchOrderHeader/ui/SearchMyOrderFilter'
@@ -43,6 +45,11 @@ const OrdersAndProjectsPage = () => {
 	const nav = useNavigate()
 	const [openMap, setOpenMap] = useState(false)
 	const [openYandexMap, setOpenYandexMap] = useState(false)
+	const [openRespond, setOpenRespond] = useState(false)
+
+	const [order, setOrder] = useState<IOrderFullInfo>()
+	const [selectedId, setSelectedId] = useState<number>()
+
 	const [currentCategory, setCurrentCategory] = useState('Заказы')
 	const [currentSubCategory, setCurrentSubCategory] = useState('Найти заказ')
 	const [isOpenModal, setIsOpenModal] = useState(false)
@@ -71,7 +78,7 @@ const OrdersAndProjectsPage = () => {
 	}, [])
 
 	const subSectionComponent = useMemo(() => {
-		if (currentCategory === Sections.ORDERS && currentSubCategory === 'Найти заказ') {
+		if (currentCategory === Sections.ORDERS && currentSubCategory === CurrentPage.ORDERS) {
 			return <OrderSection sectionRef={sectionRef} searchQuery={search} />
 		}
 		if (currentCategory === Sections.ORDERS && currentSubCategory === Sections.MYORDERS) {
@@ -109,6 +116,12 @@ const OrdersAndProjectsPage = () => {
 		setOpenYandexMap(false)
 
 	}
+	const handleOpenRespond = (order: IOrderFullInfo, orderId: number) => {
+		if (!order && orderId) return
+		setOrder(order)
+		setSelectedId(orderId)
+		setOpenRespond(true)
+	}
 
 	const handleSearchOrder = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearch(e.target.value)
@@ -118,6 +131,11 @@ const OrdersAndProjectsPage = () => {
 
 	return (
 		<>
+			{
+				openRespond && order && <CardOrderRespond
+					order={order}
+					onClose={() => setOpenRespond(false)} />
+			}
 			{
 				openMap && <UserLocation
 					isOpenMap={openMap}
@@ -194,7 +212,7 @@ const OrdersAndProjectsPage = () => {
 								</div>
 							}
 						</div>
-						<section ref={sectionRef} style={{ overflowY: 'scroll', height: 580 }}>
+						<section ref={sectionRef} style={{ overflowY: 'scroll', height: 580, width: 1105 }}>
 							{subSectionComponent}
 						</section>
 					</div>
@@ -222,6 +240,8 @@ const OrdersAndProjectsPage = () => {
 					</div>
 					{openYandexMap &&
 						<YandexMap
+							selectedId={selectedId!}
+							handleClickMarker={handleOpenRespond}
 							isYandexMapForOrders={true}
 							styleContainer={{ height: 2000, width: '100%' }} />}
 				</div>

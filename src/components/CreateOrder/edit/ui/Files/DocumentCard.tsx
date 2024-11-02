@@ -13,14 +13,16 @@ export interface IDocumentCardProps {
 	filename: string
 	fileType: DocumentType
 	style?: CSSProperties
-	onDelete?: () => void
+	onDelete?: () => void,
+	isOnlyRead?: boolean
 }
 
 const DocumentCard: FC<IDocumentCardProps> = ({
 	filename,
 	fileType,
 	style = {},
-	onDelete
+	onDelete,
+	isOnlyRead = false
 }) => {
 	const [isHovered, setIsHovered] = useState<boolean>(false)
 	const [height, setHeight] = useState<string>('auto')
@@ -67,7 +69,7 @@ const DocumentCard: FC<IDocumentCardProps> = ({
 					width: '40px',
 					height: '40px'
 				}}
-				alt=""
+				alt="icontype"
 			/>
 			<span style={{
 				color: '#231F20',
@@ -80,7 +82,7 @@ const DocumentCard: FC<IDocumentCardProps> = ({
 			</span>
 			{
 				isHovered
-				&&
+				&& !isOnlyRead &&
 				<IconButton
 					onClick={onDelete}
 					style={{

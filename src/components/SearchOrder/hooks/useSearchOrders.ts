@@ -1,61 +1,72 @@
-import { useEffect } from 'react'
+import { useQuery } from 'react-query'
 import { useDispatch, useSelector } from 'react-redux'
 import useDebounce from '../../../hooks/useDebounce'
-import { addMyOrders, addOrders, setIsMyOrdersLoading, setIsOrdersLoading } from '../../../store/slices/orders/ordersSlice'
+import { addMyOrders, addOrders } from '../../../store/slices/orders/ordersSlice'
 import { RootState } from '../../../store/store'
 import { getFormattedOrders, getMyFormattedOrders } from '../../../utils/order-formatting'
 
-export const useSearchOrders = (searchTerm: string, currentPage: string, cityName: string | undefined) => {
+export enum CurrentPage {
+	ORDERS = 'Найти заказ',
+	MY_ORDERS = 'Мои заказы'
+}
 
+const fetchOrders = async (searchTerm: string, cityName: string, ordersPage: number) => {
+	const filteredOrders = await getFormattedOrders({
+		limit: 100,
+		page: ordersPage,
+		city: cityName,
+		search_filter: searchTerm,
+	})
+	return filteredOrders
+}
+
+const fetchMyOrders = async (searchTerm: string, userId: number, myOrdersPage: number) => {
+	const filteredMyOrders = await getMyFormattedOrders({
+		client_id: userId,
+		limit: 100,
+		page: myOrdersPage,
+		search_filter: searchTerm,
+	})
+	return filteredMyOrders
+}
+
+export const useSearchOrders = (searchTerm: string, currentPage: string, cityName: string | undefined) => {
 	const dispatch = useDispatch()
 	const { ordersPage, myOrdersPage } = useSelector((state: RootState) => state.orders)
 	const { user } = useSelector((state: RootState) => state.auth)
-
 	const debouncedOrdersValue = useDebounce(searchTerm, 400)
 
-	useEffect(() => {
-		const searchByName = async () => {
-			try {
-				if (!cityName) return
-				if (currentPage === 'Найти заказ') {
-					dispatch(setIsOrdersLoading(true))
-					const filteredOrders = await getFormattedOrders({
-						limit: 100,
-						page: ordersPage,
-						city: cityName,
-						search_filter: debouncedOrdersValue!
-					})
+	useQuery(
+		['orders', debouncedOrdersValue, cityName, ordersPage],
+		() => fetchOrders(debouncedOrdersValue!, cityName!, ordersPage),
+		{
+			enabled: !!cityName && currentPage === CurrentPage.ORDERS,
+			onSuccess: (data: any) => {
+				dispatch(addOrders({ orders: data, addFlag: 'rewrite' }))
+			},
 
-					if (filteredOrders)
-						dispatch(addOrders({ orders: filteredOrders, addFlag: 'rewrite' }))
-				}
-				else if (currentPage === 'Мои заказы') {
-					if (user?.id) {
-						console.log('вызвался')
-						dispatch(setIsMyOrdersLoading(true))
-						const filteredMyOrders = await getMyFormattedOrders({
-							client_id: user?.id,
-							limit: 100,                     /* поиск заказов по городам */
-							page: myOrdersPage,
-							search_filter: debouncedOrdersValue!
-						})
-						if (filteredMyOrders) {
-							dispatch(addMyOrders({ orders: filteredMyOrders, addFlag: 'rewrite' }))
-						}
-					}
-				}
-				else if (currentPage === 'Мои проекты') {
-					return
-				}
-			} catch (error) {
-				console.log(error)
-			}
-			finally {
-				dispatch(setIsOrdersLoading(false))
-				dispatch(setIsMyOrdersLoading(false))
-			}
+			onError: (error: any) => {
+				console.error(error)
+			},
+			refetchOnReconnect: false,
+			refetchOnWindowFocus: false
 		}
-		searchByName()
-	}, [debouncedOrdersValue, cityName, currentPage])
+	)
 
+	useQuery(
+		['myOrders', debouncedOrdersValue, user?.id, myOrdersPage],
+		() => fetchMyOrders(debouncedOrdersValue!, user?.id!, myOrdersPage),
+		{
+			enabled: !!user?.id && currentPage === CurrentPage.MY_ORDERS,
+			onSuccess: (data: any) => {
+				dispatch(addMyOrders({ orders: data, addFlag: 'rewrite' }))
+			},
+			onError: (error: any) => {
+				console.error(error)
+
+			},
+			refetchOnReconnect: false,
+			refetchOnWindowFocus: false
+		}
+	)
 }

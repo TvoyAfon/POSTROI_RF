@@ -35,6 +35,7 @@ const BaseDataSection: FC<IBaseDataSectionProps> = ({
 		}
 	}, [order, setOrderData])
 
+	console.log(order)
 	useEffect(() => {
 		(async () => {
 			if (!order) return
