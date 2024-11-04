@@ -2,25 +2,24 @@ import React, { useEffect, useRef } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { useCreateOrderDone } from '../../hooks/stepsValidation/useCreateOrderDone'
+import { useCreateOrderDone } from '../../hooks/stepsValidationOrder/useCreateOrderDone'
 import { useStepValidationSigns } from '../../hooks/stepsValidationSigns/useStepValidationSigns'
 import useKeyPress from '../../hooks/useKeyPress'
 import useLeaveModal from '../../hooks/useLeaveModal/useLeaveModal'
 import { changeCategoryName } from '../../store/slices/CreateOrderCategoriesSlice'
-import { addGlobalOrderDataTaskname } from '../../store/slices/data/OrderDataTaskname'
 import { isLogoClickFlag, openConfirmModalSigns } from '../../store/slices/ModalConfirmSlice/modalConfirmSlice'
 import { setColorNav } from '../../store/slices/SetNavColorSlice'
 import { addSignsCard } from '../../store/slices/Signs/dataSigns/DataSignsSlice'
 import { changeSignsStep } from '../../store/slices/Signs/stepSigns/signsSlice'
 import { addCategoryError, addClickFlag, addInputTaskNameError } from '../../store/slices/validation/CreateOrderValidationSlice'
 import { RootState } from '../../store/store'
-import CreateOrderDone from '../CreateOrder/CreateOrderDone/CreateOrderDone'
-import CreateOrderOverlay from '../CreateOrder/CreateOrderOverlay/CreateOrderOverlay'
 import BreadCrumbs from '../ui/BreadCrumbs/BreadCrumbs'
 import LeaveConfirmModal from '../ui/LeaveConfirmModal/LeaveConfirmModal'
 import OrderHeader from '../ui/OrderHeader/OrderHeader'
 import styles from './Signs.module.scss'
 import SignsBox from './SignsBox/SignsBox'
+import SignsDone from './SignsDone/SignsDone'
+import SignsOverlay from './SignsOverlay/SignsOverlay'
 
 const CreateSigns: React.FC = () => {
   const stepSigns = useSelector((state: RootState) => state.signsReducer)
@@ -78,9 +77,6 @@ const CreateSigns: React.FC = () => {
     dispatch(openConfirmModalSigns(false))
   }
 
-  useEffect(() => {
-    dispatch(addGlobalOrderDataTaskname(''))
-  }, [])
 
   useEffect(() => {
     dispatch(openConfirmModalSigns(false))
@@ -89,7 +85,7 @@ const CreateSigns: React.FC = () => {
   return (
     <>
       {createOrderDone ?
-        <CreateOrderDone signsOrOrder='signs' /> :
+        <SignsDone /> :
         <div
           className={styles['createSigns_container']}
         >
@@ -104,7 +100,7 @@ const CreateSigns: React.FC = () => {
             <SignsBox />
             <div className={styles['createsigns_formsstep']}>
               {stepSigns.stepComponentNumber === 5 && <OrderHeader />}
-              <CreateOrderOverlay
+              <SignsOverlay
                 isLoading={false}
                 currentCategoryStep={stepSigns.stepComponentNumber === 5}
                 ref={buttonRef}
@@ -112,7 +108,7 @@ const CreateSigns: React.FC = () => {
                 handleContinue={handleContinue}
                 typeOrder='signs'>
                 <stepSigns.stepComponent />
-              </CreateOrderOverlay>
+              </SignsOverlay>
             </div>
           </div>
           {isOpenConfirmModalSigns &&

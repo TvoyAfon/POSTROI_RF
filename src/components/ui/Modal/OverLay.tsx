@@ -1,6 +1,6 @@
 import React, { CSSProperties, PropsWithChildren } from 'react'
 import { useDispatch } from 'react-redux'
-import { addOpenModalClickFlag } from '../../../store/closeModalClick/closeModalClickSlice'
+import { addOpenModalClickFlag } from '../../../store/slices/closeModalClick/closeModalClickSlice'
 import { setColorNav } from '../../../store/slices/SetNavColorSlice'
 import styles from './Modal.module.scss'
 
@@ -9,7 +9,7 @@ interface IOverlay extends PropsWithChildren {
   isActive?: boolean
 }
 
-const OverLay: React.FC<IOverlay> = ({ children,style = {},isActive = true }) => {
+const OverLay: React.FC<IOverlay> = ({ children, style = {}, isActive = true }) => {
   const dispatch = useDispatch()
 
   const handleModalClose = () => {

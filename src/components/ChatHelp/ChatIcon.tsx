@@ -27,7 +27,9 @@ const ChatHelp: React.FC = () => {
             onClick={handleOpenChat}
             onMouseEnter={() => setShowText(true)}
             onMouseLeave={() => setShowText(false)}
-            style={{ cursor: 'pointer', borderRadius: '32px', boxShadow: 'rgba(0, 0, 0, 0.34) 6px 6px 10px' }} src={chat_icon} alt="question" />
+            style={{ cursor: 'pointer', borderRadius: '32px', boxShadow: 'rgba(0, 0, 0, 0.34) 6px 6px 10px' }}
+            src={chat_icon}
+            alt="question" />
         </div>}
       {showChat && <Chat handleCloseChat={handleCloseChat} />}
 

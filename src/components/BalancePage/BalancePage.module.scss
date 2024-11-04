@@ -61,6 +61,30 @@
     }
 }
 
+.balance_popup_content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 354px;
+    padding: 32px;
+    border-radius: 32px;
+    background-color: white;
+    position: absolute;
+    z-index: 11;
+}
+
+.balance_popup_content_pay {
+    position: relative;
+    margin-top: 32px;
+    background-color: #F4F3F1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
 @media screen and (max-width:1200px) {
     .balancePage {
         transform: scale(0.8);

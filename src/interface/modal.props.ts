@@ -32,9 +32,7 @@ export interface IModalCity {
     style?: CSSProperties
 }
 
-export interface ICreateOrderModal {
-    setOpenModal: Function
-}
+
 
 export interface PropsWithJsxElement {
     children: JSX.Element,
@@ -74,9 +72,6 @@ export interface ICategoryType extends IModalRegisterInfo {
     handleCloseVendorInfo?: () => void
 }
 
-export interface ICategoryVendorInfo {
-    handleCloseVendorInfo?: () => void
-}
 
 export interface IDefaultModal {
     onOpen?: () => void,

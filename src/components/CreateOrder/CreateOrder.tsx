@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import arrowRightIcon from '../../assets/images/chat_images/arrow-right.svg'
 import arrow_back from '../../assets/images/createOrder_img/arrow-left-02-grey.svg'
-import { useCreateOrderDone } from '../../hooks/stepsValidation/useCreateOrderDone'
-import { useStepValidationBuilding } from '../../hooks/stepsValidation/useStepValidationBuilding'
+import { useCreateOrderDone } from '../../hooks/stepsValidationOrder/useCreateOrderDone'
+import { useStepValidationOrder } from '../../hooks/stepsValidationOrder/useStepValidationOrder'
 import useKeyPress from '../../hooks/useKeyPress'
 import useLeaveModal from '../../hooks/useLeaveModal/useLeaveModal'
 import { orderService } from '../../services/order/order'
@@ -17,6 +17,7 @@ import { setColorNav } from '../../store/slices/SetNavColorSlice'
 import { addCategoryError, addClickFlag } from '../../store/slices/validation/CreateOrderValidationSlice'
 import { RootState } from '../../store/store'
 import { getFormattedOrder } from '../../utils/order-formatting'
+import SignsDone from '../Signs/SignsDone/SignsDone'
 import BreadCrumbs from '../ui/BreadCrumbs/BreadCrumbs'
 import Button from '../ui/Button/Button'
 import CreateOrderFooter from '../ui/CreateOrderFooter/CreateOrderFooter'
@@ -24,7 +25,6 @@ import LeaveConfirmModal from '../ui/LeaveConfirmModal/LeaveConfirmModal'
 import UncorrectFormat from '../ui/Modal/UncorrectFormat'
 import styles from './CreateOrder.module.scss'
 import CreateOrderBox from './CreateOrderBox'
-import CreateOrderDone from './CreateOrderDone/CreateOrderDone'
 import { flexRow, stylesButtonOrder } from './forms/styles/stylesCreateOrder'
 import { useCreateOrder } from './hooks/useCreateOrder'
 
@@ -34,7 +34,7 @@ const CreateOrder: React.FC = () => {
   const dispatch = useDispatch()
   const dataOrder = useSelector((state: RootState) => state.createOrderData)
   const continueButtonRef = useRef<HTMLButtonElement>(null)
-  const orderValidationSteps = useStepValidationBuilding()
+  const orderValidationSteps = useStepValidationOrder()
   const orderDone = useCreateOrderDone()
   const { isDirtyFieldForOrder } = useSelector((state: RootState) => state.checkDirtyField)
   const { isLogoClick } = useSelector((state: RootState) => state.opemModalConfirm)
@@ -150,7 +150,7 @@ const CreateOrder: React.FC = () => {
       {error && <UncorrectFormat
         onClose={() => setError(false)}
         text='Подтвердите ваш номер телефона' />}
-      {orderDone ? <CreateOrderDone signsOrOrder={'order'} /> :
+      {orderDone ? <SignsDone isSigns={false} /> :
         <div className={styles['create_order']} style={{ display: 'flex', justifyContent: 'center', paddingTop: 145, paddingBottom: 32 }}>
           <div className={styles['create_order_content']} style={{ display: 'flex', gap: 16, position: 'relative' }}>
             <BreadCrumbs

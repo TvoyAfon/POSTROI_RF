@@ -12,7 +12,7 @@ import styles from './Navbar.module.scss'
 const NavbarMenuPopup: React.FC<INavigationProps> = ({ handleClosePopUp }) => {
   const { navContainer } = useSelector((state: RootState) => state.resetColorNav)
   const { user } = useSelector((state: RootState) => state.auth)
-  const {city} = useSelector((state:RootState) => state.currentCity)
+  const { city } = useSelector((state: RootState) => state.currentCity)
   const dispatch = useDispatch()
   const ref = useRef<HTMLDivElement>(null)
 
@@ -37,14 +37,24 @@ const NavbarMenuPopup: React.FC<INavigationProps> = ({ handleClosePopUp }) => {
                 <img src={caret_png} alt="caret" />
               </li>
               <hr
-                style={{ border: navContainer === 'map' ? '1px solid rgb(255, 139, 99)' : '1px solid #749EF2', position: 'absolute', width: 250, top: 11 }} />
+                style={{
+                  border: navContainer === 'map' ? '1px solid rgb(255, 139, 99)' : '1px solid #749EF2',
+                  position: 'absolute',
+                  width: 250,
+                  top: 11
+                }} />
             </div>
             <div style={{ position: 'relative' }}>
               <Link
                 onClick={() => handleClickCat('create')}
                 style={{ color: '#262626', textDecoration: 'none' }} to={navRouter[0].route}>{navRouter[0].routeName}</Link>
               <hr
-                style={{ border: navContainer === 'create' ? '1px solid rgb(255, 139, 99)' : '1px solid #749EF2', position: 'absolute', width: 250, top: 11 }} />
+                style={{
+                  border: navContainer === 'create' ? '1px solid rgb(255, 139, 99)' : '1px solid #749EF2',
+                  position: 'absolute',
+                  width: 250,
+                  top: 11
+                }} />
             </div>
             <div style={{ position: 'relative' }}>
               <Link
@@ -52,7 +62,13 @@ const NavbarMenuPopup: React.FC<INavigationProps> = ({ handleClosePopUp }) => {
                 style={{ color: '#262626', textDecoration: 'none' }}
                 to={navRouter[1].route}>{navRouter[1].routeName}</Link>
               <hr
-                style={{ border: navContainer === 'search' ? '1px solid rgb(255, 139, 99)' : '1px solid #749EF2', position: 'absolute', width: 250, top: 11 }} />
+                style={{
+                  border: navContainer === 'search' ?
+                    '1px solid rgb(255, 139, 99)' : '1px solid #749EF2',
+                  position: 'absolute',
+                  width: 250,
+                  top: 11
+                }} />
             </div>
             <div style={{ position: 'relative' }}>
               <Link
@@ -60,7 +76,13 @@ const NavbarMenuPopup: React.FC<INavigationProps> = ({ handleClosePopUp }) => {
                 style={{ color: '#262626', textDecoration: 'none' }}
                 to={navRouter[2].route}>{navRouter[2].routeName}</Link>
               <hr
-                style={{ border: navContainer === 'expl' ? '1px solid rgb(255, 139, 99)' : '1px solid #749EF2', position: 'absolute', width: 250, top: 11 }} />
+                style={{
+                  border: navContainer === 'expl' ?
+                    '1px solid rgb(255, 139, 99)' : '1px solid #749EF2',
+                  position: 'absolute',
+                  width: 250,
+                  top: 11
+                }} />
             </div>
           </div>
         </div>

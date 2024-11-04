@@ -37,14 +37,14 @@ const ChatHelp: React.FC<IChat> = ({ handleCloseChat }) => {
             style={{ backgroundImage: isHiddenGlass ? `url(${glass_img})` : '' }} placeholder='' />
         </div>
         <div className={styles.chat_boxMessage}>
-          <img  src={human_help} alt="human_help" />
+          <img src={human_help} alt="human_help" />
           <div className={styles.chat_boxMessage_text}>
             <span>Здравствуйте!</span>
             <span>Здесь Вам всегда ответит <br /> служба поддержки.</span>
           </div>
         </div>
         <div className={styles.chat_userFooter}>
-          <button style={{ width: '40px', height: '40px', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+          <button className={styles.chat_userFooter_button}>
             <img src={get_file} alt="getFile" />
           </button>
           <input

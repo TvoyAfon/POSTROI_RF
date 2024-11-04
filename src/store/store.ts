@@ -1,52 +1,37 @@
 import { configureStore } from '@reduxjs/toolkit'
 import resetPassword from './slices/AuthSlice/AuthResetPasswordSlice'
+import authSlice from './slices/AuthSlice/AuthSlice'
 import authTelegram from './slices/AuthSlice/authTelegram/AuthTelegramSlice'
+import calendarReducer from './slices/CalendarSlice/CalendarSlice'
 import favCategorySlice from './slices/CategoriesFavorites/CategoriesFavorites'
 import categoriesForFilterSlice from './slices/CategoriesForFilter/CategoriesForFilterSlice'
 import createOrderData from './slices/CreateOrder/data/CreateOrderDataSlice'
 import createOrderReducer from './slices/CreateOrder/form/CreateOrderForm'
 import createOrderCategories from './slices/CreateOrderCategoriesSlice'
 import currentCityReducer from './slices/CurrentCitySlice'
+import editModalClickFLag from './slices/EditModalFlag/EditModalFlagSlice'
 import formReducer from './slices/FormSlice/FormSlice'
+import opemModalConfirm from './slices/ModalConfirmSlice/modalConfirmSlice'
+import openUserLocationReducer from './slices/ModalUserLocationSlice/modalUserLocationSlice'
 import registerReducer from './slices/RegisterSlice'
 import resetReducer from './slices/ResetPasswordSlice/ResetPasswordSlice'
+import resetColorNav from './slices/SetNavColorSlice'
 import signsDataReducer from './slices/Signs/dataSigns/DataSignsSlice'
 import signsReducer from './slices/Signs/stepSigns/signsSlice'
-import createOrderCleaning from './slices/categories/CreateOrderCleaning'
-import createOrderMaterials from './slices/categories/CreateOrderMaterials'
-import createOrderServices from './slices/categories/CreateOrderServices'
-import createOrderTrucking from './slices/categories/CreateOrderTruckingSlice'
-import createOrderUniversal from './slices/categories/CreateOrderUniversal'
 import openCategoryVendorAndMat from './slices/categories/CreateOrderVendorAndMaterials/CreateOrderVendorAndMaterials'
-import createOrderWorkers from './slices/categories/CreateOrderWorkers'
+import modalClickFlag from './slices/closeModalClick/closeModalClickSlice'
 import currentPageMastersType from './slices/currentMastersPageType/currentPageTypeSlice'
+import createOrderHierarchySlice from './slices/other/categoriesList'
 import checkActiveModal from './slices/other/checkActiveModal'
 import countProjectsSlice from './slices/other/countProjects'
 import currentTabInProfile from './slices/other/currentTabInProfile'
 import getEducationDegree from './slices/other/getEducationDegree'
+import openNavbarPopupSlice from './slices/other/openNavbarPopup'
 import setBindSocials from './slices/other/setBindSocials'
 import externalHashSlice from './slices/other/setExternalHash'
 import yandexTokenSlice from './slices/other/setTokenYandex'
 import triggerFetch from './slices/other/triggerFetch'
 import createOrderValidation from './slices/validation/CreateOrderValidationSlice'
-
-import createOrderCleaningData from './slices/data/OrderDataCleaning'
-import createOrderMaterialsData from './slices/data/OrderDataMaterials'
-import createOrderServicesData from './slices/data/OrderDataServices'
-import createOrderTruckingData from './slices/data/OrderDataTrucking'
-import createOrderWorkersData from './slices/data/OrderDataWorkers'
-import createOrderUniversalData from './slices/data/OrderUniversalData'
-
-import modalClickFlag from './closeModalClick/closeModalClickSlice'
-import authSlice from './slices/AuthSlice/AuthSlice'
-import calendarReducer from './slices/CalendarSlice/CalendarSlice'
-import editModalClickFLag from './slices/EditModalFlag/EditModalFlagSlice'
-import opemModalConfirm from './slices/ModalConfirmSlice/modalConfirmSlice'
-import openUserLocationReducer from './slices/ModalUserLocationSlice/modalUserLocationSlice'
-import resetColorNav from './slices/SetNavColorSlice'
-import globalOrderDatataskname from './slices/data/OrderDataTaskname'
-import createOrderHierarchySlice from './slices/other/categoriesList'
-import openNavbarPopupSlice from './slices/other/openNavbarPopup'
 
 import chatReducer from './slices/ChatSlice/ChatSlice'
 import checkDirtyField from './slices/other/checkDirtyField'
@@ -92,7 +77,6 @@ export const store = configureStore({
     currentTabInProfile,
     countProjectsSlice,
     checkActiveModal,
-    createOrderUniversal,
     setBindSocials,
     externalHashSlice,
     yandexTokenSlice,
@@ -110,30 +94,17 @@ export const store = configureStore({
     authTelegram,
     getStateMailRU,   /* Телеграм авторизация */
 
-    globalOrderDatataskname,
-    createOrderTruckingData,
+
     createOrderData,
-    createOrderServicesData,   /* все данные c катег.*/
-    createOrderCleaningData,
-    createOrderWorkersData,
-    createOrderMaterialsData,
-    createOrderUniversalData,
 
     createOrderValidation,
     createOrderCategories,
 
     createOrder: createOrderReducer,
-    createOrderTrucking,         /* steps для категорий */
-    createOrderServices,
-    createOrderCleaning,
-    createOrderMaterials,
-    createOrderWorkers,
-
+    /* steps для форм заказа */
     signsReducer,
     signsData: signsDataReducer,
     orderCard,
-
-
 
     formWorkerReducer,
     formMasterReducer      /* Данные мастеро и разнорабочих */

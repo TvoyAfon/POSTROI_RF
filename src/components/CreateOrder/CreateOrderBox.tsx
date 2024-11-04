@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useCurrentSteps } from '../../hooks/stepsValidation/useCurrentSteps'
+import { useCurrentSteps } from '../../hooks/stepsValidationOrder/useCurrentSteps'
 import { RootState } from '../../store/store'
 import styles from './CreateOrder.module.scss'
 import { useGetTextInBox } from './hooks/useGetTextInBox'

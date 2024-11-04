@@ -1,12 +1,12 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { addOpenModalClickFlag } from '../../store/closeModalClick/closeModalClickSlice'
+import { addOpenModalClickFlag } from '../../store/slices/closeModalClick/closeModalClickSlice'
 import { setColorNav } from '../../store/slices/SetNavColorSlice'
 import styles from './Overlay.module.scss'
 
 const OverLay: React.FC = () => {
   const dispatch = useDispatch()
-  
+
   const handleModalClose = () => {
     dispatch(addOpenModalClickFlag(false))
     dispatch(setColorNav(''))

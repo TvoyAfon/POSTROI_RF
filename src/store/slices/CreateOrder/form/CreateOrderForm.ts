@@ -1,11 +1,11 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import CreateOrderDone from '../../../../components/CreateOrder/CreateOrderDone/CreateOrderDone'
 import CreateOrderCategories from '../../../../components/CreateOrder/forms/CreateOrderCategories'
 import CreateOrderContacts from '../../../../components/CreateOrder/forms/CreateOrderContacts'
 import CreateOrderDemo from '../../../../components/CreateOrder/forms/CreateOrderDemo'
 import CreateOrderPayMethod from '../../../../components/CreateOrder/forms/CreateOrderPayMethod'
 import CreateOrderSettings from '../../../../components/CreateOrder/forms/CreateOrderSettings'
 import CreateOrderTasks from '../../../../components/CreateOrder/forms/CreateOrderTasks'
+import CreateOrderDone from '../../../../components/Signs/SignsDone/SignsDone'
 import EmptyComponent from '../../../../components/ui/EmptyComponent'
 
 

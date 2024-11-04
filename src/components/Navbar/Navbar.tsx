@@ -76,12 +76,17 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-
       <div
         className={styles.navbar_overlay}
-        style={{ width: '100%', height: '80px', backgroundColor: 'white', position: 'fixed', zIndex: !isOpenNavbarPopup ? '10' : '12', boxShadow: !isOpenNavbarPopup ? '' : 'rgba(0, 0, 0, 0.2) 0px 10px 14px 0px, rgba(0, 0, 0, 0.1) 0px 2px 2px 0px, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px' }}>
+        style={{
+          width: '100%',
+          height: '80px',
+          backgroundColor: 'white',
+          position: 'fixed',
+          zIndex: !isOpenNavbarPopup ? '10' : '12',
+          boxShadow: !isOpenNavbarPopup ? '' : 'rgba(0, 0, 0, 0.2) 0px 10px 14px 0px, rgba(0, 0, 0, 0.1) 0px 2px 2px 0px, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px'
+        }}>
         <nav className={styles.navbar}>
-
           <div className={styles.logoAndBurger} style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
             <NavbarLogo handleNavClick={handleNavClick} />
             {!isOpenMenu ? <NavbarMenu handleToogleOpen={handleToogleOpen} /> : <img
