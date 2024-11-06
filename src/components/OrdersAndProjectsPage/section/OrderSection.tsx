@@ -67,7 +67,7 @@ const OrderSection: React.FC<IOrderSectionProps> = () => {
 						}}
 					/>
 					:
-					ordersList.length
+					ordersList && ordersList.length
 						?
 						<>
 							{

@@ -7,5 +7,7 @@ export interface ICardOrderInfo extends IOrderFullInfo {
 
 export interface IOrderSectionProps {
 	sectionRef: RefObject<HTMLDivElement>
-	searchQuery: string
+	searchQuery: string,
+	isMyLoading?: boolean,
+	isLoading?: boolean
 }

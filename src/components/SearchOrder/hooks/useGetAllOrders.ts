@@ -1,36 +1,41 @@
-import { useEffect } from 'react'
+import { useQuery } from 'react-query'
 import { useDispatch, useSelector } from 'react-redux'
-import { addOrders, setIsOrdersLoading } from '../../../store/slices/orders/ordersSlice'
+import useDebounce from '../../../hooks/useDebounce'
+import { addOrders } from '../../../store/slices/orders/ordersSlice'
 import { RootState } from '../../../store/store'
 import { getFormattedOrders } from '../../../utils/order-formatting'
 
-export const useGetAllOrders = () => {
-	const { ordersPage } = useSelector((state: RootState) => state.orders)
+export const useGetAllOrders = (searchTerm: string) => {
 	const dispatch = useDispatch()
+	const { ordersPage } = useSelector((state: RootState) => state.orders)
 	const { user } = useSelector((state: RootState) => state.auth)
+	const debouncedOrdersValue = useDebounce(searchTerm, 400)
 
-	useEffect(() => {
+	const fetchOrders = async (searchTerm: string, ordersPage: number) => {
 		if (user?.id) return
-		const getOrders = async () => {
-			try {
-				dispatch(setIsOrdersLoading(true))
-				const orders = await getFormattedOrders({
-					limit: 100,
-					page: ordersPage
-				})
-				if (orders) {
-					dispatch(addOrders({ orders, addFlag: 'rewrite' }))
-				}
+		const filteredOrders = await getFormattedOrders({
+			limit: 100,
+			page: ordersPage,
+			search_filter: searchTerm,
+		})
+		return filteredOrders
+	}
 
-			} catch (error) {
-				dispatch(setIsOrdersLoading(false))
-				console.log('Ошибка', error)
-			}
-			finally {
-				dispatch(setIsOrdersLoading(false))
-			}
+	const { isLoading } = useQuery(
+		['ordersUnAuth', debouncedOrdersValue, ordersPage],
+		() => fetchOrders(debouncedOrdersValue!, ordersPage),
+		{
+
+			onSuccess: (data: any) => {
+				dispatch(addOrders({ orders: data, addFlag: 'rewrite' }))
+			},
+
+			onError: (error: any) => {
+				console.error(error)
+			},
+			refetchOnReconnect: false,
+			refetchOnWindowFocus: false
 		}
-		getOrders()
-	}, [])
-
+	)
+	return isLoading
 }

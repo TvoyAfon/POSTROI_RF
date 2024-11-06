@@ -22,8 +22,9 @@ const SearchOrder: React.FC = () => {
   const { city } = useSelector((state: RootState) => state.currentCity)
   const { user } = useSelector((state: RootState) => state.auth)
   const nav = useNavigate()
-  const { ordersList, isOrdersLoading } = useSelector((state: RootState) => state.orders)
-  useGetAllOrders() /* Заносим данные в редакс */
+  const { ordersList } = useSelector((state: RootState) => state.orders)
+  const [term, setTerm] = useState<string>('')
+  const isLoading = useGetAllOrders(term) /* Заносим данные в редакс */
 
   const handleCloseMap = () => {
     setOpenSearchOrderMap(false)
@@ -39,7 +40,6 @@ const SearchOrder: React.FC = () => {
     }
   }, [user?.id])
 
-  /* useGetOrdersByCategory(categoryOrder, subCategoryOrder, 'Найти заказ') */
 
   return (
     <>
@@ -49,6 +49,8 @@ const SearchOrder: React.FC = () => {
         <SearchOrderOverlay
           style={openMap ? { zIndex: 9, left: '0px', width: 620, height: 828, border: '1px solid rgba(0,0,0,0.15)', top: '90px' } : {}} >
           <SearchOrderHeader
+            term={term}
+            setTerm={setTerm}
             city={city}
             handleOpenMap={handleOpenMap}
             openMap={openMap}
@@ -57,7 +59,7 @@ const SearchOrder: React.FC = () => {
             setOpenSearchOrderMap={setOpenSearchOrderMap} />
           <section
             style={{ overflowX: "hidden", display: 'grid', gridTemplateColumns: !openMap ? '1fr' : '1fr 1fr', gap: 24, overflowY: 'scroll', height: !openMap ? 570 : 670 }}>
-            {isOrdersLoading ? (
+            {isLoading ? (
               <Loader
                 text='Загрузка заказов'
                 style={!openMap ? {
@@ -67,7 +69,7 @@ const SearchOrder: React.FC = () => {
                   position: 'absolute', top: '45%', left: '30%'
                 }}
               />
-            ) : ordersList.length ? (
+            ) : ordersList && ordersList.length ? (
               !openMap ? (  // Здесь проверяем, открыта ли карта
                 <>
                   {ordersList.map(order => (

@@ -85,7 +85,7 @@ const CreateSigns: React.FC = () => {
   return (
     <>
       {createOrderDone ?
-        <SignsDone /> :
+        <SignsDone isSigns={true} /> :
         <div
           className={styles['createSigns_container']}
         >

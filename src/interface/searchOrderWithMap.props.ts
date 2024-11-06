@@ -1,4 +1,4 @@
-import { CSSProperties, Dispatch, SetStateAction } from 'react'
+import React, { CSSProperties, Dispatch, SetStateAction } from 'react'
 
 export interface ISearchOrderHeader {
 	openMap: boolean,
@@ -7,6 +7,8 @@ export interface ISearchOrderHeader {
 	setOpenSearchOrderMap: Dispatch<SetStateAction<boolean>>,
 	setOpenMap: Dispatch<SetStateAction<boolean>>,
 	handleOpenMap: () => void,
+	setTerm?: React.Dispatch<SetStateAction<string>>,
+	term?: string
 }
 
 export interface ICityAndRadius {

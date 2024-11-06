@@ -1,30 +1,26 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import caret from '../../../assets/images/other/caret-bottom-solid.svg'
-import useDebounce from '../../../hooks/useDebounce'
 import { useModal } from '../../../hooks/useModal'
 import { ISearchOrderHeader } from '../../../interface/searchOrderWithMap.props'
 import { RootState } from '../../../store/store'
 import SearchOrderInput from '../../ui/OrderInput/SearchOrderInput'
-import { useSearchOrders } from '../hooks/useSearchOrders'
 import styles from '../SearchOrder.module.scss'
 import CityAndRadius from './CityAndRadius/CityAndRadius'
 import SearchOrderModal from './SearchOrderModal/SearchOrderModal'
 import SearchMyOrderFilter from './ui/SearchMyOrderFilter'
 
 const
-	SearchOrderHeader: React.FC<ISearchOrderHeader> = ({ openMap, setOpenSearchOrderMap, setOpenMap, handleOpenMap }) => {
+	SearchOrderHeader: React.FC<ISearchOrderHeader> = ({ openMap, setOpenSearchOrderMap, setOpenMap, handleOpenMap, setTerm, term }) => {
 
 		const { handleOpen, isOpen, handleClose } = useModal()
-		const [searchTerm, setSearchTerm] = useState('')
+
 		const categoryOrder = useSelector((state: RootState) => state.categoriesForFilterSlice)
 
 		const handleSearchByName = (e: React.ChangeEvent<HTMLInputElement>) => {
-			setSearchTerm(e.target.value)
+			setTerm && setTerm(e.target.value)
 		}
 
-		const debouncedValue = useDebounce(searchTerm, 400)
-		useSearchOrders(debouncedValue!, 'Заказы', 'Москва')
 		return (
 			<>
 				{isOpen && <SearchOrderModal
@@ -55,7 +51,7 @@ const
 									<img style={{ cursor: 'pointer' }} src={caret} alt="caret" />
 								</div>
 								<SearchOrderInput
-									value={searchTerm}
+									value={term}
 									onChange={handleSearchByName}
 									width={!openMap ? 557 : 513} />
 								<SearchMyOrderFilter />

@@ -36,7 +36,7 @@ export const useSearchOrders = (searchTerm: string, currentPage: string, cityNam
 	const { user } = useSelector((state: RootState) => state.auth)
 	const debouncedOrdersValue = useDebounce(searchTerm, 400)
 
-	useQuery(
+	const { isLoading: isLoadingOrder } = useQuery(
 		['orders', debouncedOrdersValue, cityName, ordersPage],
 		() => fetchOrders(debouncedOrdersValue!, cityName!, ordersPage),
 		{
@@ -53,7 +53,7 @@ export const useSearchOrders = (searchTerm: string, currentPage: string, cityNam
 		}
 	)
 
-	useQuery(
+	const { isLoading: isMyLoadingOrder } = useQuery(
 		['myOrders', debouncedOrdersValue, user?.id, myOrdersPage],
 		() => fetchMyOrders(debouncedOrdersValue!, user?.id!, myOrdersPage),
 		{
@@ -69,4 +69,5 @@ export const useSearchOrders = (searchTerm: string, currentPage: string, cityNam
 			refetchOnWindowFocus: false
 		}
 	)
+	return { isLoadingOrder, isMyLoadingOrder }
 }

@@ -41,6 +41,11 @@ export enum Sections {
 	MYPROJECTS = 'Мои проекты'
 }
 
+export enum VisionType {
+	List = 'Список',
+	Map = 'Карта'
+}
+
 const OrdersAndProjectsPage = () => {
 	const nav = useNavigate()
 	const [openMap, setOpenMap] = useState(false)
@@ -77,12 +82,20 @@ const OrdersAndProjectsPage = () => {
 		localStorage.setItem('count_projects', String(data.length))
 	}, [])
 
+	useSearchOrders(search, currentSubCategory, user?.city_name)
+
 	const subSectionComponent = useMemo(() => {
 		if (currentCategory === Sections.ORDERS && currentSubCategory === CurrentPage.ORDERS) {
-			return <OrderSection sectionRef={sectionRef} searchQuery={search} />
+			return <OrderSection
+
+				sectionRef={sectionRef}
+				searchQuery={search} />
 		}
 		if (currentCategory === Sections.ORDERS && currentSubCategory === Sections.MYORDERS) {
-			return <MyOrderSection sectionRef={sectionRef} searchQuery={search} />
+			return <MyOrderSection
+
+				sectionRef={sectionRef}
+				searchQuery={search} />
 		}
 		if (currentCategory === Sections.PROJECTS) {
 			return <MyProjectSection data={data} isLoading={isLoading} />
@@ -108,11 +121,11 @@ const OrdersAndProjectsPage = () => {
 	}, [currentCategory, myOrdersList, ordersList])
 
 	const handleOpenYandexMap = () => {
-		setCurrentButton('Карта')
+		setCurrentButton(VisionType.Map)
 		setOpenYandexMap(true)
 	}
 	const handleCloseYandexMap = () => {
-		setCurrentButton('Список')
+		setCurrentButton(VisionType.List)
 		setOpenYandexMap(false)
 
 	}
@@ -127,7 +140,6 @@ const OrdersAndProjectsPage = () => {
 		setSearch(e.target.value)
 	}
 
-	useSearchOrders(search, currentSubCategory, user?.city_name)
 
 	return (
 		<>
@@ -168,10 +180,10 @@ const OrdersAndProjectsPage = () => {
 							<div style={{ display: 'flex', alignItems: 'center' }}>
 								<Button
 									onClick={handleCloseYandexMap}
-									style={{ width: 77, fontWeight: 400, fontSize: 14, backgroundColor: currentButton === 'Список' ? '#383940' : '#F4F3F1', color: currentButton === 'Список' ? 'white' : '#383940' }}>Список</Button>
+									style={{ width: 77, fontWeight: 400, fontSize: 14, backgroundColor: currentButton === VisionType.List ? '#383940' : '#F4F3F1', color: currentButton === VisionType.List ? 'white' : '#383940' }}>Список</Button>
 								<Button
 									onClick={handleOpenYandexMap}
-									style={{ width: 77, fontWeight: 400, fontSize: 14, backgroundColor: currentButton === 'Карта' ? '#383940' : '#F4F3F1', color: currentButton === 'Карта' ? 'white' : '#383940' }}>Карта</Button>
+									style={{ width: 77, fontWeight: 400, fontSize: 14, backgroundColor: currentButton === VisionType.Map ? '#383940' : '#F4F3F1', color: currentButton === VisionType.Map ? 'white' : '#383940' }}>Карта</Button>
 							</div>
 							{currentCategory === Sections.MYORDERS || currentCategory === Sections.PROJECTS ?
 								<Button onClick={() => setOpenNewProject(true)}>
@@ -225,10 +237,10 @@ const OrdersAndProjectsPage = () => {
 							/>
 							<Button
 								onClick={handleCloseYandexMap}
-								style={{ width: 77, fontWeight: 400, fontSize: 14, backgroundColor: currentButton === 'Список' ? '#383940' : '#F4F3F1', color: currentButton === 'Список' ? 'white' : '#383940' }}>Список</Button>
+								style={{ width: 77, fontWeight: 400, fontSize: 14, backgroundColor: currentButton === VisionType.List ? '#383940' : '#F4F3F1', color: currentButton === VisionType.List ? 'white' : '#383940' }}>Список</Button>
 							<Button
 								onClick={handleOpenYandexMap}
-								style={{ width: 77, fontWeight: 400, fontSize: 14, backgroundColor: currentButton === 'Карта' ? '#383940' : '#F4F3F1', color: currentButton === 'Карта' ? 'white' : '#383940' }}>Карта</Button>
+								style={{ width: 77, fontWeight: 400, fontSize: 14, backgroundColor: currentButton === VisionType.Map ? '#383940' : '#F4F3F1', color: currentButton === VisionType.Map ? 'white' : '#383940' }}>Карта</Button>
 						</div>
 						<section className={styles['containerWithYandexMap_cards']}>
 							{compactCards?.map(card => (
