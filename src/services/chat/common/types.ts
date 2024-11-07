@@ -3,16 +3,21 @@ import { IUserInfo } from "../../auth/common/types"
 
 export type ChatType = 'personal' | 'group'
 
+
+
 export type MemberStatusLink = 'open' | 'active' | 'done' | 'archive'
+export type Type_n = 'orders' | 'services' | 'announce'
 
 export interface ChatBase {
-    type_n: 'orders' | 'services' | 'announce'
+    type_n: Type_n
     type_number: number
     status: MemberStatusLink
     member_owner_id: number
     member_id?: number | null
     load_status: 'I' | 'U' | 'D'
 }
+
+
 
 export interface ChatItem extends ChatBase {
     is_online?: boolean
@@ -70,8 +75,21 @@ export interface ChatsListSchema {
     page?: number
 }
 
+export interface ICreateChatSchema {
+    type_n: Type_n,
+    type_number: number,
+    status: MemberStatusLink,
+    member_owner_id: number,
+    member_id: number
+}
+
 export interface MessagesListSchema extends ChatsListSchema {
     chat_id: number
+}
+
+export interface IChatExistSchema {
+    member_id: number,
+    member_owner_id: number
 }
 
 export interface SendMessageSchema {

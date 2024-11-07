@@ -73,7 +73,7 @@ export interface IOrderMyListSchema {
 	search_filter?: string
 }
 
-export interface IOrderListSchema extends Omit<IOrderMyListSchema, 'client_id'> {
+export interface IOrderListSchema extends IOrderMyListSchema {
 	city?: string
 }
 

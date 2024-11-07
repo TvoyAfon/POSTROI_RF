@@ -70,7 +70,7 @@ const Albums: FC<AlbumsProps> = ({ children }) => {
 				</div>
 				<div className={styles['albums__container']}>
 					{
-						!isLoading ? albums.map(album => (
+						!isLoading ? albums && albums.map(album => (
 							<Album
 								checkMyAlbum={checkIsMyAlbum()}
 								key={album.album_id}

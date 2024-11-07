@@ -158,7 +158,7 @@ const CategoriesListFilter: React.FC<ICategoriesListFilter> = ({ style, setCurre
 					))}
 				</div>
 				<div
-					style={{ width: 100, overflow: 'hidden', textOverflow: 'ellipsis' }}
+					style={{ width: 100, whiteSpace: 'nowrap', overflow: 'hidden' }}
 					className={styles['navbar_popup_content_categories_subcategories_sub']}>
 					{
 						currentSubSubSubSection.map(subsubsub => (

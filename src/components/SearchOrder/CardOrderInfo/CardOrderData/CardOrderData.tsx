@@ -80,7 +80,7 @@ const CardOrderData: React.FC<ICardOrderInfo> = ({
 						</IconSignature>
 					}
 				</div>
-				<span style={{ color: '#8E8E93', fontWeight: 600 }}>{order.category_path}</span>
+				<span style={{ color: '#8E8E93', fontWeight: 600, width: 500, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>{order.category_path}</span>
 			</section>
 		</div>
 	)

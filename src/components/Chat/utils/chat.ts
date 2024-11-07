@@ -11,7 +11,7 @@ export function getChatApponentFromIDs(memberId: number, ownerId: number, userId
     return memberId === userId ? ownerId : memberId
 }
 
-export async function getChats(schema: ChatsListSchema) {
+export async function getChats(schema: ChatsListSchema, previous_chatList: ChatItem[]) {
     const chats = await chatService.getUserChatsList(schema)
     if (!chats) return
 
@@ -20,7 +20,10 @@ export async function getChats(schema: ChatsListSchema) {
 
     for (const chat of chats) {
         const members: IUserInfo[] = []
-
+        const chatResult = previous_chatList.find(chat_ => chat_.chat_id === chat.chat_id)
+        if (chatResult) {
+            continue
+        }
         for (const memberId of chat.chat_members) {
             const member = membersMapping[memberId]
             if (member) {

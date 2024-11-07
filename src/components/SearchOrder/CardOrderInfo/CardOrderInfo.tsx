@@ -3,14 +3,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import ratingStar from '../../../assets/images/profile/rating-star-checked.svg'
 import { useModal } from '../../../hooks/useModal'
+import { chatService } from '../../../services/chat/chat'
+import { ICreateChatSchema } from '../../../services/chat/common/types'
 import { orderService } from '../../../services/order/order'
 import { OrderStatus } from '../../../services/order/types/enums'
+import { addChatList, openChat, setSelectedChatId } from '../../../store/slices/ChatSlice/ChatSlice'
+import { openModal } from '../../../store/slices/FormSlice/FormSlice'
 import { deleteMyOrder } from '../../../store/slices/orders/ordersSlice'
 import { RootState } from '../../../store/store'
 import { ICardOrderInfo } from '../../OrdersAndProjectsPage/section/props'
 import IconSignature from '../../Profile/ui/IconSignature'
 import SignsCardDeleteConfirm from '../../Signs/SignsCard/modal/SignsCardDeleteConfirm'
 import Button from '../../ui/Button/Button'
+import CardNumberModal from '../../ui/CardNumberModal/CardNumberModal'
+import Loader from '../../ui/Loader/Loader'
+import CardOrderRespond from '../modal/CardOrderRespond'
 import SearchOrderCardDetail from '../modal/SearchOrderCardDetail'
 import CardOrderData from './CardOrderData/CardOrderData'
 import styles from './CardOrderInfo.module.scss'
@@ -27,11 +34,19 @@ const CardOrderInfo: React.FC<ICardOrderInfo> = ({
 	const dispatch = useDispatch()
 	const [isOpenConfirm, setIsOpenConfirm] = useState(false)
 	const { user } = useSelector((state: RootState) => state.auth)
+	const { chatList } = useSelector((state: RootState) => state.chat)
+
 	const [isLoading, setIsLoading] = useState<boolean>(false)
 
+	const [isLoadingRespond, setIsLoadingRespond] = useState<boolean>(false)
+
+	const [openShowNumber, setOpenShowNumber] = useState<boolean>(false)
+	const [openRespond, setOpenRespond] = useState<boolean>(false)
 
 	const isMyOrder = user?.id === order.client_data?.id
 	const isCompleted = order.status === OrderStatus.COMPLETED
+
+
 
 	const handleOpenConfirm = (e: React.MouseEvent) => {
 		e.stopPropagation()
@@ -77,9 +92,83 @@ const CardOrderInfo: React.FC<ICardOrderInfo> = ({
 		handleOpen()
 	}
 
+	const handleOpenShowNumber = (e: React.MouseEvent) => {
+		e.stopPropagation()
+		setOpenShowNumber(true)
+	}
+
+	const handleOpenDetail = (e: React.MouseEvent) => {
+		e.stopPropagation()
+		if (!user?.id) {
+			return dispatch(openModal('authModal'))
+		}
+		setOpenRespond(true)
+	}
+	const handleOpenRespond = async (e: React.MouseEvent) => {
+		e.stopPropagation()
+		if (!order.client.id || !user?.id) {
+			return dispatch(openModal('authModal'))
+		}
+
+		const schema: ICreateChatSchema = {
+			member_id: order.client.id,
+			member_owner_id: user?.id,
+			status: 'open',
+			type_n: 'orders',
+			type_number: 0
+		}
+
+		let chatId: number | null = null
+
+		try {
+
+			setIsLoadingRespond(true)
+			const response = await chatService.createChat(schema)
+			if (!response) return
+			chatId = response.chat_id
+		} catch (error: any) {
+			if (error.message === 'Such personal chat is exist') {
+				try {
+					const chatIdResponse = await chatService.chatExist({ member_id: schema.member_id, member_owner_id: schema.member_owner_id })
+					if (!chatIdResponse) return
+					chatId = chatIdResponse.chat_id
+					const chat = chatList.find(chat => chat.chat_id === chatId)
+					if (!chat) {
+						const chatResponse = await chatService.getChat(chatId)
+						if (!chatResponse) return
+						dispatch(addChatList([...chatList, chatResponse]))
+					}
+				} catch (error) {
+					console.log('catchIdResponse', error)
+				}
+			}
+			console.log(error)
+		}
+		finally {
+			dispatch(openChat(true))
+			dispatch(setSelectedChatId(chatId))
+			setIsLoadingRespond(false)
+		}
+
+	}
+	console.log(order)
 
 	return (
 		<>
+			{openRespond &&
+				<CardOrderRespond
+					order={order}
+					onClose={() => setOpenRespond(false)} />}
+			{openShowNumber &&
+				<CardNumberModal
+					userProfile={
+						<CardOrderUser
+							userAvatar={order.client_data?.profile_photo}
+							userName={clientUsername}
+							lastVisit='Был недавно'
+						/>}
+					phone={order.contact_phone}
+					onClose={() => setOpenShowNumber(false)} />}
 			{isOpenConfirm &&
 				<SignsCardDeleteConfirm
 					isLoading={isLoading}
@@ -125,15 +214,17 @@ const CardOrderInfo: React.FC<ICardOrderInfo> = ({
 									&&
 									<>
 										<Button
-											onClick={(event) => event.stopPropagation()}
-											style={{ fontSize: 14, fontWeight: 400 }}>
-											Откликнуться
+											onClick={handleOpenRespond}
+											style={{ fontSize: 14, fontWeight: 400, width: 156 }}>
+											{isLoadingRespond ? <Loader
+												textStyle={{ fontSize: 14, fontWeight: 300, color: 'white' }} /> : 'Откликнуться'}
 										</Button>
-										<Button onClick={(event) => {
-											event.stopPropagation()
-
-										}} style={{ backgroundColor: '#8E8E93', fontSize: 14, fontWeight: 400 }}>Уточнить детали</Button>
-										<Button style={{ fontSize: 14, fontWeight: 400 }}>Показать телефон</Button>
+										<Button
+											onClick={handleOpenDetail}
+											style={{ backgroundColor: '#8E8E93', fontSize: 14, fontWeight: 400 }}>Уточнить детали</Button>
+										<Button
+											onClick={handleOpenShowNumber}
+											style={{ fontSize: 14, fontWeight: 400, width: 156 }}>Показать телефон</Button>
 									</>
 								}
 							</div>

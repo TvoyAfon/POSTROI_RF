@@ -10,13 +10,19 @@ export enum CurrentPage {
 	MY_ORDERS = 'Мои заказы'
 }
 
-const fetchOrders = async (searchTerm: string, cityName: string, ordersPage: number) => {
-	const filteredOrders = await getFormattedOrders({
+const fetchOrders = async (searchTerm: string, cityName: string, ordersPage: number, userId?: number,) => {
+	const params: any = {
 		limit: 100,
 		page: ordersPage,
 		city: cityName,
 		search_filter: searchTerm,
-	})
+	}
+
+	if (userId) {
+		params.client_id = userId
+	}
+
+	const filteredOrders = await getFormattedOrders(params)
 	return filteredOrders
 }
 
@@ -38,7 +44,7 @@ export const useSearchOrders = (searchTerm: string, currentPage: string, cityNam
 
 	const { isLoading: isLoadingOrder } = useQuery(
 		['orders', debouncedOrdersValue, cityName, ordersPage],
-		() => fetchOrders(debouncedOrdersValue!, cityName!, ordersPage),
+		() => fetchOrders(debouncedOrdersValue!, cityName!, ordersPage, user?.id),
 		{
 			enabled: !!cityName && currentPage === CurrentPage.ORDERS,
 			onSuccess: (data: any) => {

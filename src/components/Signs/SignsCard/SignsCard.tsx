@@ -7,10 +7,10 @@ import { ISignsCard } from '../../../interface/categoryCard.props'
 import { RootState } from '../../../store/store'
 import CardOrderUser from '../../SearchOrder/CardOrderInfo/CardOrderUser/CardOrderUser'
 import Button from '../../ui/Button/Button'
+import SignsCardNumber from '../../ui/CardNumberModal/CardNumberModal'
 import styles from '../Signs.module.scss'
 import SignsCardDeleteConfirm from './modal/SignsCardDeleteConfirm'
 import SignsCardDetail from './modal/SignsCardDetail'
-import SignsCardNumber from './modal/SignsCardNumber'
 
 
 const SignsCard: React.FC<ISignsCard> = ({

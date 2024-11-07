@@ -4,12 +4,12 @@ import address_svg from '../../../../assets/images/signs/address_icon.svg'
 import { useModal } from '../../../../hooks/useModal'
 import { ISignsCardDetail } from '../../../../interface/categoryCard.props'
 import Button from '../../../ui/Button/Button'
+import SignsCardNumber from '../../../ui/CardNumberModal/CardNumberModal'
 import CloseButton from '../../../ui/CloseButton/CloseButton'
 import ModalContainer from '../../../ui/Modal/ModalContainer'
 import SignsCardDetailFiles from '../ui/SignsCardDetailFiles'
 import SignsCardComplaint from './SignsCardComplaint'
 import SignsCardDeleteConfirm from './SignsCardDeleteConfirm'
-import SignsCardNumber from './SignsCardNumber'
 
 const SignsCardDetail: React.FC<ISignsCardDetail> = ({ onClose,
 	card, /* Данные карточки */
@@ -27,7 +27,9 @@ const SignsCardDetail: React.FC<ISignsCardDetail> = ({ onClose,
 			{openDeleteModal && <SignsCardDeleteConfirm cardType='Объявление' onClose={() => setOpenDeleteModal(false)} />}
 			<ModalContainer isOnOverlay={true} style={{ width: 1140, position: 'fixed', zIndex: 12 }}>
 				{isOpenComplaint && <SignsCardComplaint onClose={handleCloseComplaint} />}
-				{isOpen && <SignsCardNumber onClose={handleClose} />}
+
+				{isOpen && <SignsCardNumber
+					onClose={handleClose} />}
 				<div style={{ display: 'flex', gap: 32, flexDirection: "column" }}>
 					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 						<span style={{ fontWeight: 800, color: '#8E8E93' }}>{card?.data.categoryType}</span>

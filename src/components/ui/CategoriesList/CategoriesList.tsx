@@ -14,8 +14,6 @@ interface ICategoriesList {
 }
 
 const CategoriesList: React.FC<ICategoriesList> = ({ style, handleSetCategories }) => {
-
-
 	const categories = useGetCategoryList()
 	/* Рендерим список категорий */
 	const [currentCategory, setCurrentCategory] = useState('') /* lvl 1*/
@@ -37,8 +35,8 @@ const CategoriesList: React.FC<ICategoriesList> = ({ style, handleSetCategories 
 
 		setId([idLvl1])
 	}
-	const handleClickCategoryLvl2 = (subsubCategory: SubCategory[], subCategoryName: string, idLvl2: number) => {
-		setCurrentSubSubSection(subsubCategory)
+	const handleClickCategoryLvl2 = (subCategory: SubCategory[], subCategoryName: string, idLvl2: number) => {
+		setCurrentSubSubSection(subCategory)
 		setCurrentSubCategory(subCategoryName)
 		setCurrentSubSubSubSection([])
 
@@ -53,10 +51,8 @@ const CategoriesList: React.FC<ICategoriesList> = ({ style, handleSetCategories 
 		setId([id[0], id[1], idLvl3])
 	}
 
-	const handleClickCategoryLvl4 = (subsubsubsubCategory: SubCategory[], subsubsubsubCategoryName: string, idLvl4: number) => {
-		setCurrentSubSubSubSection(subsubsubsubCategory)
+	const handleClickCategoryLvl4 = (subsubsubsubCategoryName: string, idLvl4: number) => {
 		setCurrentSubSubSubCategory(subsubsubsubCategoryName)
-
 		setId([id[0], id[1], id[2], idLvl4])
 	}
 
@@ -118,7 +114,7 @@ const CategoriesList: React.FC<ICategoriesList> = ({ style, handleSetCategories 
 					))}
 				</div>
 				<div
-					style={{ width: 100, overflow: 'hidden', textOverflow: 'ellipsis' }}
+					style={{ overflow: 'hidden' }}
 					className={styles['navbar_popup_content_categories_subcategories_sub']}>
 					{
 						currentSubSubSubSection.map(subsubsub => (
@@ -128,7 +124,7 @@ const CategoriesList: React.FC<ICategoriesList> = ({ style, handleSetCategories 
 								style={getStyle(subsubsub.id, subsubsub.level - 1)!}
 								categoryName={subsubsub.category}
 								className={styles['categories_categoryFilter']}
-								handleClick={() => handleClickCategoryLvl4(subsubsub.sub_category, subsubsub.category, subsubsub.id)} />
+								handleClick={() => handleClickCategoryLvl4(subsubsub.category, subsubsub.id)} />
 						))
 					}
 				</div>

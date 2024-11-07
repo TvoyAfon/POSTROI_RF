@@ -47,7 +47,7 @@ const ConversatonHeader = () => {
 
 	const projectData = useMemo(() => projects.find(project => project.project_id === chatData?.project_id), [chatData])
 
-	const chatTitle = useMemo(() => getPersonalChatTitle(Number(user?.id), chatData?.user_owner, chatData?.user_member), [selectedChatId, user?.id])
+	const chatTitle = useMemo(() => getPersonalChatTitle(Number(user?.id), chatData?.user_owner, chatData?.user_member), [selectedChatId, chatList, user?.id])
 
 	const chatName = useMemo(() => {
 		console.log(chatTitle, chatData, projectData)
